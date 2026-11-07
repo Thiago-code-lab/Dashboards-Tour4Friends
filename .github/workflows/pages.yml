@@ -42,7 +42,7 @@ jobs:
           exit 1
       - name: PostgreSQL migrations, API, security, persistence and KPI parity
         working-directory: backend
-        run: pytest -q
+        run: python -m pytest -q
       - run: npx playwright install --with-deps chromium
       - name: Connected browser tests with real API and PostgreSQL
         run: python backend/scripts/run_connected_tests.py --allow-reset-test-db
