@@ -211,14 +211,16 @@ export default function Methodology() {
         <p className="panel-prose">
           A base é validada antes de entrar na aplicação: chaves únicas, referências existentes,
           datas ISO, status permitidos, preços e quantidades não negativos, coerência de pagamentos,
-          avaliações após viagens e notas de 0 a 10. Importações são atômicas e permanecem em
-          memória. Exportações CSV neutralizam fórmulas.
+          avaliações após viagens e notas de 0 a 10. Importações são atômicas: ficam em memória na
+          demonstração e são persistidas por lote autenticado no laboratório. Exportações CSV
+          neutralizam fórmulas.
         </p>
         <p className="panel-prose">
           Filtros são aplicados por data da viagem; leads usam a data de contato. Previsões usam
           apenas meses completos dentro do filtro e até outubro de 2026. Custos por categoria são
           estimados por rateio da receita da mesma saída. Preferências e estados dos alertas ficam
-          somente no navegador.
+          no navegador na demonstração; revisões de alertas são persistidas com responsável e data
+          no laboratório.
         </p>
       </Panel>
       <div className="two-column">
@@ -230,10 +232,11 @@ export default function Methodology() {
             Não há taxas de câmbio, conciliação contábil ou controle de estornos.
           </p>
           <p className="panel-prose">
-            Próximas etapas: homologar contratos de dados com a agência, criar API autenticada com
-            controle de acesso, apurar custos por categoria, avaliar modelos em múltiplas janelas
-            temporais e calibrar incerteza com histórico maior. Nenhuma correlação observada na
-            simulação permite concluir causalidade.
+            A API autenticada, as permissões e a avaliação em múltiplas janelas já estão
+            implementadas. Próximos passos: homologar dados e processos com a agência, publicar a
+            API com HTTPS mediante aprovação, apurar custos por categoria e avaliar previsões em
+            novos meses. A faixa atual é exploratória. Nenhuma correlação da simulação permite
+            concluir causalidade.
           </p>
         </Panel>
         <Panel title="Referências de arquitetura e catálogo">

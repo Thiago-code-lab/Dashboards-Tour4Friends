@@ -1,5 +1,13 @@
 # Regras dos indicadores
 
+## Auditoria independente da candidata
+
+`tests/fixtures/kpi-reference.json` é uma carteira pequena, criada separadamente da base original: seis reservas, três saídas e três avaliações. Os resultados em `kpi-reference-expected.json` foram calculados à mão, sem executar as funções de produção. Quatro recortes são conferidos pelo TypeScript e pelo Python. No consolidado: receita 2.100; ticket 525; NPS 0; cancelamento 1/6; ocupação 12/18 vagas-noite; pagamentos 1.000. Dois déficits de vagas-noite permanecem, mesmo havendo capacidade excedente em outras datas.
+
+Na saída sem receita confirmada, o custo de 50 não tem base de rateio. Permanece no consolidado, sem aparecer na soma dos filtros por categoria. Essa é uma limitação explícita da regra de rateio por receita, não uma mudança nos resultados da base original. Receita contratada, realizada gerencial e pagamentos não devem ser somados.
+
+## Definições de escopo
+
 Filtros de reservas, custos e saídas usam **data de início da viagem**. Feedback é a coorte de reservas selecionadas; evolução usa a data da resposta. Leads e conversão usam **data do primeiro contato**. As coortes são explicitadas na interface para evitar comparação incorreta. Intervalos incluem ambas as extremidades.
 
 | Indicador                   | Fórmula / regra                                                                                                    |

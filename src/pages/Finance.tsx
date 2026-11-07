@@ -69,7 +69,7 @@ export default function Finance() {
         {money(view.paid)} em pagamentos recebidos das reservas selecionadas. Esses valores se
         sobrepõem e não devem ser somados.{' '}
         {filters.category !== 'all' &&
-          'Custos rateados por participação na receita da categoria; não representam custos individuais apurados.'}
+          'Custos rateados por participação na receita da categoria; não representam custos individuais apurados. Saídas sem receita confirmada não têm base de rateio: seus custos aparecem somente no consolidado.'}
       </div>
       <div className="two-column">
         <Panel title="Receita versus custo" subtitle="Coorte por mês da viagem · histórico">

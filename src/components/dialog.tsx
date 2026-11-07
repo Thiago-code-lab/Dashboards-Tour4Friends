@@ -14,15 +14,20 @@ export function Dialog({
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
+    const previousFocus = document.activeElement;
     const dialog = ref.current;
     dialog?.showModal();
-    return () => dialog?.close();
+    return () => {
+      dialog?.close();
+      if (previousFocus instanceof HTMLElement && previousFocus.isConnected) previousFocus.focus();
+    };
   }, []);
   return (
     <dialog
       ref={ref}
       className="operational-dialog"
       aria-label={title}
+      aria-busy={busy}
       onCancel={(event) => {
         event.preventDefault();
         if (!busy) onClose();

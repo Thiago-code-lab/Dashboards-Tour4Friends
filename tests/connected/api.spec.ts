@@ -141,3 +141,102 @@ test('administrador gerencia usuários e pagina os eventos de auditoria', async 
   await dialog.getByRole('button', { name: 'Anteriores', exact: true }).click();
   await expect(dialog.locator('.pagination')).toContainText('página 1');
 });
+
+test('conflitos e validação preservam o formulário; modal cabe no celular e restaura foco', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto('#/reservas');
+  await login(page, 'manager');
+  const opener = page.getByRole('button', { name: 'Gerenciar reservas', exact: true });
+  await opener.click();
+  await page.getByLabel('Selecionar registro').selectOption('T4F-0002');
+  const amount = page.getByLabel('Valor total (BRL)', { exact: true });
+  await expect(amount).not.toHaveValue('');
+  const initial = await amount.inputValue();
+  for (const status of [403, 409, 422]) {
+    await page.route('**/api/v1/bookings/T4F-0002', async (route) => {
+      if (route.request().method() !== 'PATCH') return route.continue();
+      await route.fulfill({
+        status,
+        json: {
+          detail:
+            status === 422
+              ? [{ path: ['body', 'totalAmount'], message: 'Valor precisa ser revisto.' }]
+              : status === 409
+                ? 'Versão desatualizada. Reabra o registro.'
+                : 'Perfil sem permissão para esta operação.',
+        },
+      });
+    });
+    await page.getByRole('button', { name: 'Salvar no PostgreSQL', exact: true }).click();
+    await expect(page.getByRole('dialog').getByRole('alert')).toBeVisible();
+    await expect(amount).toHaveValue(initial);
+    if (status === 422) {
+      await expect(amount).toHaveAttribute('aria-invalid', 'true');
+      await expect(page.getByText('Valor precisa ser revisto.', { exact: true })).toBeVisible();
+    }
+    await page.unroute('**/api/v1/bookings/T4F-0002');
+  }
+  const box = await page.getByRole('dialog').boundingBox();
+  expect(box!.width).toBeLessThanOrEqual(360);
+  expect(box!.height).toBeLessThanOrEqual(800);
+  await page.keyboard.press('Escape');
+  await expect(opener).toBeFocused();
+});
+
+test('erros de serviço e respostas inválidas mantêm a fonte; 401 encerra a sessão', async ({
+  page,
+}) => {
+  await page.goto('#/');
+  await login(page, 'analyst');
+  for (const failure of [
+    { status: 503, body: JSON.stringify({ detail: 'Banco temporariamente indisponível.' }) },
+    { status: 200, body: '{}' },
+    { status: 200, body: '<html>resposta inválida</html>' },
+  ]) {
+    await page.route('**/api/v1/dataset', (route) =>
+      route.fulfill({ ...failure, contentType: 'application/json' }),
+    );
+    await page.getByRole('button', { name: 'Atualizar dados da API' }).click();
+    await expect(page.getByRole('heading', { name: 'A base não pôde ser validada' })).toBeVisible();
+    await expect(
+      page.getByText('Ambiente conectado · base sintética persistente', { exact: true }),
+    ).toBeVisible();
+    await page.unroute('**/api/v1/dataset');
+    await page.getByRole('button', { name: 'Tentar novamente', exact: true }).click();
+    await expect(page.locator('.metric-value').first()).toBeVisible();
+  }
+  await page.route('**/api/v1/dataset', (route) =>
+    route.fulfill({ status: 401, json: { detail: 'Sessão expirada.' } }),
+  );
+  await page.getByRole('button', { name: 'Atualizar dados da API' }).click();
+  await expect(page.getByRole('heading', { name: 'Entre no ambiente conectado' })).toBeVisible();
+  await expect(
+    page.getByText('Sua sessão expirou ou foi revogada. Entre novamente.', { exact: true }),
+  ).toBeVisible();
+});
+
+test('trocar rapidamente o registro não aplica a resposta antiga sobre a seleção nova', async ({
+  page,
+}) => {
+  await page.goto('#/reservas');
+  await login(page, 'manager');
+  await page.getByRole('button', { name: 'Gerenciar reservas', exact: true }).click();
+  await page.route('**/api/v1/bookings/T4F-0001', async (route) => {
+    const response = await route.fetch();
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    await route.fulfill({ response });
+  });
+  await page.getByLabel('Selecionar registro').selectOption('T4F-0001');
+  await page.getByLabel('Selecionar registro').selectOption('T4F-0002');
+  const source = JSON.parse(
+    (await import('node:fs')).readFileSync('public/data/demo.json', 'utf8'),
+  ) as { bookings: { id: string; totalAmount: number }[] };
+  const expected = String(
+    source.bookings.find((booking) => booking.id === 'T4F-0002')!.totalAmount,
+  );
+  await expect(page.getByLabel('Valor total (BRL)')).toHaveValue(expected);
+  await page.waitForTimeout(500);
+  await expect(page.getByLabel('Valor total (BRL)')).toHaveValue(expected);
+});

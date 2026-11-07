@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "build:demo": "tsx scripts/build-demo.ts",
+    "qa:audit": "tsx scripts/qa-audit.ts",
+    "delivery:data": "tsx scripts/export-delivery-data.ts",
     "analytics:report": "tsx scripts/analyze-demo.ts",
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
@@ -28,6 +31,7 @@
     "zod": "^4.1.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.56.0",
     "@types/node": "^24.0.0",
     "@types/papaparse": "^5.3.16",
@@ -38,6 +42,6 @@
     "tsx": "^4.20.0",
     "typescript": "~5.9.3",
     "vite": "^7.2.0",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.12"
   }
 }

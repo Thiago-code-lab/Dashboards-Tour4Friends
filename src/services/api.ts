@@ -3,6 +3,7 @@ export class ApiError extends Error {
     message: string,
     public readonly status: number,
     public readonly requestId?: string,
+    public readonly validation: Record<string, string> = {},
   ) {
     super(message);
     this.name = 'ApiError';
@@ -11,7 +12,10 @@ export class ApiError extends Error {
 export class ApiClient {
   private token: string | null = null;
   onUnauthorized: (() => void) | null = null;
-  constructor(private readonly baseUrl: string) {}
+  constructor(
+    private readonly baseUrl: string,
+    private readonly timeoutMs = 15000,
+  ) {}
   get configured(): boolean {
     return Boolean(this.baseUrl);
   }
@@ -21,7 +25,12 @@ export class ApiClient {
   async request<T>(path: string, options: RequestInit = {}): Promise<T> {
     if (!this.baseUrl)
       throw new ApiError('O endereço do laboratório não foi configurado neste build.', 0);
-    const base = new URL(this.baseUrl);
+    let base: URL;
+    try {
+      base = new URL(this.baseUrl);
+    } catch {
+      throw new ApiError('O endereço da API é inválido. Confira a configuração do laboratório.', 0);
+    }
     if (
       base.protocol !== 'https:' &&
       !(base.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(base.hostname))
@@ -32,23 +41,7 @@ export class ApiClient {
     if (usedToken) headers.set('Authorization', `Bearer ${usedToken}`);
     if (options.body && !(options.body instanceof FormData))
       headers.set('Content-Type', 'application/json');
-    let response: Response;
-    try {
-      response = await fetch(`${this.baseUrl.replace(/\/$/, '')}/api/v1${path}`, {
-        ...options,
-        headers,
-        credentials: 'omit',
-        cache: 'no-store',
-      });
-    } catch (error) {
-      if (error instanceof DOMException && error.name === 'AbortError') throw error;
-      throw new ApiError(
-        'Não foi possível alcançar a API. Verifique a conexão com o laboratório.',
-        0,
-      );
-    }
-    const payload: unknown =
-      response.status === 204 ? null : await response.json().catch(() => null);
+    const { response, payload } = await this.fetchPayload(path, { ...options, headers });
     if (!response.ok) {
       if (response.status === 401 && usedToken && this.token === usedToken) {
         this.token = null;
@@ -61,18 +54,86 @@ export class ApiClient {
           ? detail
           : Array.isArray(detail)
             ? detail
-                .map(
-                  (d: { message?: string; msg?: string }) => d.message ?? d.msg ?? 'Campo inválido',
-                )
+                .map((item: unknown) => {
+                  if (!item || typeof item !== 'object') return 'Campo inválido';
+                  const entry = item as { message?: unknown; msg?: unknown; path?: unknown };
+                  const label = Array.isArray(entry.path)
+                    ? entry.path.filter((part) => part !== 'body').join('.')
+                    : '';
+                  const message =
+                    typeof entry.message === 'string'
+                      ? entry.message
+                      : typeof entry.msg === 'string'
+                        ? entry.msg
+                        : 'Campo inválido';
+                  return label ? `${label}: ${message}` : message;
+                })
                 .join(' · ')
             : 'A API não concluiu a operação.';
+      const validation = Object.fromEntries(
+        (Array.isArray(detail) ? detail : []).flatMap((item: unknown) => {
+          if (!item || typeof item !== 'object') return [];
+          const entry = item as { path?: unknown; message?: unknown; msg?: unknown };
+          if (!Array.isArray(entry.path)) return [];
+          const key = entry.path.filter((part) => part !== 'body').at(-1);
+          const value = entry.message ?? entry.msg;
+          return typeof key === 'string' && typeof value === 'string' ? [[key, value]] : [];
+        }),
+      );
       throw new ApiError(
         message,
         response.status,
         response.headers.get('X-Request-ID') ?? undefined,
+        validation,
       );
     }
     return payload as T;
+  }
+  private async fetchPayload(
+    path: string,
+    options: RequestInit,
+  ): Promise<{ response: Response; payload: unknown }> {
+    const controller = new AbortController();
+    const abort = () => controller.abort(options.signal?.reason);
+    if (options.signal?.aborted) abort();
+    else options.signal?.addEventListener('abort', abort, { once: true });
+    let timedOut = false;
+    const timeout = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, this.timeoutMs);
+    try {
+      const response = await fetch(`${this.baseUrl.replace(/\/$/, '')}/api/v1${path}`, {
+        ...options,
+        signal: controller.signal,
+        credentials: 'omit',
+        cache: 'no-store',
+      });
+      const payload: unknown =
+        response.status === 204 ? null : await response.json().catch(() => null);
+      if (response.ok && response.status !== 204 && (!payload || typeof payload !== 'object'))
+        throw new ApiError(
+          'A API retornou uma resposta inválida. Recarregue os dados; nenhuma troca de fonte foi feita.',
+          response.status,
+        );
+      return { response, payload };
+    } catch (error) {
+      if (timedOut)
+        throw new ApiError(
+          'A API demorou além do limite. Tente novamente ou confira o serviço do laboratório.',
+          0,
+        );
+      if (error instanceof ApiError) throw error;
+      if (options.signal?.aborted || (error instanceof DOMException && error.name === 'AbortError'))
+        throw error;
+      throw new ApiError(
+        'Não foi possível alcançar a API. Verifique a conexão com o laboratório.',
+        0,
+      );
+    } finally {
+      clearTimeout(timeout);
+      options.signal?.removeEventListener('abort', abort);
+    }
   }
   get<T>(path: string, signal?: AbortSignal) {
     return this.request<T>(path, { signal });

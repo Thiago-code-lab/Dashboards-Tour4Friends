@@ -4,6 +4,71 @@ import { ApiDataRepository } from '../src/services/data';
 afterEach(() => vi.unstubAllGlobals());
 
 describe('Cliente de sessão em memória e fonte explícita', () => {
+  it('recusa JSON inválido e erros de validação malformados sem falha de renderização', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue(new Response('<html>offline</html>', { status: 200 })),
+    );
+    await expect(new ApiClient('https://lab.example.com').get('/dataset')).rejects.toThrow(
+      'resposta inválida',
+    );
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue(
+        new Response(
+          JSON.stringify({
+            detail: [null, 2, { path: ['body', 'amount'], message: 'Valor inválido' }],
+          }),
+          { status: 422 },
+        ),
+      ),
+    );
+    await expect(new ApiClient('https://lab.example.com').post('/costs', {})).rejects.toMatchObject(
+      { status: 422, message: 'Campo inválido · Campo inválido · amount: Valor inválido' },
+    );
+  });
+  it('interrompe uma chamada que ultrapassa o limite sem trocar a fonte', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(
+        (_, options: RequestInit) =>
+          new Promise((_, reject) => {
+            options.signal!.addEventListener(
+              'abort',
+              () => reject(new DOMException('Aborted', 'AbortError')),
+              { once: true },
+            );
+          }),
+      ),
+    );
+    await expect(new ApiClient('https://lab.example.com', 5).get('/dataset')).rejects.toThrow(
+      'demorou além do limite',
+    );
+  });
+  it('apresenta contexto útil para 403 e 409 sem revogar a sessão', async () => {
+    const client = new ApiClient('https://lab.example.com');
+    client.setSession(crypto.randomUUID());
+    const revoked = vi.fn();
+    client.onUnauthorized = revoked;
+    for (const status of [403, 409]) {
+      vi.stubGlobal(
+        'fetch',
+        vi.fn().mockResolvedValue(
+          new Response(
+            JSON.stringify({
+              detail:
+                status === 403
+                  ? 'Perfil sem permissão'
+                  : 'Versão desatualizada. Reabra o registro.',
+            }),
+            { status },
+          ),
+        ),
+      );
+      await expect(client.patch('/bookings/B1', {})).rejects.toMatchObject({ status });
+    }
+    expect(revoked).not.toHaveBeenCalled();
+  });
   it('envia bearer em memória e nunca cookies', async () => {
     const token = crypto.randomUUID();
     const client = new ApiClient('https://lab.example.com');

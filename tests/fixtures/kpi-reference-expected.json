@@ -1,0 +1,114 @@
+[
+  {
+    "name": "consolidado",
+    "filters": {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "route": "all",
+      "modality": "all",
+      "category": "all"
+    },
+    "expected": {
+      "bookings": 6,
+      "confirmedBookings": 4,
+      "travelers": 6,
+      "servedTravelers": 4,
+      "uniqueCustomers": 5,
+      "totalRevenue": 2100,
+      "realizedRevenue": 1500,
+      "contractedFuture": 600,
+      "cost": 600,
+      "ticket": 525,
+      "nps": 0,
+      "responses": 3,
+      "paid": 1000,
+      "cancellationRate": 16.666666666666668,
+      "conversion": 66.66666666666667,
+      "occupancy": 66.66666666666667
+    }
+  },
+  {
+    "name": "Premium",
+    "filters": {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "route": "all",
+      "modality": "all",
+      "category": "Premium"
+    },
+    "expected": {
+      "bookings": 4,
+      "confirmedBookings": 3,
+      "travelers": 5,
+      "servedTravelers": 3,
+      "uniqueCustomers": 4,
+      "totalRevenue": 1600,
+      "realizedRevenue": 1000,
+      "contractedFuture": 600,
+      "cost": 416.6666666666667,
+      "ticket": 533.3333333333334,
+      "nps": 50,
+      "responses": 2,
+      "paid": 750,
+      "cancellationRate": 25,
+      "conversion": 75,
+      "occupancy": 71.42857142857143
+    }
+  },
+  {
+    "name": "Conforto",
+    "filters": {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "route": "all",
+      "modality": "all",
+      "category": "Conforto"
+    },
+    "expected": {
+      "bookings": 2,
+      "confirmedBookings": 1,
+      "travelers": 1,
+      "servedTravelers": 1,
+      "uniqueCustomers": 1,
+      "totalRevenue": 500,
+      "realizedRevenue": 500,
+      "contractedFuture": 0,
+      "cost": 133.33333333333334,
+      "ticket": 500,
+      "nps": -100,
+      "responses": 1,
+      "paid": 250,
+      "cancellationRate": 0,
+      "conversion": 50,
+      "occupancy": 50
+    }
+  },
+  {
+    "name": "historico",
+    "filters": {
+      "start": "2024-01-01",
+      "end": "2024-02-29",
+      "route": "all",
+      "modality": "all",
+      "category": "all"
+    },
+    "expected": {
+      "bookings": 5,
+      "confirmedBookings": 3,
+      "travelers": 4,
+      "servedTravelers": 4,
+      "uniqueCustomers": 3,
+      "totalRevenue": 1500,
+      "realizedRevenue": 1500,
+      "contractedFuture": 0,
+      "cost": 450,
+      "ticket": 500,
+      "nps": 0,
+      "responses": 3,
+      "paid": 800,
+      "cancellationRate": 20,
+      "conversion": 66.66666666666667,
+      "occupancy": 80
+    }
+  }
+]

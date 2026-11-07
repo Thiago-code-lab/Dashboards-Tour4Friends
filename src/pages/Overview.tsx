@@ -19,6 +19,7 @@ import { compactMoney, dateLabel, money, number, percent } from '../lib/format';
 import { useForecast } from '../hooks/useForecast';
 import { useIntelligence } from '../hooks/useIntelligence';
 import { IntelligencePanel } from '../components/intelligence-panel';
+import { PresentationGuide } from '../components/presentation-guide';
 
 export default function Overview() {
   const { view, activeAlerts, insights, filters } = useAnalysis();
@@ -39,6 +40,7 @@ export default function Overview() {
         }
       />
       <GlobalFilters />
+      <PresentationGuide />
       <div className="scope-caption">
         <span>
           <i /> {dateLabel(filters.start)} a {dateLabel(filters.end)}
