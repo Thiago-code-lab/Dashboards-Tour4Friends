@@ -6,9 +6,10 @@ import { Badge, Empty, Kpi, Panel } from '../components/ui';
 import { dateLabel, number } from '../lib/format';
 import { exportCsv } from '../lib/csv';
 import type { AlertStatus } from '../types/domain';
+import { AlertReview } from '../components/alert-review';
 
 export default function Operations() {
-  const { alerts, statuses, setAlertStatus, data } = useAnalysis();
+  const { alerts, statuses, setAlertStatus, data, mode } = useAnalysis();
   const [severity, setSeverity] = useState('all');
   const [type, setType] = useState('all');
   const [status, setStatus] = useState('all');
@@ -68,7 +69,7 @@ export default function Operations() {
         <Kpi
           label="Resolvidos"
           value={number(alerts.filter((a) => statuses[a.id] === 'resolved').length)}
-          detail="Neste navegador"
+          detail={mode === 'api' ? 'Persistidos no PostgreSQL' : 'Neste navegador'}
           icon={CheckCheck}
           tone="green"
           help="Resoluções demonstrativas persistidas somente no localStorage do navegador."
@@ -145,22 +146,31 @@ export default function Operations() {
                     {dateLabel(a.date)}
                   </p>
                   <p>{a.cause}</p>
+                  {mode === 'api' && statuses[a.id] === 'resolved' && (
+                    <p className="notice">
+                      Resolvido administrativamente — condição operacional ainda detectada.
+                    </p>
+                  )}
                   <div className="recommended-action">
                     <strong>Ação recomendada</strong> {a.action}
                   </div>
                 </div>
-                <label className="status-control">
-                  Acompanhamento
-                  <select
-                    aria-label={`Status ${a.id}`}
-                    value={statuses[a.id] ?? 'open'}
-                    onChange={(e) => setAlertStatus(a.id, e.target.value as AlertStatus)}
-                  >
-                    <option value="open">Aberto</option>
-                    <option value="reviewed">Revisado</option>
-                    <option value="resolved">Resolvido</option>
-                  </select>
-                </label>
+                {mode === 'api' ? (
+                  <AlertReview id={a.id} />
+                ) : (
+                  <label className="status-control">
+                    Acompanhamento
+                    <select
+                      aria-label={`Status ${a.id}`}
+                      value={statuses[a.id] ?? 'open'}
+                      onChange={(e) => setAlertStatus(a.id, e.target.value as AlertStatus)}
+                    >
+                      <option value="open">Aberto</option>
+                      <option value="reviewed">Revisado</option>
+                      <option value="resolved">Resolvido</option>
+                    </select>
+                  </label>
+                )}
               </article>
             ))}
           </div>

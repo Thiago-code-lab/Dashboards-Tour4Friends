@@ -197,8 +197,10 @@ export default function Methodology() {
         <p className="panel-prose">
           React, TypeScript, Vite, Tailwind CSS, Recharts, Lucide, React Router, Zod e Vitest.
           HashRouter mantém a navegação compatível com GitHub Pages. O repositório de dados expõe
-          uma interface assíncrona para permitir futura substituição por API REST/PostgreSQL, sem
-          alterar as regras de cálculo.
+          uma interface assíncrona com dois adaptadores: JSON no modo demonstração e API FastAPI
+          autenticada no laboratório conectado, persistindo os mesmos dados sintéticos em
+          PostgreSQL. As regras de cálculo e o Ridge continuam no navegador; KPIs também são
+          calculados no backend e testados por paridade.
         </p>
         <p className="panel-prose">
           A base é validada antes de entrar na aplicação: chaves únicas, referências existentes,
@@ -216,9 +218,10 @@ export default function Methodology() {
       <div className="two-column">
         <Panel title="Limitações e evolução">
           <p className="panel-prose">
-            Cenário acadêmico, sem conexão ativa com sistemas da empresa, sem autenticação e sem
-            envio externo de mensagens. Feedbacks não constituem amostra representativa. Não há
-            taxas de câmbio, conciliação contábil ou controle de estornos.
+            Cenário acadêmico, sem conexão com sistemas operacionais da empresa e sem envio de
+            mensagens. O laboratório opcional possui autenticação e permissões no servidor; o Pages
+            padrão continua independente da API. Feedbacks não constituem amostra representativa.
+            Não há taxas de câmbio, conciliação contábil ou controle de estornos.
           </p>
           <p className="panel-prose">
             Próximas etapas: homologar contratos de dados com a agência, criar API autenticada com

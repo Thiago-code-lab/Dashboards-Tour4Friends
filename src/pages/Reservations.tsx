@@ -7,10 +7,25 @@ import { SimpleBarChart } from '../components/charts';
 import { compactMoney, dateLabel, money, number, percent } from '../lib/format';
 import { conversionRate } from '../lib/analytics/metrics';
 import { exportCsv, importBookingsCsv } from '../lib/csv';
+import { Management } from '../components/management';
+import { Dialog } from '../components/dialog';
+import type { ImportValidation } from '../types/api';
 const statusLabels = { confirmed: 'Confirmada', pending: 'Pendente', cancelled: 'Cancelada' };
 
 export default function Reservations() {
-  const { data, view, replaceData, restoreData, imported } = useAnalysis();
+  const {
+    data,
+    view,
+    replaceData,
+    restoreData,
+    imported,
+    mode,
+    canImport,
+    validateImport,
+    commitImport,
+    saving,
+  } = useAnalysis();
+  const [batch, setBatch] = useState<ImportValidation | null>(null);
   const [status, setStatus] = useState('all');
   const [notice, setNotice] = useState('');
   const [failed, setFailed] = useState(false);
@@ -50,6 +65,12 @@ export default function Reservations() {
     if (!file) return;
     try {
       if (file.size > 1024 * 1024) throw new Error('O arquivo deve ter até 1 MB.');
+      if (mode === 'api') {
+        setBatch(await validateImport(file));
+        setFailed(false);
+        setNotice('Lote validado pelo servidor. Confirme para gravar na base sintética.');
+        return;
+      }
       const next = importBookingsCsv(await file.text(), data);
       replaceData(next);
       setFailed(false);
@@ -68,8 +89,12 @@ export default function Reservations() {
         title="Reservas e comercial"
         description="Acompanhe cada oportunidade, do primeiro contato à confirmação da viagem."
         action={
-          <button className="button" onClick={() => fileRef.current?.click()}>
-            <Upload size={15} /> Importar CSV local
+          <button
+            className="button"
+            disabled={!canImport || saving}
+            onClick={() => fileRef.current?.click()}
+          >
+            <Upload size={15} /> {mode === 'api' ? 'Importar CSV no banco' : 'Importar CSV local'}
           </button>
         }
       />
@@ -82,8 +107,36 @@ export default function Reservations() {
         onChange={(e) => void importFile(e.target.files?.[0])}
       />
       <GlobalFilters />
+      <Management resource="bookings" />
+      {batch && (
+        <Dialog title="Confirmar importação" busy={saving} onClose={() => setBatch(null)}>
+          <p className="panel-prose">
+            {batch.rows} reservas validadas. O lote será gravado em uma única transação, com
+            auditoria e proteção contra duplicação. Nenhum registro foi alterado ainda.
+          </p>
+          <button
+            className="button primary"
+            disabled={saving}
+            onClick={async () => {
+              try {
+                await commitImport(batch);
+                setBatch(null);
+                setNotice('Importação persistida no PostgreSQL.');
+              } catch (err) {
+                setFailed(true);
+                setNotice(err instanceof Error ? err.message : 'A importação não foi concluída.');
+              }
+            }}
+          >
+            Confirmar importação no PostgreSQL
+          </button>
+        </Dialog>
+      )}
       <div className="module-toolbar">
-        <span className="muted text-xs">Importação em memória · somente dados demonstrativos</span>
+        <span className="muted text-xs">
+          {mode === 'demo' ? 'Importação em memória' : 'Importação administrativa transacional'} ·
+          somente dados demonstrativos
+        </span>
         <div className="flex flex-wrap gap-2">
           <button
             className="button small"
@@ -304,8 +357,10 @@ export default function Reservations() {
         <p className="panel-prose">
           O CSV técnico usa IDs já existentes de clientes, leads e saídas. Importe somente dados
           demonstrativos. O lote substitui reservas com o mesmo ID e adiciona novos IDs válidos.
-          Pagamentos, feedbacks e estágio dos leads precisam continuar consistentes. Nenhum arquivo
-          é enviado para serviços externos.
+          Pagamentos, feedbacks e estágio dos leads precisam continuar consistentes.{' '}
+          {mode === 'demo'
+            ? 'O arquivo permanece no navegador, sem envio externo.'
+            : 'O arquivo é enviado somente à API configurada, após autenticação administrativa. Validação e confirmação são etapas separadas.'}
         </p>
         <p className="panel-note">
           Separador ; · viajantes separados por | · datas ISO · booleanos true/false · valor em BRL

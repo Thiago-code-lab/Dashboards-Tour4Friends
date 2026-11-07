@@ -1,5 +1,6 @@
 import { validateDataset } from '../lib/validation/dataset';
 import type { Dataset } from '../types/domain';
+import type { ApiClient } from './api';
 
 export interface DataRepository {
   load(signal?: AbortSignal): Promise<Dataset>;
@@ -12,3 +13,9 @@ export class StaticDataRepository implements DataRepository {
   }
 }
 export const repository: DataRepository = new StaticDataRepository();
+export class ApiDataRepository implements DataRepository {
+  constructor(private readonly client: ApiClient) {}
+  async load(signal?: AbortSignal): Promise<Dataset> {
+    return validateDataset(await this.client.get<unknown>('/dataset', signal));
+  }
+}

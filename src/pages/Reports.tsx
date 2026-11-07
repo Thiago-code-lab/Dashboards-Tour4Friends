@@ -9,7 +9,7 @@ import { capacityPlan } from '../lib/forecasting/capacity';
 import { compactMoney, dateLabel, monthLabel, number } from '../lib/format';
 
 export default function Reports() {
-  const { data, view, filters, insights, activeAlerts } = useAnalysis();
+  const { data, view, filters, insights, activeAlerts, mode } = useAnalysis();
   const forecast = useForecast(6);
   const plan = capacityPlan(data, filters, forecast.predictions);
   const generated = new Intl.DateTimeFormat('pt-BR', {
@@ -224,9 +224,12 @@ export default function Reports() {
             Histórico até {dateLabel(data.metadata.historyEnd)}. {data.customers.length} clientes,{' '}
             {data.bookings.length} reservas, {data.leads.length} leads, {data.routes.length}{' '}
             roteiros e {data.feedback.length} avaliações na base completa. Validação por schema,
-            chaves únicas e integridade referencial. Sem integração ativa com banco de dados ou
-            dados operacionais reais. Custos por categoria usam rateio de receita. Não há inferência
-            causal ou intervalo de incerteza calibrado.
+            chaves únicas e integridade referencial.{' '}
+            {mode === 'api'
+              ? 'Fonte: API autenticada e PostgreSQL do laboratório.'
+              : 'Fonte: JSON estático da demonstração.'}{' '}
+            Sem dados operacionais reais. Custos por categoria usam rateio de receita. Não há
+            inferência causal ou intervalo de incerteza calibrado.
           </p>
           <p className="report-final">
             T4F Performance — Projeto Integrador V · Fatec Ipiranga

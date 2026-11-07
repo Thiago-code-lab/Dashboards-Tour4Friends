@@ -27,6 +27,7 @@ import { useApp } from '../app/context';
 import { dateLabel } from '../lib/format';
 import { DEFAULT_FILTERS } from '../lib/analytics/metrics';
 import type { Filters } from '../types/domain';
+import { ConnectionBar } from './connection';
 
 export const NAVIGATION = [
   { to: '/', label: 'Visão geral', icon: LayoutDashboard },
@@ -160,6 +161,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </header>
         <main id="main-content" tabIndex={-1}>
+          <ConnectionBar />
           {(storageError || imported) && (
             <div className="notice" role="status">
               {storageError ||

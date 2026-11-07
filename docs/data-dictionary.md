@@ -27,3 +27,34 @@ Um slot é uma utilização de hospedagem de uma saída em uma data/etapa/catego
 Schemas verificam datas calendáricas, enums, intervalos e campos obrigatórios. A validação relacional verifica PKs, FKs, itinerários, pagamentos, confirmação e datas de feedback. Um snapshot inválido não entra no provider. Importação CSV faz merge por ID em uma nova estrutura, valida tudo e só então troca o estado.
 
 Dados importados continuam sujeitos ao contrato `synthetic_demo`: esta interface não é um canal de ingestão de dados pessoais reais. Preferências e status de revisão são guardados separadamente dos registros. A base original é imutável e restaurável.
+
+## PostgreSQL da etapa 02
+
+As dez coleções são mapeadas para tabelas relacionais; `allocations` corresponde a `accommodation_allocations` e `costs` a `operational_costs`. A associação `booking_travelers` preserva a ordem dos participantes. Colunas seguem `snake_case`; contratos HTTP mantêm `camelCase` do frontend, exceto `source_type`, preservado literalmente.
+
+Tabelas administrativas: `users`, `user_sessions`, `alert_statuses`, `audit_events`, `import_batches`; `dataset_metadata` é necessária para origem, corte e fingerprint da seed. Não há nova massa de dados de negócio.
+
+```mermaid
+erDiagram
+  routes ||--o{ departures : roteiro
+  routes ||--o{ leads : interesse
+  routes ||--o{ partners : apoio
+  customers ||--o{ bookings : titular
+  leads ||--o| bookings : conversao
+  departures ||--o{ bookings : grupo
+  bookings ||--|{ booking_travelers : participantes
+  customers ||--o{ booking_travelers : viaja
+  departures ||--o{ accommodation_allocations : utiliza
+  partners ||--o{ accommodation_allocations : contrata
+  departures ||--o{ operational_costs : custos
+  bookings ||--o{ payments : recebimentos
+  bookings ||--o{ feedback : avaliacoes
+  users ||--o{ user_sessions : autentica
+  users ||--o{ alert_statuses : revisa
+  users ||--o{ audit_events : altera
+  users ||--o{ import_batches : importa
+```
+
+Recursos operacionais têm `version` e ordem estável de seed. A FK composta dos viajantes referencia reserva/saída/status; índice parcial impede duplicidade de viajante ativo por saída. Dinheiro é `NUMERIC(14,2)`. Sessões têm hash de token, validade e revogação; auditoria nunca contém senha/token. Importações guardam registros normalizados, hash, versões esperadas, responsável, estado e expiração da validação.
+
+Confirmação é um evento histórico: cancelamento futuro preserva `confirmedAt` e pagamentos recebidos. Uma cancelada originalmente sem confirmação continua com `confirmedAt=null`. Um pagamento de cancelada só é aceito quando há confirmação histórica; feedback continua exigindo viagem concluída e reserva confirmada. Não se cria reembolso fictício. Esses casos não alteram os registros ou KPIs originais da versão 1.

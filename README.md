@@ -2,7 +2,17 @@
 
 Plataforma de análise de desempenho corporativo da Tour4Friends, desenvolvida para o **Projeto Integrador V da Fatec Ipiranga “Pastor Enéas Tognini”**.
 
-Aplicação estática funcional em React/TypeScript. Indicadores, alertas, insights e previsões são calculados no navegador a partir de uma base sintética versionada. **Dados demonstrativos — cenário acadêmico simulado.** Nenhum resultado representa o desempenho real da agência.
+Aplicação React/TypeScript com dois modos: demonstração estática independente e laboratório autenticado com FastAPI/PostgreSQL. Indicadores, alertas, insights e previsões utilizam a mesma base sintética. **Dados demonstrativos — cenário acadêmico simulado.** Nenhum resultado representa o desempenho real da agência.
+
+## Etapa 02 — laboratório conectado
+
+O backend adiciona PostgreSQL real, migração Alembic, seed idempotente, sessão opaca revogável, quatro perfis, CRUD operacional, auditoria e importação transacional. `ApiDataRepository` integra o snapshot aos mesmos dashboards e ao Ridge existente. O padrão de build permanece `demo`; indisponibilidade da API não provoca fallback silencioso.
+
+- [Execução local e Docker, criação segura do administrador e endpoints](backend/README.md).
+- [Evidências da entrega 02](docs/entrega-02-backend.md).
+- [Arquitetura](docs/architecture.md), [modelo relacional](docs/data-dictionary.md), [autenticação](docs/authentication.md), [API](docs/api.md) e [manual de operação](docs/operacao-laboratorio.md).
+
+Não existe API cloud publicada nesta etapa. Nenhum recurso faturável foi criado. A publicação existente do Pages continua disponível em demonstração; a integração é executável localmente, com banco real.
 
 ## Funcionalidades implementadas
 
@@ -31,7 +41,7 @@ Filtros globais de período, roteiro, modalidade e categoria são preservados ao
 
 ## Executar localmente
 
-Requisitos: **Node.js 22.12+ ou 24 LTS**, npm e navegador moderno. **Python 3.11+ é necessário somente para regenerar a base.** Não há backend obrigatório, banco de dados, credenciais ou serviços pagos.
+Requisitos da demonstração: **Node.js 22.12+ ou 24 LTS**, npm e navegador moderno. Python é opcional para regenerar dados; backend, banco e credenciais não são necessários nesse modo. O laboratório opcional exige Python 3.12 e PostgreSQL; consulte o README do backend.
 
 ```bash
 npm ci
@@ -145,13 +155,15 @@ src/
     analytics/            # Indicadores, alertas e insights
     forecasting/          # Ridge, baseline e teste temporal
     validation/           # Integridade e contrato da base
-  services/               # DataRepository substituível por API
+  services/               # Adaptadores estático/API e sessão em memória
   types/                  # Schemas Zod e tipos derivados
 public/data/demo.json     # Snapshot sintético versionado
 scripts/                  # Geração Python e validação TypeScript
 tests/                    # Testes unitários e E2E
 docs/                     # Documentação técnica
 .github/workflows/        # Validação e deployment
+backend/                  # FastAPI, modelos, migrações, seed e testes PostgreSQL
+docker-compose.yml        # PostgreSQL e API local
 ```
 
 ## Decisões de arquitetura e performance
@@ -162,13 +174,13 @@ Documentação: [dicionário](docs/data-dictionary.md), [KPIs](docs/kpis.md), [a
 
 ## Limitações e roadmap
 
-- Não há conexão ativa com PostgreSQL, MongoDB, Data Lake, WhatsApp ou e-mail. O site é estático.
-- Não há autenticação, autorização multiusuário ou sincronização de alertas. Estados de revisão são locais e não corrigem a causa na origem.
+- O Pages padrão permanece estático. O laboratório opcional conecta PostgreSQL; não há conexão com dados operacionais, MongoDB, Data Lake, WhatsApp ou e-mail.
+- Na demonstração, revisões ficam no navegador. No laboratório, autenticação, autorização, auditoria e revisões são persistentes no servidor. A revisão administrativa não corrige a causa.
 - Valores são em BRL demonstrativos, sem conciliação contábil, tributos, multas, estornos ou câmbio.
 - Custos por categoria são rateados por receita; não são despesas individuais apuradas.
 - Satisfação é uma amostra sintética não probabilística; não inferir causalidade ou desempenho real.
 - Intervalos de previsão não são apresentados sem calibração confiável. O planejamento usa o maior valor entre a projeção arredondada e os viajantes futuros já confirmados, sem inserir esses compromissos no treinamento.
-- Próxima iteração: contratos homologados, API autenticada, auditoria multiusuário, custos por categoria, validação em múltiplas janelas e intervalos calibrados.
+- Próxima iteração: hospedagem HTTPS da API, backups/recuperação, custos apurados por categoria, múltiplas janelas temporais e intervalos calibrados. API autenticada e auditoria já estão implementadas no laboratório local.
 
 ## Referências consultadas
 

@@ -18,6 +18,7 @@ import { PageHeading, GlobalFilters } from '../components/layout';
 import { Badge, DataTable, Empty, Kpi, Panel } from '../components/ui';
 import { compactMoney, money, monthLabel, number, percent, sum } from '../lib/format';
 import { exportCsv } from '../lib/csv';
+import { Management } from '../components/management';
 
 const routeColors = ['#708fce', '#7F9A80', '#556e92', '#a4b9d0', '#576d60', '#b5bdd0'];
 export default function Routes() {
@@ -50,6 +51,7 @@ export default function Routes() {
         description="Compare demanda, rentabilidade e experiência para planejar as próximas saídas."
       />
       <GlobalFilters />
+      <Management resource="departures" />
       <div className="kpi-grid">
         <Kpi
           label="Roteiros no recorte"

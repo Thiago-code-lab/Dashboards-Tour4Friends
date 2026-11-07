@@ -11,8 +11,58 @@ concurrency:
   group: pages-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - run: npm ci
+      - run: pip install -r backend/requirements.txt
+      - name: Start disposable PostgreSQL with an ephemeral password
+        shell: bash
+        run: |
+          T4F_DB_PASSWORD=$(openssl rand -hex 24)
+          echo "::add-mask::$T4F_DB_PASSWORD"
+          echo "POSTGRES_PASSWORD=$T4F_DB_PASSWORD" >> "$GITHUB_ENV"
+          echo "DATABASE_URL=postgresql+psycopg://t4f_ci:$T4F_DB_PASSWORD@127.0.0.1:55432/t4f_lab_test" >> "$GITHUB_ENV"
+          echo "TEST_DATABASE_URL=postgresql+psycopg://t4f_ci:$T4F_DB_PASSWORD@127.0.0.1:55432/t4f_lab_test" >> "$GITHUB_ENV"
+          docker run -d --name t4f-postgres -e POSTGRES_USER=t4f_ci -e POSTGRES_DB=t4f_lab_test -e POSTGRES_PASSWORD="$T4F_DB_PASSWORD" -p 127.0.0.1:55432:5432 postgres:18
+          for attempt in $(seq 1 30); do
+            if docker exec t4f-postgres pg_isready -U t4f_ci -d t4f_lab_test; then exit 0; fi
+            sleep 1
+          done
+          exit 1
+      - name: PostgreSQL migrations, API, security, persistence and KPI parity
+        working-directory: backend
+        run: pytest -q
+      - run: npx playwright install --with-deps chromium
+      - name: Connected browser tests with real API and PostgreSQL
+        run: python backend/scripts/run_connected_tests.py --allow-reset-test-db
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: backend-interface-failure
+          path: |
+            artifacts/connected-services.log
+            test-results/
+      - name: Stop disposable PostgreSQL
+        if: always()
+        run: docker rm -f t4f-postgres
   build:
     runs-on: ubuntu-latest
+    env:
+      VITE_DATA_MODE: demo
+      VITE_API_BASE_URL: ''
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -49,7 +99,7 @@ jobs:
           path: dist
   deploy:
     if: github.event_name != 'pull_request'
-    needs: build
+    needs: [build, backend]
     runs-on: ubuntu-latest
     permissions:
       pages: write
