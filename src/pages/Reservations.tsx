@@ -82,6 +82,23 @@ export default function Reservations() {
         onChange={(e) => void importFile(e.target.files?.[0])}
       />
       <GlobalFilters />
+      <div className="module-toolbar">
+        <span className="muted text-xs">Importação em memória · somente dados demonstrativos</span>
+        <div className="flex flex-wrap gap-2">
+          <button
+            className="button small"
+            disabled={!view.bookings.length}
+            onClick={() => exportCsv('t4f-reservas-modelo-importacao.csv', view.bookings)}
+          >
+            Baixar modelo com reservas do recorte
+          </button>
+          {imported && (
+            <button className="button small" onClick={restoreData}>
+              Recarregar base original
+            </button>
+          )}
+        </div>
+      </div>
       {notice && (
         <div
           className={`notice ${failed ? 'error-notice' : ''}`}
@@ -290,20 +307,6 @@ export default function Reservations() {
           Pagamentos, feedbacks e estágio dos leads precisam continuar consistentes. Nenhum arquivo
           é enviado para serviços externos.
         </p>
-        <div className="flex flex-wrap gap-2">
-          <button
-            className="button small"
-            disabled={!view.bookings.length}
-            onClick={() => exportCsv('t4f-reservas-modelo-importacao.csv', view.bookings)}
-          >
-            Baixar modelo com reservas do recorte
-          </button>
-          {imported && (
-            <button className="button small" onClick={restoreData}>
-              Recarregar base original
-            </button>
-          )}
-        </div>
         <p className="panel-note">
           Separador ; · viajantes separados por | · datas ISO · booleanos true/false · valor em BRL
           com ponto decimal. A exportação da tabela é analítica; o botão acima gera o formato exato

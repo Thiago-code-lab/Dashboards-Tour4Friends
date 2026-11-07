@@ -7,14 +7,16 @@ import { DemandChart, SimpleBarChart } from '../components/charts';
 import { monthLabel, number, sum } from '../lib/format';
 import { useForecast } from '../hooks/useForecast';
 import { exportCsv } from '../lib/csv';
+import { capacityPlan } from '../lib/forecasting/capacity';
 
 export default function Demand() {
-  const { view } = useAnalysis();
+  const { view, data, filters } = useAnalysis();
   const [horizon, setHorizon] = useState(6);
   const [scenario, setScenario] = useState(0);
   const forecast = useForecast(horizon);
   const selectedMetrics = forecast.metrics.find((m) => m.model === forecast.selected);
   const total = sum(forecast.predictions, (p) => p.predicted * (1 + scenario / 100));
+  const plan = capacityPlan(data, filters, forecast.predictions, scenario);
   const seasonal = Array.from({ length: 12 }, (_, i) => {
     const rows = view.monthly.filter((p) => Number(p.month.slice(5, 7)) === i + 1);
     return {
@@ -162,11 +164,7 @@ export default function Demand() {
         subtitle="Uma vaga de hospedagem por viajante, por noite/etapa; não representa contratação confirmada"
       >
         <DataTable
-          rows={forecast.predictions.map((p) => ({
-            ...p,
-            scenario: p.predicted * (1 + scenario / 100),
-            beds: Math.ceil(p.predicted * (1 + scenario / 100)),
-          }))}
+          rows={plan}
           rowKey={(p) => p.month}
           label="Meses projetados"
           columns={[
@@ -185,16 +183,19 @@ export default function Demand() {
             {
               key: 'scenario',
               label: `Cenário ${scenario > 0 ? '+' : ''}${scenario}%`,
-              value: (p) => p.scenario,
-              render: (p) => number(p.scenario),
+              value: (p) => p.simulated,
+              render: (p) => number(p.simulated),
             },
+            { key: 'committed', label: 'Já confirmados', value: (p) => p.committed },
             { key: 'beds', label: 'Vagas / noite a planejar', value: (p) => p.beds },
           ]}
           onExport={(rows) => exportCsv('t4f-previsao.csv', rows)}
         />
         <p className="panel-note">
-          Arredondamento de vagas para cima em cada mês. A previsão não define a simultaneidade das
-          saídas nem a distribuição por localidade.
+          Planejamos o maior valor entre demanda simulada arredondada para cima e viajantes futuros
+          já confirmados no mês, inclusive saídas além do fim do filtro que pertençam ao horizonte.
+          Esses compromissos não entram no treino. O total mensal não define simultaneidade nem
+          vagas por localidade; confira os slots em Hospedagens.
         </p>
       </Panel>
       <div className="two-column">

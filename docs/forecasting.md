@@ -25,7 +25,7 @@ Seleciona o menor MAE; empate favorece o baseline mais simples. Depois o método
 - 6–17 meses, ou treino muito esparso: baseline explícito, sem métricas de validação.
 - Menos de seis meses ou três meses com movimento: nenhuma previsão.
 - Cenário: `projeção × (1 + variação/100)`, entre −30% e +30%, sem novo treinamento.
-- Vagas por noite: arredondamento superior da demanda do cenário; é planejamento agregado, não simultaneidade nem confirmação de contratação. Compare com reservas já contratadas antes de dimensionar a operação.
+- Vagas por noite: maior valor entre demanda do cenário arredondada para cima e viajantes futuros já confirmados no mesmo mês, respeitando roteiro/modalidade/categoria. Compromissos dentro do horizonte podem ultrapassar a data final do filtro histórico. Nunca entram no treino nem na validação. É planejamento agregado, não simultaneidade nem confirmação de contratação por localidade.
 - Não há intervalo de incerteza: seis resíduos não permitem reivindicar cobertura confiável. Não exibir uma faixa arbitrária é uma decisão metodológica.
 
 ## Resultado de referência

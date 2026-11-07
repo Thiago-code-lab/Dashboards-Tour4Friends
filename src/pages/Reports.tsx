@@ -5,11 +5,13 @@ import { Badge, Kpi, Panel } from '../components/ui';
 import { ReportDemandChart, ReportFinancialChart } from '../components/report-charts';
 import { useForecast } from '../hooks/useForecast';
 import { MEMBERS, PROJECT_URL } from '../lib/project';
+import { capacityPlan } from '../lib/forecasting/capacity';
 import { compactMoney, dateLabel, monthLabel, number } from '../lib/format';
 
 export default function Reports() {
   const { data, view, filters, insights, activeAlerts } = useAnalysis();
   const forecast = useForecast(6);
+  const plan = capacityPlan(data, filters, forecast.predictions);
   const generated = new Intl.DateTimeFormat('pt-BR', {
     dateStyle: 'long',
     timeStyle: 'short',
@@ -158,19 +160,26 @@ export default function Reports() {
               <tr>
                 <th>Mês projetado</th>
                 <th>Viajantes esperados</th>
+                <th>Já confirmados</th>
                 <th>Vagas / noite a planejar</th>
               </tr>
             </thead>
             <tbody>
-              {forecast.predictions.map((p) => (
+              {plan.map((p) => (
                 <tr key={p.month}>
                   <td>{monthLabel(p.month)}</td>
                   <td>{number(p.predicted)}</td>
-                  <td>{Math.ceil(p.predicted)}</td>
+                  <td>{p.committed}</td>
+                  <td>{p.beds}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <p>
+            Vagas consideram o maior valor entre projeção arredondada e viajantes futuros já
+            confirmados. Não equivalem a capacidade simultânea nem a contratos por localidade.
+            Reservas futuras não entram no treinamento.
+          </p>
         </section>
         <section className="report-section">
           <div className="report-section-label">03 / AÇÃO E METODOLOGIA</div>

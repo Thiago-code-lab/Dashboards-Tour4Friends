@@ -158,6 +158,8 @@ test('relatório contém identificação completa e versão para impressão', as
   await page.emulateMedia({ media: 'print' });
   await expect(page.locator('.sidebar')).toBeHidden();
   await expect(page.locator('.report-cover')).toBeVisible();
+  await expect(page.locator('.report-chart')).toHaveCount(2);
+  await expect(page.locator('.report-chart polyline').first()).toBeVisible();
   if (testInfo.project.name === 'desktop')
     await page.pdf({
       path: 'artifacts/t4f-relatorio-verificacao.pdf',

@@ -167,7 +167,7 @@ Documentação: [dicionário](docs/data-dictionary.md), [KPIs](docs/kpis.md), [a
 - Valores são em BRL demonstrativos, sem conciliação contábil, tributos, multas, estornos ou câmbio.
 - Custos por categoria são rateados por receita; não são despesas individuais apuradas.
 - Satisfação é uma amostra sintética não probabilística; não inferir causalidade ou desempenho real.
-- Intervalos de previsão não são apresentados sem calibração confiável. A demanda futura contratada deve ser considerada em conjunto com a projeção estatística.
+- Intervalos de previsão não são apresentados sem calibração confiável. O planejamento usa o maior valor entre a projeção arredondada e os viajantes futuros já confirmados, sem inserir esses compromissos no treinamento.
 - Próxima iteração: contratos homologados, API autenticada, auditoria multiusuário, custos por categoria, validação em múltiplas janelas e intervalos calibrados.
 
 ## Referências consultadas
