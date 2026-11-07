@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+    branches: [main, feature/backend-postgresql-v1]
   workflow_dispatch:
 permissions:
   contents: read
@@ -79,6 +79,8 @@ jobs:
           git diff --exit-code -- public/data/demo.json
       - run: npm run data:validate
       - run: npm test
+      - name: Reproduce advanced analytical results
+        run: npm run analytics:report
       - run: npm run build
       - name: Install browser for interface tests
         run: npx playwright install --with-deps chromium
@@ -93,6 +95,14 @@ jobs:
           path: |
             playwright-report/
             test-results/
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: analytical-evidence
+          path: |
+            artifacts/analytics-*.png
+            artifacts/analytics-report.pdf
+            artifacts/analytics-results.json
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

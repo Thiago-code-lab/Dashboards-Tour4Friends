@@ -80,11 +80,11 @@ O catálogo é referência histórica; preços, etapas, clientes, parceiros e da
 
 ## Previsão executável
 
-O módulo compara **sazonal ingênuo** com **regressão Ridge temporal** (tendência e dois harmônicos anuais; λ=4). Os últimos seis meses são reservados para teste quando há histórico suficiente. O menor MAE seleciona o método; depois ele é ajustado ao histórico completo. O mesmo teste usado na seleção não é uma avaliação independente posterior.
+O motor v2 compara **sazonal ingênuo, média ponderada, Ridge temporal e tendência amortecida**. Origens expansivas anteriores aos seis meses finais selecionam o modelo a três meses, por MAE e simplicidade. O teste final permanece separado quando há amostra suficiente. MAE, RMSE, viés e WAPE são calculados; faixas exploratórias usam somente resíduos fora da amostra.
 
-Sem amostra suficiente, o fallback é explícito: sazonal ingênuo ou média ponderada de três meses, sem chamar essa média de Machine Learning. Recortes muito pequenos não produzem previsão. Somente meses completos dentro do filtro entram no modelo. A simulação modifica a projeção, sem novo treinamento.
+Sem amostra suficiente, o fallback é média ponderada explícita, sem inventar métricas independentes. Recortes muito pequenos não produzem previsão. Somente meses completos entram no modelo. Simulação mensal e verificação de contratos por data/etapa preservam unidades diferentes. O laboratório em Demanda apresenta sazonalidade, cancelamentos/Wilson, satisfação/bootstrap e anomalias robustas separadas de alertas operacionais.
 
-Detalhes: [previsão e backtesting](docs/forecasting.md).
+Reproduza os resultados com `npm run analytics:report`. Detalhes: [entrega 03](docs/entrega-03-analytics.md), [validação de modelos](docs/model-validation.md), [análises estatísticas](docs/statistical-analysis.md) e [anomalias](docs/anomaly-detection.md).
 
 ## Verificação
 

@@ -8,6 +8,7 @@ export function ReportDemandChart({ forecast }: { forecast: ForecastResult }) {
   const values = [
     ...history.map((p) => p.travelers),
     ...forecast.predictions.map((p) => p.predicted),
+    ...forecast.predictions.map((p) => p.upper ?? p.predicted),
   ];
   if (!history.length) return <Empty />;
   const ceiling = Math.max(1, Math.ceil(Math.max(...values) / 4) * 4);
@@ -18,6 +19,15 @@ export function ReportDemandChart({ forecast }: { forecast: ForecastResult }) {
   const future = [history.at(-1)!.travelers, ...forecast.predictions.map((p) => p.predicted)]
     .map((v, i) => `${x(history.length - 1 + i)},${y(v)}`)
     .join(' ');
+  const ranged = forecast.predictions
+    .map((point, index) => ({ ...point, index }))
+    .filter((point) => point.lower !== undefined);
+  const band = [
+    ...ranged.map((point) => `${x(history.length + point.index)},${y(point.upper!)}`),
+    ...[...ranged]
+      .reverse()
+      .map((point) => `${x(history.length + point.index)},${y(point.lower!)}`),
+  ].join(' ');
   return (
     <svg
       className="report-chart"
@@ -63,11 +73,12 @@ export function ReportDemandChart({ forecast }: { forecast: ForecastResult }) {
             ),
         )}
         <polyline points={observed} stroke="#708fce" fill="none" strokeWidth="2.5" />
+        {band && <polygon points={band} fill="#4A4A4A" fillOpacity="0.12" />}
         {forecast.predictions.length > 0 && (
           <>
             <polyline
               points={future}
-              stroke="#8b96a5"
+              stroke="#4A4A4A"
               fill="none"
               strokeWidth="2"
               strokeDasharray="5 4"
@@ -86,7 +97,7 @@ export function ReportDemandChart({ forecast }: { forecast: ForecastResult }) {
           </>
         )}
         <text x="665" y="240" textAnchor="end">
-          Viajantes por mês · sem intervalo de incerteza calibrado
+          Viajantes por mês · faixa exploratória quando disponível, sem cobertura garantida
         </text>
       </g>
     </svg>

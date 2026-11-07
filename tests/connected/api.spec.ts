@@ -20,6 +20,9 @@ test('login, gravação, nova sessão, auditoria e logout com PostgreSQL real', 
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('#/reservas');
   await login(page, 'manager');
+  await page.goto('#/demanda');
+  const previousForecast = await page.getByTestId('analytics-fingerprint').innerText();
+  await page.goto('#/reservas');
   await page.getByRole('button', { name: 'Gerenciar reservas', exact: true }).click();
   await page.getByLabel('Selecionar registro').selectOption('T4F-0001');
   await expect(page.getByLabel('Valor total (BRL)')).not.toHaveValue('');
@@ -51,6 +54,11 @@ test('login, gravação, nova sessão, auditoria e logout com PostgreSQL real', 
   ).toBeVisible();
   await expect(page.locator('.audit-history details').first()).toBeVisible();
   await page.getByRole('button', { name: 'Fechar painel' }).click();
+  await page.goto('#/demanda');
+  await expect(page.getByTestId('analytics-fingerprint')).not.toHaveText(previousForecast);
+  await expect(
+    page.getByRole('heading', { name: 'Laboratório analítico', exact: true }),
+  ).toBeVisible();
   await page.getByRole('button', { name: 'Sair', exact: true }).click();
   expect(errors).toEqual([]);
 });

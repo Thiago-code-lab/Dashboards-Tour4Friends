@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { validateDataset } from '../src/lib/validation/dataset';
 import { analyze, DEFAULT_FILTERS } from '../src/lib/analytics/metrics';
-import { forecastDemand } from '../src/lib/forecasting/models';
+import { forecastDataset } from '../src/lib/forecasting/dataset';
 import { deriveAlerts } from '../src/lib/analytics/alerts';
 import { DEFAULT_THRESHOLDS } from '../src/lib/analytics/metrics';
 import type { Filters } from '../src/types/domain';
@@ -28,7 +28,7 @@ const results = (request.filters ?? [DEFAULT_FILTERS]).map((filters) => {
     occupancy: view.occupancy,
     paid: view.paid,
     monthly: view.monthly,
-    forecast: forecastDemand(view.monthly, 6),
+    forecast: forecastDataset(data, filters, 6),
     alertIds: deriveAlerts(data, filters, DEFAULT_THRESHOLDS)
       .map((a) => a.id)
       .sort(),

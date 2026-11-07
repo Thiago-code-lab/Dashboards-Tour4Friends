@@ -34,19 +34,23 @@ export function DemandChart({
 }) {
   const history = full ? forecast.history : forecast.history.slice(-12);
   const boundary = history.at(-1);
-  const points: { month: string; observed?: number; predicted?: number }[] = history.map(
-    (p, i) => ({
-      month: p.month,
-      observed: p.travelers,
-      ...(i === history.length - 1 && forecast.predictions.length
-        ? { predicted: p.travelers }
-        : {}),
-    }),
-  );
+  const points: {
+    month: string;
+    observed?: number;
+    predicted?: number;
+    band?: [number, number];
+  }[] = history.map((p, i) => ({
+    month: p.month,
+    observed: p.travelers,
+    ...(i === history.length - 1 && forecast.predictions.length ? { predicted: p.travelers } : {}),
+  }));
   points.push(
     ...forecast.predictions.map((p) => ({
       month: p.month,
       predicted: p.predicted * (1 + scenario / 100),
+      ...(scenario === 0 && p.lower !== undefined
+        ? { band: [p.lower, p.upper!] as [number, number] }
+        : {}),
     })),
   );
   if (!points.length) return <Empty />;
@@ -95,9 +99,24 @@ export function DemandChart({
               contentStyle={tooltipStyle}
               labelFormatter={(label) => monthLabel(String(label))}
               formatter={(value, name) => [
-                number(Number(value)),
-                name === 'observed' ? 'Observado' : scenario ? 'Simulado' : 'Previsto',
+                Array.isArray(value)
+                  ? value.map((v) => number(Number(v))).join(' – ')
+                  : number(Number(value)),
+                name === 'band'
+                  ? 'Faixa exploratória, sem cobertura garantida'
+                  : name === 'observed'
+                    ? 'Observado'
+                    : scenario
+                      ? 'Simulado'
+                      : 'Previsto',
               ]}
+            />
+            <Area
+              dataKey="band"
+              stroke="none"
+              fill="#4A4A4A"
+              fillOpacity={0.12}
+              isAnimationActive={false}
             />
             <Area
               dataKey="observed"
@@ -115,7 +134,7 @@ export function DemandChart({
             />
             <Line
               dataKey="predicted"
-              stroke="#8c96a5"
+              stroke="#4A4A4A"
               strokeWidth={2.2}
               strokeDasharray="5 5"
               dot={false}

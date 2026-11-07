@@ -117,6 +117,8 @@ async def test_authorized_change_rebuilds_history_and_existing_ridge(lab):
         == 1
     )
     assert original["forecast"]["history"] != updated["forecast"]["history"]
+    assert original["forecast"]["metadata"]["fingerprint"] != updated["forecast"]["metadata"]["fingerprint"]
+    assert original["forecast"]["validation"] != updated["forecast"]["validation"]
     assert len(updated["forecast"]["predictions"]) == 6
     assert all(p["predicted"] >= 0 for p in updated["forecast"]["predictions"])
 

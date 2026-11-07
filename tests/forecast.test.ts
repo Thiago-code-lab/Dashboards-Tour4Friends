@@ -56,10 +56,13 @@ describe('Previsão executável e validação temporal', () => {
     expect(a.backtest.map((p) => p.baseline)).toEqual(b.backtest.map((p) => p.baseline));
     expect(a.metrics[0].mae).not.toEqual(b.metrics[0].mae);
   });
-  it('seleciona o menor MAE, com preferência pelo baseline em empate', () => {
+  it('seleciona pelo MAE de validação, favorecendo simplicidade em empate', () => {
     const r = forecastDemand(series, 6);
-    const min = Math.min(...r.metrics.map((m) => m.mae));
-    expect(r.metrics.find((m) => m.model === r.selected)!.mae).toBe(min);
+    const scores = r.validation.filter((score) => score.horizon === 3);
+    const min = Math.min(...scores.map((score) => score.mae));
+    expect(scores.find((score) => score.model === r.selected)!.mae).toBeLessThanOrEqual(
+      min * 1.01 + 1e-9,
+    );
     const constant = forecastDemand(
       series.map((p) => ({ ...p, travelers: 5 })),
       6,

@@ -17,10 +17,13 @@ import { Badge, Empty, Kpi, Panel, Progress } from '../components/ui';
 import { DemandChart, FinancialChart } from '../components/charts';
 import { compactMoney, dateLabel, money, number, percent } from '../lib/format';
 import { useForecast } from '../hooks/useForecast';
+import { useIntelligence } from '../hooks/useIntelligence';
+import { IntelligencePanel } from '../components/intelligence-panel';
 
 export default function Overview() {
   const { view, activeAlerts, insights, filters } = useAnalysis();
   const forecast = useForecast();
+  const analysis = useIntelligence(forecast);
   const critical = activeAlerts.filter((a) => a.severity === 'critical');
   const maxTravelers = Math.max(1, ...view.routeStats.map((r) => r.travelers));
   return (
@@ -99,7 +102,11 @@ export default function Overview() {
           <DemandChart forecast={forecast} />
           <div className="chart-footnote">
             <Badge>{forecast.selected ?? 'Base insuficiente'}</Badge>
-            <span>Sem intervalo de incerteza: amostra pequena para estimá-lo.</span>
+            <span>
+              {forecast.uncertainty.kind === 'exploratory'
+                ? 'Faixa exploratória de erros históricos, sem cobertura garantida.'
+                : 'Sem amostra suficiente para uma faixa de erros.'}
+            </span>
           </div>
         </Panel>
         <Panel
@@ -125,6 +132,11 @@ export default function Overview() {
           </div>
         </Panel>
       </div>
+      <IntelligencePanel
+        forecast={forecast}
+        analysis={analysis}
+        operationalCritical={critical.length}
+      />
       <div className="overview-secondary">
         <Panel
           title="Receita e custos"
