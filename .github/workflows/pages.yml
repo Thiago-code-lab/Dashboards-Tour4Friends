@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+    branches: [main, feature/backend-postgresql-v1, feature/advanced-analytics-v1]
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,6 +26,8 @@ jobs:
           cache-dependency-path: backend/requirements.txt
       - run: npm ci
       - run: pip install -r backend/requirements.txt
+      - name: Backend lint
+        run: python -m ruff check backend/app backend/tests backend/scripts
       - name: Start disposable PostgreSQL with an ephemeral password
         shell: bash
         run: |
@@ -73,19 +75,43 @@ jobs:
         with:
           python-version: '3.12'
       - run: npm ci
+      - name: Audit development and runtime dependencies
+        run: npm audit --audit-level=moderate
       - name: Verify reproducible demo
         run: |
           python scripts/generate_demo_data.py
           git diff --exit-code -- public/data/demo.json
       - run: npm run data:validate
       - run: npm test
-      - run: npm run build
+      - name: Reproduce advanced analytical results
+        run: npm run analytics:report
+      - run: npm run build:demo
+      - name: Check static artifacts for credentials
+        run: npx tsx scripts/check-artifacts.ts
+      - name: Verify the static release package
+        run: npm run release:check
+        env:
+          RELEASE_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Install browser for interface tests
         run: npx playwright install --with-deps chromium
       - name: Interface tests on production build
         run: npm run test:e2e
         env:
           CI: true
+      - name: Six-resolution audit of ten modules
+        run: |
+          node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4175 --strictPort > /tmp/t4f-preview.log 2>&1 &
+          T4F_PREVIEW_PID=$!
+          trap 'kill "$T4F_PREVIEW_PID" || true' EXIT
+          npm run qa:audit
+          npm run delivery:data
+          python -m pip install -r scripts/requirements-delivery.txt
+          python scripts/build-academic-report.py
+          if ! command -v pdftoppm >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y poppler-utils; fi
+          pdftoppm -scale-to 1100 -png output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.pdf artifacts/qa-final/pdf-page
+        env:
+          CI: true
+          RELEASE_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -93,12 +119,34 @@ jobs:
           path: |
             playwright-report/
             test-results/
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: analytical-evidence
+          retention-days: 7
+          path: |
+            artifacts/analytics-*.png
+            artifacts/analytics-report.pdf
+            artifacts/analytics-results.json
+            artifacts/qa-final/
+            artifacts/release-05/
+            output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.pdf
+            output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.manifest.json
+      - name: Upload static candidate for review without deployment
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: release-candidate-static
+          retention-days: 14
+          path: |
+            dist/
+            artifacts/release-05/static-package.json
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         with:
           path: dist
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [build, backend]
     runs-on: ubuntu-latest
     permissions:

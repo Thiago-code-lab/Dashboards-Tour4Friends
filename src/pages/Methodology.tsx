@@ -141,33 +141,37 @@ export default function Methodology() {
         </Panel>
         <Panel title="Previsão, com validação e limites">
           <dl className="definition-list">
-            <dt>Dois métodos comparáveis</dt>
+            <dt>Quatro candidatos leves</dt>
             <dd>
               Baseline sazonal ingênuo repete o mesmo mês do ano anterior. Ridge usa tendência
               temporal e dois pares de seno/cosseno com período anual, λ=4 fixo e intercepto sem
-              penalização.
+              penalização. Média ponderada recursiva usa pesos 1, 2 e 3; tendência amortecida usa
+              α=0,4, β=0,2 e φ=0,85 fixos, sem ajuste no teste.
             </dd>
             <dt>Separação temporal</dt>
             <dd>
-              Com pelo menos 18 meses e 8 meses não nulos no treino, os últimos 6 meses ficam
-              reservados para teste. O modelo não recebe os valores futuros durante o treinamento
-              inicial.
+              Com pelo menos 24 meses, seis são reservados antes da seleção. Origens expansivas
+              anteriores com treino mínimo de 12 meses comparam os candidatos nos mesmos alvos, para
+              horizontes 1, 3 e 6. Ridge exige oito meses não nulos e variabilidade; recortes
+              esparsos não o forçam.
             </dd>
             <dt>Seleção e ajuste final</dt>
             <dd>
-              O menor MAE seleciona o método; em empate, escolhemos o baseline. Só depois da
-              avaliação o método é ajustado ao histórico completo. O teste é usado para seleção, não
-              é uma estimativa independente do desempenho após seleção.
+              Seleção pelo MAE de validação a três meses, mínimo de quatro origens. Métodos a até 1%
+              do menor erro favorecem o mais simples: sazonal, média ponderada, amortecida, Ridge. O
+              teste final não seleciona nem ajusta parâmetros. Só depois o modelo usa todo o
+              histórico para projetar.
             </dd>
             <dt>MAE e RMSE</dt>
             <dd>
               MAE é o erro absoluto médio em viajantes por mês. RMSE é a raiz da média dos erros
-              quadráticos, dando mais peso a erros grandes.
+              quadráticos, dando mais peso a erros grandes. Viés = previsto menos observado. WAPE
+              divide erro absoluto total por demanda observada positiva.
             </dd>
             <dt>Amostra insuficiente</dt>
             <dd>
-              Sem condições para comparar modelos, usamos sazonal ingênuo ou média ponderada dos
-              últimos 3 meses. Menos de 6 meses ou 3 meses não nulos não produz previsão.
+              Sem condições para comparar modelos, usamos média ponderada dos últimos 3 meses. Menos
+              de 6 meses ou 3 meses não nulos não produz previsão.
             </dd>
             <dt>Simulação</dt>
             <dd>
@@ -176,8 +180,10 @@ export default function Methodology() {
             </dd>
             <dt>Incerteza</dt>
             <dd>
-              Não exibimos intervalos, pois a pequena amostra de teste não sustenta uma cobertura
-              confiável. Projeções longas têm maior incerteza.
+              Quantis 10/90 de resíduos fora da amostra por passo, mínimo de oito erros. Faixas
+              exploratórias, sem promessa de cobertura nominal. O teste final mede cobertura sem
+              recalibrar a faixa. Acima de seis meses não há faixa. Estatísticas e anomalias são
+              descritas no laboratório em Demanda.
             </dd>
           </dl>
         </Panel>
@@ -205,14 +211,16 @@ export default function Methodology() {
         <p className="panel-prose">
           A base é validada antes de entrar na aplicação: chaves únicas, referências existentes,
           datas ISO, status permitidos, preços e quantidades não negativos, coerência de pagamentos,
-          avaliações após viagens e notas de 0 a 10. Importações são atômicas e permanecem em
-          memória. Exportações CSV neutralizam fórmulas.
+          avaliações após viagens e notas de 0 a 10. Importações são atômicas: ficam em memória na
+          demonstração e são persistidas por lote autenticado no laboratório. Exportações CSV
+          neutralizam fórmulas.
         </p>
         <p className="panel-prose">
           Filtros são aplicados por data da viagem; leads usam a data de contato. Previsões usam
           apenas meses completos dentro do filtro e até outubro de 2026. Custos por categoria são
           estimados por rateio da receita da mesma saída. Preferências e estados dos alertas ficam
-          somente no navegador.
+          no navegador na demonstração; revisões de alertas são persistidas com responsável e data
+          no laboratório.
         </p>
       </Panel>
       <div className="two-column">
@@ -224,10 +232,11 @@ export default function Methodology() {
             Não há taxas de câmbio, conciliação contábil ou controle de estornos.
           </p>
           <p className="panel-prose">
-            Próximas etapas: homologar contratos de dados com a agência, criar API autenticada com
-            controle de acesso, apurar custos por categoria, avaliar modelos em múltiplas janelas
-            temporais e calibrar incerteza com histórico maior. Nenhuma correlação observada na
-            simulação permite concluir causalidade.
+            A API autenticada, as permissões e a avaliação em múltiplas janelas já estão
+            implementadas. Próximos passos: homologar dados e processos com a agência, publicar a
+            API com HTTPS mediante aprovação, apurar custos por categoria e avaliar previsões em
+            novos meses. A faixa atual é exploratória. Nenhuma correlação da simulação permite
+            concluir causalidade.
           </p>
         </Panel>
         <Panel title="Referências de arquitetura e catálogo">

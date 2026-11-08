@@ -9,7 +9,7 @@
 - Exportações prefixam textos iniciados por caracteres de fórmula (`=`, `+`, `-`, `@`, tab e retorno) para prevenir execução em planilhas.
 - `localStorage` contém somente filtros, limites e revisões da demonstração. `sessionStorage` guarda só a escolha pública de modo. Revisões conectadas ficam em `alert_statuses`, com usuário, nota, data e versão. Entrar novamente é obrigatório após recarregar.
 - Links externos usam `rel=noreferrer`. Sem fontes, imagens, tracking ou scripts de CDN obrigatórios em tempo de execução.
-- GitHub Actions usa permissões mínimas; `pages:write` e `id-token:write` apenas no job de deployment. PRs validam, mas não publicam.
+- GitHub Actions usa permissões mínimas; `pages:write` e `id-token:write` apenas no job de deployment. Upload Pages e deploy exigem evento `push` em `refs/heads/main`; deploy aguarda `build` e `backend`. PRs e execuções manuais, inclusive na `main`, apenas validam. O contrato é verificado automaticamente a partir do YAML real.
 - Publicação estática contém somente dados sintéticos. O backend também deve permanecer sintético até homologação, política de retenção e revisão de proteção de dados. Não há dumps, usuários de aplicação ou senhas padrão versionados. `.env` é ignorado; a configuração local gera senha aleatória sem imprimi-la.
 
 ## Controles implementados no servidor

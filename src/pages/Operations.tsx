@@ -7,8 +7,13 @@ import { dateLabel, number } from '../lib/format';
 import { exportCsv } from '../lib/csv';
 import type { AlertStatus } from '../types/domain';
 import { AlertReview } from '../components/alert-review';
+import { useForecast } from '../hooks/useForecast';
+import { useIntelligence } from '../hooks/useIntelligence';
+import { AnomalyPanel } from '../components/anomaly-panel';
 
 export default function Operations() {
+  const forecast = useForecast();
+  const analysis = useIntelligence(forecast);
   const { alerts, statuses, setAlertStatus, data, mode } = useAnalysis();
   const [severity, setSeverity] = useState('all');
   const [type, setType] = useState('all');
@@ -178,6 +183,7 @@ export default function Operations() {
           <Empty message="Nenhuma ocorrência corresponde aos filtros locais e globais." />
         )}
       </Panel>
+      <AnomalyPanel anomalies={analysis.anomalies} />
       <div className="notice">
         <strong>Como os alertas são gerados:</strong> ficha incompleta até 7 dias da saída; contrato
         de hospedagem sem confirmação; ocupação acima dos limites configurados; transfer vencido;

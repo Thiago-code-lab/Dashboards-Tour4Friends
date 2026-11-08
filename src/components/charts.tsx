@@ -15,6 +15,7 @@ import {
 import type { ForecastResult } from '../lib/forecasting/models';
 import { compactMoney, monthLabel, number } from '../lib/format';
 import { Empty } from './ui';
+import { ChartData } from './chart-data';
 
 const grid = '#e9edf2';
 const tooltipStyle = {
@@ -34,19 +35,23 @@ export function DemandChart({
 }) {
   const history = full ? forecast.history : forecast.history.slice(-12);
   const boundary = history.at(-1);
-  const points: { month: string; observed?: number; predicted?: number }[] = history.map(
-    (p, i) => ({
-      month: p.month,
-      observed: p.travelers,
-      ...(i === history.length - 1 && forecast.predictions.length
-        ? { predicted: p.travelers }
-        : {}),
-    }),
-  );
+  const points: {
+    month: string;
+    observed?: number;
+    predicted?: number;
+    band?: [number, number];
+  }[] = history.map((p, i) => ({
+    month: p.month,
+    observed: p.travelers,
+    ...(i === history.length - 1 && forecast.predictions.length ? { predicted: p.travelers } : {}),
+  }));
   points.push(
     ...forecast.predictions.map((p) => ({
       month: p.month,
       predicted: p.predicted * (1 + scenario / 100),
+      ...(scenario === 0 && p.lower !== undefined
+        ? { band: [p.lower, p.upper!] as [number, number] }
+        : {}),
     })),
   );
   if (!points.length) return <Empty />;
@@ -95,9 +100,24 @@ export function DemandChart({
               contentStyle={tooltipStyle}
               labelFormatter={(label) => monthLabel(String(label))}
               formatter={(value, name) => [
-                number(Number(value)),
-                name === 'observed' ? 'Observado' : scenario ? 'Simulado' : 'Previsto',
+                Array.isArray(value)
+                  ? value.map((v) => number(Number(v))).join(' – ')
+                  : number(Number(value)),
+                name === 'band'
+                  ? 'Faixa exploratória, sem cobertura garantida'
+                  : name === 'observed'
+                    ? 'Observado'
+                    : scenario
+                      ? 'Simulado'
+                      : 'Previsto',
               ]}
+            />
+            <Area
+              dataKey="band"
+              stroke="none"
+              fill="#4A4A4A"
+              fillOpacity={0.12}
+              isAnimationActive={false}
             />
             <Area
               dataKey="observed"
@@ -115,7 +135,7 @@ export function DemandChart({
             />
             <Line
               dataKey="predicted"
-              stroke="#8c96a5"
+              stroke="#4A4A4A"
               strokeWidth={2.2}
               strokeDasharray="5 5"
               dot={false}
@@ -137,6 +157,16 @@ export function DemandChart({
           </ComposedChart>
         </ResponsiveContainer>
       </div>
+      <ChartData
+        title="Demanda observada e prevista"
+        columns={['Mês', 'Observado', scenario ? 'Cenário' : 'Previsto', 'Faixa exploratória']}
+        rows={points.map((point) => [
+          monthLabel(point.month),
+          point.observed === undefined ? null : number(point.observed),
+          point.predicted === undefined ? null : number(point.predicted),
+          point.band ? point.band.map(number).join(' a ') : null,
+        ])}
+      />
     </>
   );
 }
@@ -147,48 +177,57 @@ export function FinancialChart({
 }) {
   if (!rows.length) return <Empty />;
   return (
-    <div className="chart">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={rows.slice(-12)} margin={{ top: 10, right: 8, left: -8, bottom: 0 }}>
-          <CartesianGrid stroke={grid} vertical={false} />
-          <XAxis
-            dataKey="month"
-            tickFormatter={monthLabel}
-            tick={{ fontSize: 10, fill: '#7d8796' }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <YAxis
-            tickFormatter={(v) => `${v / 1000}k`}
-            tick={{ fontSize: 10, fill: '#7d8796' }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <Tooltip
-            contentStyle={tooltipStyle}
-            labelFormatter={(v) => monthLabel(String(v))}
-            formatter={(value) => compactMoney(Number(value))}
-          />
-          <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: 11 }} />
-          <Bar
-            dataKey="revenue"
-            name="Receita contratada"
-            fill="#8FA6DE"
-            radius={[3, 3, 0, 0]}
-            maxBarSize={14}
-            isAnimationActive={false}
-          />
-          <Bar
-            dataKey="cost"
-            name="Custos"
-            fill="#b6c6b6"
-            radius={[3, 3, 0, 0]}
-            maxBarSize={14}
-            isAnimationActive={false}
-          />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <>
+      <div className="chart" role="img" aria-label="Receita e custos por mês">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={rows.slice(-12)} margin={{ top: 10, right: 8, left: -8, bottom: 0 }}>
+            <CartesianGrid stroke={grid} vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickFormatter={monthLabel}
+              tick={{ fontSize: 10, fill: '#7d8796' }}
+              axisLine={false}
+              tickLine={false}
+            />
+            <YAxis
+              tickFormatter={(v) => `${v / 1000}k`}
+              tick={{ fontSize: 10, fill: '#7d8796' }}
+              axisLine={false}
+              tickLine={false}
+            />
+            <Tooltip
+              contentStyle={tooltipStyle}
+              labelFormatter={(v) => monthLabel(String(v))}
+              formatter={(value) => compactMoney(Number(value))}
+            />
+            <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: 11 }} />
+            <Bar
+              dataKey="revenue"
+              name="Receita contratada"
+              fill="#8FA6DE"
+              radius={[3, 3, 0, 0]}
+              maxBarSize={14}
+              isAnimationActive={false}
+            />
+            <Bar
+              dataKey="cost"
+              name="Custos"
+              fill="#b6c6b6"
+              radius={[3, 3, 0, 0]}
+              maxBarSize={14}
+              isAnimationActive={false}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <ChartData
+        title="Receita e custos"
+        columns={['Mês', 'Receita contratada', 'Custo']}
+        rows={rows
+          .slice(-12)
+          .map((row) => [monthLabel(row.month), compactMoney(row.revenue), compactMoney(row.cost)])}
+      />
+    </>
   );
 }
 export function SimpleBarChart({
@@ -202,33 +241,43 @@ export function SimpleBarChart({
 }) {
   if (!rows.length) return <Empty />;
   return (
-    <div className="chart">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={rows} margin={{ top: 15, right: 12, left: -12, bottom: 10 }}>
-          <CartesianGrid stroke={grid} vertical={false} />
-          <XAxis
-            dataKey="name"
-            tick={{ fontSize: 10, fill: '#7d8796' }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <YAxis
-            tickFormatter={format}
-            tick={{ fontSize: 10, fill: '#7d8796' }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <Tooltip contentStyle={tooltipStyle} formatter={(v) => [format(Number(v)), valueLabel]} />
-          <Bar
-            dataKey="value"
-            name={valueLabel}
-            fill="#8FA6DE"
-            radius={[4, 4, 0, 0]}
-            maxBarSize={38}
-            isAnimationActive={false}
-          />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <>
+      <div className="chart" role="img" aria-label={`Gráfico de ${valueLabel}`}>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={rows} margin={{ top: 15, right: 12, left: -12, bottom: 10 }}>
+            <CartesianGrid stroke={grid} vertical={false} />
+            <XAxis
+              dataKey="name"
+              tick={{ fontSize: 10, fill: '#7d8796' }}
+              axisLine={false}
+              tickLine={false}
+            />
+            <YAxis
+              tickFormatter={format}
+              tick={{ fontSize: 10, fill: '#7d8796' }}
+              axisLine={false}
+              tickLine={false}
+            />
+            <Tooltip
+              contentStyle={tooltipStyle}
+              formatter={(v) => [format(Number(v)), valueLabel]}
+            />
+            <Bar
+              dataKey="value"
+              name={valueLabel}
+              fill="#8FA6DE"
+              radius={[4, 4, 0, 0]}
+              maxBarSize={38}
+              isAnimationActive={false}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <ChartData
+        title={valueLabel}
+        columns={['Grupo', valueLabel]}
+        rows={rows.map((row) => [row.name, format(row.value)])}
+      />
+    </>
   );
 }

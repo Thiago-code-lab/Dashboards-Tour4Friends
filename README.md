@@ -4,6 +4,15 @@ Plataforma de análise de desempenho corporativo da Tour4Friends, desenvolvida p
 
 Aplicação React/TypeScript com dois modos: demonstração estática independente e laboratório autenticado com FastAPI/PostgreSQL. Indicadores, alertas, insights e previsões utilizam a mesma base sintética. **Dados demonstrativos — cenário acadêmico simulado.** Nenhum resultado representa o desempenho real da agência.
 
+## Versão candidata · preparação da Release 05
+
+Consolidação em `feature/final-quality-and-delivery-v1`, baseada em Analytics e no backend. Os PRs formam uma cadeia; nenhum foi integrado à `main` automaticamente. O Pages público continua na Etapa 01. Para apresentar todos os avanços, execute a candidata localmente.
+
+- [Entrega e verificações finais](docs/entrega-04-final.md), [matriz de aceitação](docs/final-acceptance-checklist.md) e [roteiro oral de sete minutos](docs/roteiro-apresentacao-final.md).
+- PDF único para a disciplina: `output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.pdf`. A geração reproduzível usa dados calculados e capturas reais; são oito páginas A4 com o grupo na capa. Artefato local e da CI, sem versionar binários.
+- Validação da release: 95 Vitest, 27 Pytest, oito testes conectados e 27 Playwright, com uma dispensa intencional de captura duplicada. Auditoria de dez módulos em seis resoluções; acessibilidade automatizada sem declaração de conformidade WCAG completa. Evidências e decisão em [readiness](docs/release-05-readiness.md).
+- `npm run build:demo` fixa demonstração e API vazia. `npm run qa:audit` requer preview na porta 4175. [Publicação futura somente após aprovação](docs/deployment.md).
+
 ## Etapa 02 — laboratório conectado
 
 O backend adiciona PostgreSQL real, migração Alembic, seed idempotente, sessão opaca revogável, quatro perfis, CRUD operacional, auditoria e importação transacional. `ApiDataRepository` integra o snapshot aos mesmos dashboards e ao Ridge existente. O padrão de build permanece `demo`; indisponibilidade da API não provoca fallback silencioso.
@@ -16,18 +25,18 @@ Não existe API cloud publicada nesta etapa. Nenhum recurso faturável foi criad
 
 ## Funcionalidades implementadas
 
-| Módulo                   | Recursos                                                                                                                                                 |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Visão geral              | Reservas, viajantes atendidos, receita realizada gerencial, NPS, ticket, ocupação, alertas, ranking e três insights calculados                           |
-| Demanda e previsões      | Série mensal, sazonalidade, comparação de roteiros, Ridge e baseline sazonal, teste temporal de seis meses, MAE/RMSE, horizontes 3/6/12 e simulação ±30% |
-| Reservas e comercial     | Funil por coorte de leads, canais, conversão vinculada, pipeline, tempo de fechamento, status, busca, ordenação, paginação e CSV                         |
-| Roteiros e destinos      | Demanda temporal, margem, receita/custo, matriz volume/rentabilidade, categorias e percurso específico do roteiro selecionado                            |
-| Hospedagens e capacidade | Slots por saída/data/etapa/categoria, ocupação, insuficiência sem compensar datas, mapa mensal, ranking e limites configuráveis                          |
-| Operações e alertas      | Seis regras de negócio, filtros locais, causa, ação recomendada e revisão/resolução persistida no navegador                                              |
-| Experiência do cliente   | NPS correto, amostra, distribuição 0–10, dimensões de satisfação, categorias, roteiros, evolução e feedbacks sintéticos                                  |
-| Financeiro               | Receita contratada/realizada, pagamentos, custos reais/estimados no cenário, margem, ticket e impacto de cancelamentos                                   |
-| Relatório executivo      | Capa com instituição e cinco integrantes, resumo, gráficos, previsões, métricas, alertas e metodologia em um documento imprimível                        |
-| Sobre e metodologia      | Definições de KPIs, arquitetura, metadados, registros, qualidade, referências e limitações                                                               |
+| Módulo                   | Recursos                                                                                                                                 |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Visão geral              | Reservas, viajantes atendidos, receita realizada gerencial, NPS, ticket, ocupação, alertas, ranking, insights e Inteligência Gerencial   |
+| Demanda e previsões      | Quatro modelos, validação expansiva, teste final separado, MAE/RMSE/viés/WAPE, faixas exploratórias, laboratório estatístico e simulador |
+| Reservas e comercial     | Funil por coorte de leads, canais, conversão vinculada, pipeline, tempo de fechamento, status, busca, ordenação, paginação e CSV         |
+| Roteiros e destinos      | Demanda temporal, margem, receita/custo, matriz volume/rentabilidade, categorias e percurso específico do roteiro selecionado            |
+| Hospedagens e capacidade | Slots por saída/data/etapa/categoria, ocupação, insuficiência sem compensar datas, mapa mensal, ranking e limites configuráveis          |
+| Operações e alertas      | Seis regras de negócio, filtros locais, causa e ação recomendada; revisão local na demo e persistida com responsável no laboratório      |
+| Experiência do cliente   | NPS correto, amostra, distribuição 0–10, dimensões de satisfação, categorias, roteiros, evolução e feedbacks sintéticos                  |
+| Financeiro               | Receita contratada/realizada, pagamentos, custos reais/estimados no cenário, margem, ticket e impacto de cancelamentos                   |
+| Relatório executivo      | Capa com instituição e cinco integrantes, resumo, gráficos, previsões, métricas, alertas e metodologia em um documento imprimível        |
+| Sobre e metodologia      | Definições de KPIs, arquitetura, metadados, registros, qualidade, referências e limitações                                               |
 
 Filtros globais de período, roteiro, modalidade e categoria são preservados ao navegar. Existem estados vazios, carregamento, tratamento de erros, navegação móvel, acesso por teclado e exportação dos recortes das tabelas.
 
@@ -80,11 +89,11 @@ O catálogo é referência histórica; preços, etapas, clientes, parceiros e da
 
 ## Previsão executável
 
-O módulo compara **sazonal ingênuo** com **regressão Ridge temporal** (tendência e dois harmônicos anuais; λ=4). Os últimos seis meses são reservados para teste quando há histórico suficiente. O menor MAE seleciona o método; depois ele é ajustado ao histórico completo. O mesmo teste usado na seleção não é uma avaliação independente posterior.
+O motor v2 compara **sazonal ingênuo, média ponderada, Ridge temporal e tendência amortecida**. Origens expansivas anteriores aos seis meses finais selecionam o modelo a três meses, por MAE e simplicidade. O teste final permanece separado quando há amostra suficiente. MAE, RMSE, viés e WAPE são calculados; faixas exploratórias usam somente resíduos fora da amostra.
 
-Sem amostra suficiente, o fallback é explícito: sazonal ingênuo ou média ponderada de três meses, sem chamar essa média de Machine Learning. Recortes muito pequenos não produzem previsão. Somente meses completos dentro do filtro entram no modelo. A simulação modifica a projeção, sem novo treinamento.
+Sem amostra suficiente, o fallback é média ponderada explícita, sem inventar métricas independentes. Recortes muito pequenos não produzem previsão. Somente meses completos entram no modelo. Simulação mensal e verificação de contratos por data/etapa preservam unidades diferentes. O laboratório em Demanda apresenta sazonalidade, cancelamentos/Wilson, satisfação/bootstrap e anomalias robustas separadas de alertas operacionais.
 
-Detalhes: [previsão e backtesting](docs/forecasting.md).
+Reproduza os resultados com `npm run analytics:report`. Detalhes: [entrega 03](docs/entrega-03-analytics.md), [validação de modelos](docs/model-validation.md), [análises estatísticas](docs/statistical-analysis.md) e [anomalias](docs/anomaly-detection.md).
 
 ## Verificação
 
@@ -136,12 +145,12 @@ Destino configurado: **https://thiago-code-lab.github.io/Dashboards-Tour4Friends
 - `vite.config.ts`: `base: '/Dashboards-Tour4Friends/'`.
 - JSON carregado por `import.meta.env.BASE_URL`.
 - `HashRouter`: rotas como `/#/demanda`, sem 404 na recarga.
-- `.github/workflows/pages.yml`: reproduz dados, valida, testa, compila, executa E2E e publica o artefato `dist/`.
+- `.github/workflows/pages.yml`: reproduz dados, valida, testa, compila e executa E2E. Somente `push` em `refs/heads/main`, após aprovação dos jobs `build` e `backend`, pode publicar `dist/`.
 - Em **Settings → Pages → Build and deployment → Source**, selecione **GitHub Actions** se essa configuração ainda não estiver ativa.
-- Se necessário, execute **Actions → Validate and deploy GitHub Pages → Run workflow** no branch `main`.
+- **Run workflow** valida qualquer branch selecionada, inclusive `main`, sem publicar. O artefato `release-candidate-static` permite revisar o build sem deployment e fica retido por 14 dias.
 - A publicação precisa concluir o job `deploy`. O endereço deve ser verificado depois do deployment.
 
-Instruções e diagnóstico: [publicação](docs/deployment.md).
+Instruções e diagnóstico: [publicação](docs/deployment.md). Homologação da Fase A: [readiness da release 05](docs/release-05-readiness.md).
 
 ## Estrutura
 

@@ -16,3 +16,4 @@ backend/.pytest_cache/
 backend/.ruff_cache/
 .pytest_cache/
 *.pyc
+tmp/pdfs/

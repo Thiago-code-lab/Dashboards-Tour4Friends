@@ -1,7 +1,7 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useRef, useEffect, type FormEvent } from 'react';
 import { Pencil, Plus } from 'lucide-react';
 import { useAnalysis } from '../app/context';
-import { api } from '../services/api';
+import { api, ApiError } from '../services/api';
 import { Dialog } from './dialog';
 import type { AuditRecord, ResourceName } from '../types/api';
 import type { Dataset } from '../types/domain';
@@ -169,25 +169,41 @@ function ResourceEditor({ resource, onClose }: { resource: ResourceName; onClose
   const [creating, setCreating] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const pendingRequest = useRef<AbortController | null>(null);
+  useEffect(() => () => pendingRequest.current?.abort(), []);
   const [history, setHistory] = useState<AuditRecord[] | null>(null);
   const fields = fieldsFor(resource, data, creating);
   async function selectRecord(id: string) {
+    pendingRequest.current?.abort();
+    const controller = new AbortController();
+    pendingRequest.current = controller;
     setIdentifier(id);
     setCreating(false);
     setRecord(null);
     setHistory(null);
     setError('');
+    setFieldErrors({});
+    setLoading(false);
     if (!id) return;
     setLoading(true);
     try {
-      setRecord(await api.get(`/${resource}/${encodeURIComponent(id)}`));
+      const next = await api.get<Record<string, unknown>>(
+        `/${resource}/${encodeURIComponent(id)}`,
+        controller.signal,
+      );
+      if (!controller.signal.aborted) setRecord(next);
     } catch (err) {
+      if (controller.signal.aborted) return;
       setError(err instanceof Error ? err.message : 'Não foi possível abrir o registro.');
     } finally {
-      setLoading(false);
+      if (!controller.signal.aborted) setLoading(false);
     }
   }
   function startNew() {
+    pendingRequest.current?.abort();
+    setLoading(false);
+    setFieldErrors({});
     setCreating(true);
     setIdentifier('');
     setHistory(null);
@@ -210,6 +226,7 @@ function ResourceEditor({ resource, onClose }: { resource: ResourceName; onClose
     event.preventDefault();
     if (!record) return;
     setError('');
+    setFieldErrors({});
     const payload: Record<string, unknown> = Object.fromEntries(
       fields.map((field) => [
         field.key,
@@ -232,6 +249,7 @@ function ResourceEditor({ resource, onClose }: { resource: ResourceName; onClose
       await saveRecord(resource, creating ? null : identifier, payload);
       onClose();
     } catch (err) {
+      if (err instanceof ApiError) setFieldErrors(err.validation);
       setError(err instanceof Error ? err.message : 'Não foi possível salvar.');
     }
   }
@@ -275,6 +293,10 @@ function ResourceEditor({ resource, onClose }: { resource: ResourceName; onClose
                 {field.kind === 'select' ? (
                   <select
                     aria-label={field.label}
+                    aria-invalid={Boolean(fieldErrors[field.key])}
+                    aria-describedby={
+                      fieldErrors[field.key] ? `error-${resource}-${field.key}` : undefined
+                    }
                     required
                     value={String(record[field.key] ?? '')}
                     onChange={(e) => setRecord({ ...record, [field.key]: e.target.value })}
@@ -296,6 +318,10 @@ function ResourceEditor({ resource, onClose }: { resource: ResourceName; onClose
                 ) : (
                   <input
                     aria-label={field.label}
+                    aria-invalid={Boolean(fieldErrors[field.key])}
+                    aria-describedby={
+                      fieldErrors[field.key] ? `error-${resource}-${field.key}` : undefined
+                    }
                     type={field.kind}
                     required={field.required}
                     min={field.kind === 'number' ? (field.key === 'capacity' ? 1 : 0) : undefined}
@@ -306,6 +332,11 @@ function ResourceEditor({ resource, onClose }: { resource: ResourceName; onClose
                     value={String(record[field.key] ?? '')}
                     onChange={(e) => setRecord({ ...record, [field.key]: e.target.value })}
                   />
+                )}
+                {fieldErrors[field.key] && (
+                  <small className="field-error" id={`error-${resource}-${field.key}`}>
+                    {fieldErrors[field.key]}
+                  </small>
                 )}
               </label>
             ))}

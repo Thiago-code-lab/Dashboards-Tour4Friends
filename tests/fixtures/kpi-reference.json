@@ -1,0 +1,413 @@
+{
+  "metadata": {
+    "source_type": "synthetic_demo",
+    "version": "qa-reference-v1",
+    "seed": 42,
+    "generatedAt": "2024-03-07T00:00:00Z",
+    "referenceDate": "2024-03-07",
+    "historyStart": "2024-01-01",
+    "historyEnd": "2024-02-29",
+    "currency": "BRL"
+  },
+  "routes": [
+    {
+      "id": "R1",
+      "name": "Rota de referencia",
+      "shortName": "Referencia",
+      "modality": "Cultural",
+      "country": "Portugal",
+      "days": 2,
+      "distanceKm": 20,
+      "stages": ["A", "B"]
+    }
+  ],
+  "customers": [
+    {
+      "id": "U1",
+      "label": "Pessoa 1"
+    },
+    {
+      "id": "U2",
+      "label": "Pessoa 2"
+    },
+    {
+      "id": "U3",
+      "label": "Pessoa 3"
+    },
+    {
+      "id": "U4",
+      "label": "Pessoa 4"
+    },
+    {
+      "id": "U5",
+      "label": "Pessoa 5"
+    },
+    {
+      "id": "U6",
+      "label": "Pessoa 6"
+    }
+  ],
+  "departures": [
+    {
+      "id": "D1",
+      "routeId": "R1",
+      "date": "2024-02-10",
+      "endDate": "2024-02-11",
+      "capacity": 6,
+      "transferConfirmed": true,
+      "transferDue": "2024-02-10"
+    },
+    {
+      "id": "D2",
+      "routeId": "R1",
+      "date": "2024-02-20",
+      "endDate": "2024-02-21",
+      "capacity": 6,
+      "transferConfirmed": true,
+      "transferDue": "2024-02-20"
+    },
+    {
+      "id": "D3",
+      "routeId": "R1",
+      "date": "2024-04-10",
+      "endDate": "2024-04-11",
+      "capacity": 6,
+      "transferConfirmed": true,
+      "transferDue": "2024-04-10"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "B1",
+      "customerId": "U1",
+      "travelerIds": ["U1", "U2"],
+      "leadId": "L1",
+      "departureId": "D1",
+      "bookedAt": "2024-01-01",
+      "confirmedAt": "2024-01-02",
+      "status": "confirmed",
+      "category": "Premium",
+      "totalAmount": 1000,
+      "formComplete": true,
+      "cancellationReason": null
+    },
+    {
+      "id": "B2",
+      "customerId": "U3",
+      "travelerIds": ["U3"],
+      "leadId": "L2",
+      "departureId": "D1",
+      "bookedAt": "2024-01-01",
+      "confirmedAt": "2024-01-02",
+      "status": "confirmed",
+      "category": "Conforto",
+      "totalAmount": 500,
+      "formComplete": true,
+      "cancellationReason": null
+    },
+    {
+      "id": "B3",
+      "customerId": "U1",
+      "travelerIds": ["U1"],
+      "leadId": "L3",
+      "departureId": "D2",
+      "bookedAt": "2024-01-01",
+      "confirmedAt": "2024-01-02",
+      "status": "confirmed",
+      "category": "Premium",
+      "totalAmount": 0,
+      "formComplete": true,
+      "cancellationReason": null
+    },
+    {
+      "id": "B4",
+      "customerId": "U4",
+      "travelerIds": ["U4"],
+      "leadId": "L4",
+      "departureId": "D1",
+      "bookedAt": "2024-01-01",
+      "confirmedAt": "2024-01-02",
+      "status": "cancelled",
+      "category": "Premium",
+      "totalAmount": 900,
+      "formComplete": true,
+      "cancellationReason": "Cancelamento de referencia"
+    },
+    {
+      "id": "B5",
+      "customerId": "U5",
+      "travelerIds": ["U5"],
+      "leadId": "L5",
+      "departureId": "D1",
+      "bookedAt": "2024-01-01",
+      "confirmedAt": null,
+      "status": "pending",
+      "category": "Conforto",
+      "totalAmount": 200,
+      "formComplete": true,
+      "cancellationReason": null
+    },
+    {
+      "id": "B6",
+      "customerId": "U5",
+      "travelerIds": ["U5", "U6"],
+      "leadId": "L6",
+      "departureId": "D3",
+      "bookedAt": "2024-01-01",
+      "confirmedAt": "2024-01-02",
+      "status": "confirmed",
+      "category": "Premium",
+      "totalAmount": 600,
+      "formComplete": true,
+      "cancellationReason": null
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "routeId": "R1",
+      "category": "Premium",
+      "createdAt": "2024-01-01",
+      "channel": "Site",
+      "stage": "won",
+      "potentialValue": 1000
+    },
+    {
+      "id": "L2",
+      "routeId": "R1",
+      "category": "Conforto",
+      "createdAt": "2024-01-01",
+      "channel": "Site",
+      "stage": "won",
+      "potentialValue": 500
+    },
+    {
+      "id": "L3",
+      "routeId": "R1",
+      "category": "Premium",
+      "createdAt": "2024-01-01",
+      "channel": "Site",
+      "stage": "won",
+      "potentialValue": 0
+    },
+    {
+      "id": "L4",
+      "routeId": "R1",
+      "category": "Premium",
+      "createdAt": "2024-01-01",
+      "channel": "Site",
+      "stage": "lost",
+      "potentialValue": 900
+    },
+    {
+      "id": "L5",
+      "routeId": "R1",
+      "category": "Conforto",
+      "createdAt": "2024-01-01",
+      "channel": "Site",
+      "stage": "proposal",
+      "potentialValue": 200
+    },
+    {
+      "id": "L6",
+      "routeId": "R1",
+      "category": "Premium",
+      "createdAt": "2024-01-01",
+      "channel": "Site",
+      "stage": "won",
+      "potentialValue": 600
+    }
+  ],
+  "partners": [
+    {
+      "id": "H1",
+      "name": "Hospedagem 1",
+      "routeId": "R1",
+      "locality": "A"
+    },
+    {
+      "id": "H2",
+      "name": "Hospedagem 2",
+      "routeId": "R1",
+      "locality": "B"
+    }
+  ],
+  "allocations": [
+    {
+      "id": "D1-Premium-1",
+      "departureId": "D1",
+      "partnerId": "H1",
+      "locality": "A",
+      "date": "2024-02-10",
+      "category": "Premium",
+      "capacity": 1,
+      "confirmed": true
+    },
+    {
+      "id": "D1-Premium-2",
+      "departureId": "D1",
+      "partnerId": "H2",
+      "locality": "B",
+      "date": "2024-02-11",
+      "category": "Premium",
+      "capacity": 1,
+      "confirmed": true
+    },
+    {
+      "id": "D1-Conforto-1",
+      "departureId": "D1",
+      "partnerId": "H1",
+      "locality": "A",
+      "date": "2024-02-10",
+      "category": "Conforto",
+      "capacity": 2,
+      "confirmed": true
+    },
+    {
+      "id": "D1-Conforto-2",
+      "departureId": "D1",
+      "partnerId": "H2",
+      "locality": "B",
+      "date": "2024-02-11",
+      "category": "Conforto",
+      "capacity": 2,
+      "confirmed": true
+    },
+    {
+      "id": "D2-Premium-1",
+      "departureId": "D2",
+      "partnerId": "H1",
+      "locality": "A",
+      "date": "2024-02-20",
+      "category": "Premium",
+      "capacity": 2,
+      "confirmed": true
+    },
+    {
+      "id": "D2-Premium-2",
+      "departureId": "D2",
+      "partnerId": "H2",
+      "locality": "B",
+      "date": "2024-02-21",
+      "category": "Premium",
+      "capacity": 2,
+      "confirmed": true
+    },
+    {
+      "id": "D3-Premium-1",
+      "departureId": "D3",
+      "partnerId": "H1",
+      "locality": "A",
+      "date": "2024-04-10",
+      "category": "Premium",
+      "capacity": 4,
+      "confirmed": true
+    },
+    {
+      "id": "D3-Premium-2",
+      "departureId": "D3",
+      "partnerId": "H2",
+      "locality": "B",
+      "date": "2024-04-11",
+      "category": "Premium",
+      "capacity": 4,
+      "confirmed": true
+    }
+  ],
+  "costs": [
+    {
+      "id": "C1",
+      "departureId": "D1",
+      "category": "Hospedagem",
+      "date": "2024-02-10",
+      "budget": 300,
+      "amount": 300,
+      "status": "realized"
+    },
+    {
+      "id": "C2",
+      "departureId": "D1",
+      "category": "Transfer",
+      "date": "2024-02-10",
+      "budget": 100,
+      "amount": 100,
+      "status": "realized"
+    },
+    {
+      "id": "C3",
+      "departureId": "D2",
+      "category": "Hospedagem",
+      "date": "2024-02-20",
+      "budget": 50,
+      "amount": 50,
+      "status": "realized"
+    },
+    {
+      "id": "C4",
+      "departureId": "D3",
+      "category": "Hospedagem",
+      "date": "2024-04-10",
+      "budget": 150,
+      "amount": 150,
+      "status": "estimated"
+    }
+  ],
+  "payments": [
+    {
+      "id": "P1",
+      "bookingId": "B1",
+      "date": "2024-01-10",
+      "amount": 500
+    },
+    {
+      "id": "P2",
+      "bookingId": "B2",
+      "date": "2024-01-10",
+      "amount": 250
+    },
+    {
+      "id": "P3",
+      "bookingId": "B4",
+      "date": "2024-01-10",
+      "amount": 50
+    },
+    {
+      "id": "P4",
+      "bookingId": "B6",
+      "date": "2024-01-10",
+      "amount": 200
+    }
+  ],
+  "feedback": [
+    {
+      "id": "F1",
+      "bookingId": "B1",
+      "date": "2024-02-12",
+      "nps": 9,
+      "service": 8,
+      "accommodation": 7,
+      "logistics": 6,
+      "comment": "Resposta de referencia independente"
+    },
+    {
+      "id": "F2",
+      "bookingId": "B2",
+      "date": "2024-02-12",
+      "nps": 6,
+      "service": 9,
+      "accommodation": 8,
+      "logistics": 7,
+      "comment": "Resposta de referencia independente"
+    },
+    {
+      "id": "F3",
+      "bookingId": "B3",
+      "date": "2024-02-22",
+      "nps": 8,
+      "service": 10,
+      "accommodation": 9,
+      "logistics": 8,
+      "comment": "Resposta de referencia independente"
+    }
+  ]
+}

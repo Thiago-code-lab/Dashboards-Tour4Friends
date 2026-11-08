@@ -37,6 +37,16 @@ CRUD invalida o snapshot, busca novamente os dados e só confirma sucesso após 
 
 ## Limites de arquitetura
 
+## Motor analítico v2
+
+`forecasting/dataset.ts` reconstrói meses completos e limita o treino a `historyStart/historyEnd`. `estimators.ts` contém quatro modelos puros sem estado compartilhado; `evaluation.ts` implementa origens expansivas, métricas e resíduos por passo; `models.ts` orquestra seleção, teste final e reajuste. O contrato anterior continua exportado. Estatísticas descritivas, Wilson, bootstrap e anomalias ficam em `analytics/`, sem uma segunda implementação científica em Python.
+
+Resultados são memoizados por identidade do snapshot, filtros e horizonte; um `WeakMap` permite coleta de snapshots substituídos e cada snapshot mantém no máximo 32 recortes. Identificador de conteúdo usa duas trilhas de 32 bits, tamanho do JSON, versão do modelo, filtros, horizonte e série. Não é hash de segurança. Mudança no snapshot da API invalida a análise; os testes verificam histórico, validação e identificação após persistência. `generated_at` indica criação do resultado; apenas métricas e previsões são determinísticas, não o relógio.
+
+O laboratório roda inteiramente no navegador e continua independente de backend. Custos são normalizados por viajante-dia, sem ratear despesas reais por categoria de hospedagem. Simulação não chama endpoints de gravação nem aloca previsões mensais em hotéis. O custo medido do backtesting completo nesta máquina foi de poucos milissegundos; não houve necessidade de Worker ou infraestrutura adicional.
+
+## Limites de arquitetura
+
 Aplicação de uma agência, sem isolamento por múltiplas organizações. A serialização de escritas favorece consistência neste volume e limita throughput deliberadamente. Não há cache compartilhado, tarefas assíncronas duráveis nem servidor Python publicado. O Ridge continua no navegador e recebe o novo snapshot; testes comprovam mudança da série e novo processamento depois de uma gravação no PostgreSQL.
 
 Somente após homologação da base e dos contratos é apropriado substituir dados demonstrativos. O frontend público atual não deve receber dados pessoais operacionais.
