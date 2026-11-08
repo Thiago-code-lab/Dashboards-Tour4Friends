@@ -4,13 +4,15 @@ import { PageHeading, GlobalFilters } from '../components/layout';
 import { Badge, Kpi, Panel } from '../components/ui';
 import { ReportDemandChart, ReportFinancialChart } from '../components/report-charts';
 import { useForecast } from '../hooks/useForecast';
+import { useIntelligence } from '../hooks/useIntelligence';
 import { MEMBERS, PROJECT_URL } from '../lib/project';
 import { capacityPlan } from '../lib/forecasting/capacity';
 import { compactMoney, dateLabel, monthLabel, number } from '../lib/format';
 
 export default function Reports() {
-  const { data, view, filters, insights, activeAlerts } = useAnalysis();
+  const { data, view, filters, insights, activeAlerts, mode } = useAnalysis();
   const forecast = useForecast(6);
+  const analysis = useIntelligence(forecast);
   const plan = capacityPlan(data, filters, forecast.predictions);
   const generated = new Intl.DateTimeFormat('pt-BR', {
     dateStyle: 'long',
@@ -129,12 +131,28 @@ export default function Reports() {
           <h2>Demanda e validação temporal</h2>
           <p>{forecast.reason}</p>
           <ReportDemandChart forecast={forecast} />
+          <p>
+            {forecast.uncertainty.kind === 'exploratory'
+              ? forecast.uncertainty.description
+              : 'Neste recorte faltam erros fora da amostra para estimar uma faixa.'}{' '}
+            {forecast.uncertainty.coverage
+              ? `No teste final, ${forecast.uncertainty.coverage.hits} de ${forecast.uncertainty.coverage.count} observações ficaram nas faixas, sem garantia de repetição futura.`
+              : ''}
+          </p>
+          <p>
+            {forecast.baselineImprovement === null
+              ? 'Não há comparação percentual válida com o baseline.'
+              : `Redução do MAE frente ao sazonal nas mesmas origens de validação a três meses: ${number(forecast.baselineImprovement)}%.`}{' '}
+            Valores negativos indicam piora. As métricas abaixo pertencem ao teste final e não
+            selecionam o vencedor.
+          </p>
           <table>
             <thead>
               <tr>
                 <th>Modelo</th>
                 <th>MAE</th>
                 <th>RMSE</th>
+                <th>Viés</th>
               </tr>
             </thead>
             <tbody>
@@ -146,6 +164,7 @@ export default function Reports() {
                   </td>
                   <td>{number(m.mae)}</td>
                   <td>{number(m.rmse)}</td>
+                  <td>{number(m.bias)}</td>
                 </tr>
               ))}
             </tbody>
@@ -161,7 +180,7 @@ export default function Reports() {
                 <th>Mês projetado</th>
                 <th>Viajantes esperados</th>
                 <th>Já confirmados</th>
-                <th>Vagas / noite a planejar</th>
+                <th>Viajantes a planejar no mês</th>
               </tr>
             </thead>
             <tbody>
@@ -176,13 +195,64 @@ export default function Reports() {
             </tbody>
           </table>
           <p>
-            Vagas consideram o maior valor entre projeção arredondada e viajantes futuros já
-            confirmados. Não equivalem a capacidade simultânea nem a contratos por localidade.
+            O volume mensal considera o maior valor entre projeção arredondada e viajantes futuros
+            já confirmados. Não equivalem a capacidade simultânea nem a contratos por localidade.
             Reservas futuras não entram no treinamento.
           </p>
         </section>
         <section className="report-section">
-          <div className="report-section-label">03 / AÇÃO E METODOLOGIA</div>
+          <div className="report-section-label">03 / LABORATÓRIO ANALÍTICO</div>
+          <h2>O que os dados sugerem</h2>
+          <h3>Sazonalidade da demanda</h3>
+          <p>{analysis.seasonality.conclusion}</p>
+          <p>
+            {forecast.history.length} meses completos, média{' '}
+            {number(analysis.seasonality.distribution.mean)}, mediana{' '}
+            {number(analysis.seasonality.distribution.median)}, desvio padrão{' '}
+            {number(analysis.seasonality.distribution.sd)} viajantes/mês. Poucas repetições anuais;
+            sem prova inferencial de sazonalidade.
+          </p>
+          <h3>Cancelamentos e comportamento comercial</h3>
+          <p>{analysis.cancellations.conclusion}</p>
+          <p>
+            Foram analisadas {analysis.cancellations.n} reservas históricas, sendo{' '}
+            {analysis.cancellations.cancelled} canceladas. Os intervalos Wilson usam aproximação
+            binomial; respostas e reservas repetidas podem não ser independentes.
+          </p>
+          <h3>Satisfação e experiência</h3>
+          <p>{analysis.satisfaction.conclusion}</p>
+          <p>
+            {analysis.satisfaction.n} respostas no corte; NPS e notas de atendimento, hospedagem e
+            logística são comparados por grupo. Bootstrap por cliente é exploratório, com 500
+            reamostragens e mínimo de 12 respostas e oito clientes; não comprova superioridade.
+          </p>
+          <h3>Anomalias para investigação</h3>
+          <p>
+            {analysis.anomalies.length} ocorrências ultrapassaram os critérios robustos. São
+            indícios estatísticos, distintos de violações operacionais; não comprovam causa.
+          </p>
+          <div className="report-alerts">
+            {analysis.anomalies.slice(0, 5).map((row) => (
+              <div key={row.id}>
+                <strong>
+                  {row.indicator} · {row.scope}
+                </strong>
+                <p>
+                  {number(row.observed)} {row.unit}, referência {number(row.reference)};{' '}
+                  {row.method}, n={row.sample}, intensidade {number(row.intensity)}.{' '}
+                  {row.investigation}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p>
+            Versão do modelo {forecast.metadata.model_version}; identificação do snapshot analítico{' '}
+            {forecast.metadata.fingerprint}. Dados sintéticos demonstram os métodos, sem comprovar
+            desempenho real da Tour4Friends.
+          </p>
+        </section>
+        <section className="report-section">
+          <div className="report-section-label">04 / AÇÃO E METODOLOGIA</div>
           <h2>Prioridades operacionais</h2>
           <p>
             {activeAlerts.length} alertas não resolvidos no recorte. Os primeiros{' '}
@@ -214,19 +284,23 @@ export default function Reports() {
             detratores) ÷ respostas.
           </p>
           <p>
-            Ridge usa tendência e harmônicos anuais (λ=4). O teste temporal preserva seis meses; o
-            menor MAE seleciona o método. RMSE penaliza erros grandes. A mesma janela serve para
-            seleção, portanto não é uma avaliação independente posterior. Sem histórico suficiente
-            há fallback estatístico explícito.
+            Ridge usa tendência e harmônicos anuais (λ=4), comparado ao sazonal, média ponderada e
+            tendência amortecida. Origens expansivas de três meses selecionam o método; os seis
+            meses finais ficam separados quando viável. Métodos a até 1% do menor MAE favorecem
+            simplicidade. RMSE penaliza erros grandes; viés positivo indica superestimação. Sem
+            histórico suficiente há fallback explícito.
           </p>
           <p>
             Fonte: gerador sintético, versão {data.metadata.version}, seed {data.metadata.seed}.
             Histórico até {dateLabel(data.metadata.historyEnd)}. {data.customers.length} clientes,{' '}
             {data.bookings.length} reservas, {data.leads.length} leads, {data.routes.length}{' '}
             roteiros e {data.feedback.length} avaliações na base completa. Validação por schema,
-            chaves únicas e integridade referencial. Sem integração ativa com banco de dados ou
-            dados operacionais reais. Custos por categoria usam rateio de receita. Não há inferência
-            causal ou intervalo de incerteza calibrado.
+            chaves únicas e integridade referencial.{' '}
+            {mode === 'api'
+              ? 'Fonte: API autenticada e PostgreSQL do laboratório.'
+              : 'Fonte: JSON estático da demonstração.'}{' '}
+            Sem dados operacionais reais. Custos por categoria usam rateio de receita. Não há
+            inferência causal ou garantia de cobertura das faixas exploratórias.
           </p>
           <p className="report-final">
             T4F Performance — Projeto Integrador V · Fatec Ipiranga

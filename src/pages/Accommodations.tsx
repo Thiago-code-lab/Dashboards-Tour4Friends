@@ -6,9 +6,10 @@ import { Badge, DataTable, Empty, Kpi, Panel, Progress } from '../components/ui'
 import { dateLabel, monthLabel, number, percent, sum } from '../lib/format';
 import { occupancy } from '../lib/analytics/metrics';
 import { exportCsv } from '../lib/csv';
+import { Management } from '../components/management';
 
 export default function Accommodations() {
-  const { data, view, thresholds, setThresholds } = useAnalysis();
+  const { data, view, thresholds, setThresholds, mode } = useAnalysis();
   const [upcoming, setUpcoming] = useState(true);
   const [attention, setAttention] = useState(thresholds.attention);
   const [critical, setCritical] = useState(thresholds.critical);
@@ -31,6 +32,7 @@ export default function Accommodations() {
         description="Disponibilidade negociada com parceiros, por saída, etapa, data e categoria."
       />
       <GlobalFilters />
+      <Management resource="allocations" />
       <div className="module-toolbar">
         <label className="checkbox-label">
           <input
@@ -128,48 +130,55 @@ export default function Accommodations() {
               );
             })}
           </div>
-          <form
-            className="threshold-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (attention < 1 || critical > 100 || attention >= critical) {
-                setError('Use 1 ≤ atenção < crítico ≤ 100.');
-                return;
-              }
-              setError('Limites atualizados neste navegador.');
-              setThresholds({ ...thresholds, attention, critical });
-            }}
-          >
-            <h3>Limites de ocupação</h3>
-            <div>
-              <label>
-                Atenção a partir de (%)
-                <input
-                  aria-label="Limite de atenção"
-                  type="number"
-                  min={1}
-                  max={99}
-                  value={attention}
-                  onChange={(e) => setAttention(Number(e.target.value))}
-                />
-              </label>
-              <label>
-                Crítica acima de (%)
-                <input
-                  aria-label="Limite crítico"
-                  type="number"
-                  min={2}
-                  max={100}
-                  value={critical}
-                  onChange={(e) => setCritical(Number(e.target.value))}
-                />
-              </label>
-              <button className="button small" type="submit">
-                Salvar limites
-              </button>
-            </div>
-            {error && <p role="status">{error}</p>}
-          </form>
+          {mode === 'api' ? (
+            <p className="panel-note">
+              O ambiente conectado utiliza limites compartilhados: atenção a partir de 75% e crítica
+              acima de 85%. A configuração local fica restrita à demonstração.
+            </p>
+          ) : (
+            <form
+              className="threshold-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (attention < 1 || critical > 100 || attention >= critical) {
+                  setError('Use 1 ≤ atenção < crítico ≤ 100.');
+                  return;
+                }
+                setError('Limites atualizados neste navegador.');
+                setThresholds({ ...thresholds, attention, critical });
+              }}
+            >
+              <h3>Limites de ocupação</h3>
+              <div>
+                <label>
+                  Atenção a partir de (%)
+                  <input
+                    aria-label="Limite de atenção"
+                    type="number"
+                    min={1}
+                    max={99}
+                    value={attention}
+                    onChange={(e) => setAttention(Number(e.target.value))}
+                  />
+                </label>
+                <label>
+                  Crítica acima de (%)
+                  <input
+                    aria-label="Limite crítico"
+                    type="number"
+                    min={2}
+                    max={100}
+                    value={critical}
+                    onChange={(e) => setCritical(Number(e.target.value))}
+                  />
+                </label>
+                <button className="button small" type="submit">
+                  Salvar limites
+                </button>
+              </div>
+              {error && <p role="status">{error}</p>}
+            </form>
+          )}
         </Panel>
       </div>
       <Panel

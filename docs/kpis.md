@@ -1,5 +1,13 @@
 # Regras dos indicadores
 
+## Auditoria independente da candidata
+
+`tests/fixtures/kpi-reference.json` é uma carteira pequena, criada separadamente da base original: seis reservas, três saídas e três avaliações. Os resultados em `kpi-reference-expected.json` foram calculados à mão, sem executar as funções de produção. Quatro recortes são conferidos pelo TypeScript e pelo Python. No consolidado: receita 2.100; ticket 525; NPS 0; cancelamento 1/6; ocupação 12/18 vagas-noite; pagamentos 1.000. Dois déficits de vagas-noite permanecem, mesmo havendo capacidade excedente em outras datas.
+
+Na saída sem receita confirmada, o custo de 50 não tem base de rateio. Permanece no consolidado, sem aparecer na soma dos filtros por categoria. Essa é uma limitação explícita da regra de rateio por receita, não uma mudança nos resultados da base original. Receita contratada, realizada gerencial e pagamentos não devem ser somados.
+
+## Definições de escopo
+
 Filtros de reservas, custos e saídas usam **data de início da viagem**. Feedback é a coorte de reservas selecionadas; evolução usa a data da resposta. Leads e conversão usam **data do primeiro contato**. As coortes são explicitadas na interface para evitar comparação incorreta. Intervalos incluem ambas as extremidades.
 
 | Indicador                   | Fórmula / regra                                                                                                    |
@@ -32,3 +40,9 @@ Denominador zero resulta em `null`, exibido como “—”. Nenhuma divisão por
 Limites demonstrativos: conforto abaixo de 75%, atenção de 75% até 85%, crítica acima de 85%. Os dois limites de ocupação são configuráveis no módulo de hospedagens e persistem no navegador. Desvio de custo: mais de 20% acima do orçamento. Regras em `analytics/alerts.ts`.
 
 Os insights dependem dos resultados: número/causa do alerta prioritário, concentração de receita por roteiro e NPS/tamanho de amostra. Sem dados, exibem ausência de evidência, não conclusões genéricas de IA.
+
+## Paridade backend/frontend
+
+`backend/app/services/analytics.py` calcula os mesmos indicadores a partir do snapshot consultado no PostgreSQL, em uma transação consistente. Os endpoints `/analytics/*` aceitam período, roteiro, modalidade e categoria. Testes executam o TypeScript original via `scripts/analytics-bridge.ts` e comparam seis recortes, séries mensais e IDs de alertas, com tolerância numérica de 0,000001. O Ridge não foi portado/reconstruído.
+
+Na etapa 02, cancelar uma reserva futura mantém o evento de confirmação e recebimentos anteriores, sem mantê-la na receita contratada. Caixa recebido já era calculado separadamente; a validação foi ampliada para preservar esse histórico. Teste confirma redução das confirmadas, manutenção dos pagamentos e validação pelo TypeScript. O JSON inicial não foi modificado e seus resultados continuam equivalentes.

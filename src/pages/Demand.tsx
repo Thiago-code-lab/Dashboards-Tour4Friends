@@ -1,58 +1,54 @@
 import { useState } from 'react';
-import { BedDouble, CalendarRange, ChartNoAxesCombined, Target, TrendingUp } from 'lucide-react';
+import { CalendarRange, ChartNoAxesCombined, Target, TrendingUp } from 'lucide-react';
 import { useAnalysis } from '../app/context';
 import { GlobalFilters, PageHeading } from '../components/layout';
-import { Badge, DataTable, Kpi, Panel } from '../components/ui';
-import { DemandChart, SimpleBarChart } from '../components/charts';
-import { monthLabel, number, sum } from '../lib/format';
+import { Kpi, Panel } from '../components/ui';
+import { DemandChart } from '../components/charts';
+import { number, sum, monthLabel } from '../lib/format';
 import { useForecast } from '../hooks/useForecast';
-import { exportCsv } from '../lib/csv';
-import { capacityPlan } from '../lib/forecasting/capacity';
+import { useIntelligence } from '../hooks/useIntelligence';
+import { ForecastValidation } from '../components/forecast-validation';
+import { AnalyticsLab } from '../components/analytics-lab';
+import { CapacitySimulator } from '../components/capacity-simulator';
+import { AnomalyPanel } from '../components/anomaly-panel';
 
 export default function Demand() {
-  const { view, data, filters } = useAnalysis();
+  const { filters } = useAnalysis();
   const [horizon, setHorizon] = useState(6);
   const [scenario, setScenario] = useState(0);
   const forecast = useForecast(horizon);
-  const selectedMetrics = forecast.metrics.find((m) => m.model === forecast.selected);
-  const total = sum(forecast.predictions, (p) => p.predicted * (1 + scenario / 100));
-  const plan = capacityPlan(data, filters, forecast.predictions, scenario);
-  const seasonal = Array.from({ length: 12 }, (_, i) => {
-    const rows = view.monthly.filter((p) => Number(p.month.slice(5, 7)) === i + 1);
-    return {
-      name: monthLabel(`2026-${String(i + 1).padStart(2, '0')}`).split(' ')[0],
-      value: rows.length ? sum(rows, (p) => p.travelers) / rows.length : 0,
-    };
-  });
+  const analysis = useIntelligence(forecast);
+  const selectedMetrics = forecast.metrics.find((model) => model.modelId === forecast.selectedId);
+  const total = sum(forecast.predictions, (point) => point.predicted * (1 + scenario / 100));
   return (
     <>
       <PageHeading
         eyebrow="PLANEJAR COM ANTECEDÊNCIA"
         title="Demanda e previsões"
-        description="Do histórico ao planejamento de vagas. Modelos reais, com limites transparentes."
+        description="Validação temporal, incerteza exploratória e planejamento com dados reproduzíveis."
       />
       <GlobalFilters />
       <div className="kpi-grid">
         <Kpi
           label="Viajantes no histórico"
-          value={number(sum(forecast.history, (p) => p.travelers))}
+          value={number(sum(forecast.history, (point) => point.travelers))}
           detail={`${forecast.sample} meses completos`}
           icon={ChartNoAxesCombined}
-          help="Somatório de viajantes confirmados nos meses completos do recorte histórico. Meses sem movimento são zero."
+          help="Somente meses completos no corte histórico; meses sem movimento são zero. Reservas futuras não entram no treinamento."
         />
         <Kpi
           label="Demanda projetada"
           value={forecast.selected ? number(Math.round(total)) : '—'}
           detail={`Viajantes · próximos ${horizon} meses`}
           icon={TrendingUp}
-          help="Soma das previsões mensais. Valores esperados podem ser fracionários; o total é arredondado para apresentação."
+          help="Valores esperados fracionários são preservados nos cálculos. Uma previsão não representa reserva confirmada."
         />
         <Kpi
           label="MAE do modelo"
           value={number(selectedMetrics?.mae)}
-          detail="Viajantes de erro médio / mês"
+          detail="Teste final · viajantes / mês"
           icon={Target}
-          help="Erro absoluto médio no teste dos últimos seis meses; quanto menor, melhor. Ausente quando não há validação suficiente."
+          help="Erro absoluto nos seis meses finais, excluídos da seleção por rolling-origin. Ausente quando a separação não é viável."
         />
         <Kpi
           label="Meses projetados"
@@ -63,23 +59,23 @@ export default function Demand() {
               : 'Sem histórico suficiente'
           }
           icon={CalendarRange}
-          help="Horizonte futuro em relação ao último mês completo incluído no recorte."
+          help="Projeção após o último mês completo filtrado. Acima de seis meses não há faixa de erros estimada."
         />
       </div>
       <Panel
         title="A próxima jornada começa nos dados"
-        subtitle="Observado em azul · previsão em cinza tracejado"
+        subtitle="Histórico azul · previsão cinza · faixa exploratória suave"
         action={
           <label className="inline-select">
             Horizonte
             <select
               aria-label="Horizonte da previsão"
               value={horizon}
-              onChange={(e) => setHorizon(Number(e.target.value))}
+              onChange={(event) => setHorizon(Number(event.target.value))}
             >
-              {[3, 6, 12].map((n) => (
-                <option value={n} key={n}>
-                  {n} meses
+              {[1, 3, 6, 12].map((value) => (
+                <option key={value} value={value}>
+                  {value} meses
                 </option>
               ))}
             </select>
@@ -87,156 +83,43 @@ export default function Demand() {
         }
       >
         <DemandChart forecast={forecast} scenario={scenario} full />
-        <div className="scenario-control">
-          <span className="scenario-icon">
-            <BedDouble size={21} />
-          </span>
-          <div>
-            <h3>E se a demanda mudar?</h3>
-            <p>Simule a necessidade de vagas. O ajuste não executa um novo treinamento.</p>
-          </div>
-          <label>
-            <span>
-              Variação:{' '}
-              <strong>
-                {scenario > 0 ? '+' : ''}
-                {scenario}%
-              </strong>
-            </span>
-            <input
-              type="range"
-              aria-label="Variação do cenário"
-              min={-30}
-              max={30}
-              step={5}
-              value={scenario}
-              onChange={(e) => setScenario(Number(e.target.value))}
-            />
-          </label>
-          <button className="button small" onClick={() => setScenario(10)}>
-            Simular +10%
-          </button>
-        </div>
-      </Panel>
-      <div className="two-column">
-        <Panel title="Validação temporal" subtitle="Treino cronológico e teste de seis meses">
-          <div className="method-summary">
-            <Badge tone="blue">{forecast.selected ?? 'Sem estimativa'}</Badge>
-            <p>{forecast.reason}</p>
-            {forecast.trainEnd && (
-              <p className="muted">
-                Treino até {monthLabel(forecast.trainEnd)} · teste a partir de{' '}
-                {monthLabel(forecast.testStart!)}. Nenhum valor do teste é usado no ajuste inicial.
-              </p>
-            )}
-          </div>
-          {forecast.metrics.length > 0 && (
-            <DataTable
-              rows={forecast.metrics}
-              rowKey={(m) => m.model}
-              label="Modelos"
-              columns={[
-                { key: 'model', label: 'Modelo', value: (r) => r.model },
-                { key: 'mae', label: 'MAE', value: (r) => r.mae, render: (r) => number(r.mae) },
-                { key: 'rmse', label: 'RMSE', value: (r) => r.rmse, render: (r) => number(r.rmse) },
-              ]}
-            />
-          )}
-          <p className="panel-note">
-            Ridge: tendência + harmônicos anuais, penalização λ=4 fixa. Baseline: repete o mesmo mês
-            do ano anterior. Sem volume, usamos média dos 3 últimos meses com pesos 1, 2 e 3.
-            Nenhuma chamada a IA externa.
-          </p>
-        </Panel>
-        <Panel
-          title="Sazonalidade mensal"
-          subtitle="Média de viajantes por mês do calendário no recorte"
-        >
-          <SimpleBarChart rows={seasonal} valueLabel="Viajantes / mês" />
-          <p className="panel-note">
-            A média inclui meses completos sem movimento. Com amostra pequena, sazonalidade pode
-            variar bastante.
-          </p>
-        </Panel>
-      </div>
-      <Panel
-        title="Planejamento de capacidade"
-        subtitle="Uma vaga de hospedagem por viajante, por noite/etapa; não representa contratação confirmada"
-      >
-        <DataTable
-          rows={plan}
-          rowKey={(p) => p.month}
-          label="Meses projetados"
-          columns={[
-            {
-              key: 'month',
-              label: 'Mês',
-              value: (p) => p.month,
-              render: (p) => monthLabel(p.month),
-            },
-            {
-              key: 'predicted',
-              label: 'Previsão base',
-              value: (p) => p.predicted,
-              render: (p) => number(p.predicted),
-            },
-            {
-              key: 'scenario',
-              label: `Cenário ${scenario > 0 ? '+' : ''}${scenario}%`,
-              value: (p) => p.simulated,
-              render: (p) => number(p.simulated),
-            },
-            { key: 'committed', label: 'Já confirmados', value: (p) => p.committed },
-            { key: 'beds', label: 'Vagas / noite a planejar', value: (p) => p.beds },
-          ]}
-          onExport={(rows) => exportCsv('t4f-previsao.csv', rows)}
-        />
         <p className="panel-note">
-          Planejamos o maior valor entre demanda simulada arredondada para cima e viajantes futuros
-          já confirmados no mês, inclusive saídas além do fim do filtro que pertençam ao horizonte.
-          Esses compromissos não entram no treino. O total mensal não define simultaneidade nem
-          vagas por localidade; confira os slots em Hospedagens.
+          {forecast.uncertainty.kind === 'exploratory' && scenario === 0
+            ? forecast.uncertainty.description
+            : scenario !== 0
+              ? 'Cenário de sensibilidade: ajuste percentual aplicado à previsão, sem novo treino ou faixa probabilística.'
+              : 'Amostra insuficiente para estimar faixas a partir de erros fora da amostra.'}
+        </p>
+        <p className="panel-note">
+          {forecast.uncertainty.coverage
+            ? `No teste final, ${forecast.uncertainty.coverage.hits}/${forecast.uncertainty.coverage.count} valores ficaram nas faixas estimadas somente na validação. Seis meses não validam cobertura futura.`
+            : 'Sem cobertura fora da calibração mensurável neste recorte.'}{' '}
+          {filters.route !== 'all'
+            ? 'Modelo específico deste roteiro; séries esparsas podem usar fallback. A soma de previsões independentes não é reconciliada ao total.'
+            : 'O modelo agregado é ajustado diretamente à série total.'}
+        </p>
+        <details className="analysis-details">
+          <summary>Erros disponíveis por passo de previsão</summary>
+          <ul>
+            {forecast.uncertainty.bands.map((band) => (
+              <li key={band.lead}>
+                Passo {band.lead}: {band.sample} erros ·{' '}
+                {band.lowerError === null
+                  ? 'sem faixa: mínimo de oito'
+                  : `quantis dos resíduos ${number(band.lowerError)} a ${number(band.upperError)}`}
+              </li>
+            ))}
+          </ul>
+        </details>
+        <p className="snapshot-id" data-testid="analytics-fingerprint">
+          Versão analítica {forecast.metadata.model_version} · snapshot{' '}
+          {forecast.metadata.fingerprint}
         </p>
       </Panel>
-      <div className="two-column">
-        <Panel title="Demanda por roteiro" subtitle="Viajantes confirmados no período">
-          <SimpleBarChart
-            rows={view.routeStats.map((r) => ({ name: r.shortName, value: r.travelers }))}
-            valueLabel="Viajantes"
-          />
-        </Panel>
-        <Panel
-          title="Observado versus previsto no teste"
-          subtitle="Previsões calculadas a partir do treino, antes de observar o teste"
-        >
-          <DataTable
-            rows={forecast.backtest}
-            rowKey={(p) => p.month}
-            label="Meses de teste"
-            columns={[
-              {
-                key: 'month',
-                label: 'Mês',
-                value: (p) => p.month,
-                render: (p) => monthLabel(p.month),
-              },
-              { key: 'observed', label: 'Observado', value: (p) => p.observed },
-              {
-                key: 'baseline',
-                label: 'Sazonal',
-                value: (p) => p.baseline,
-                render: (p) => number(p.baseline),
-              },
-              {
-                key: 'ridge',
-                label: 'Ridge',
-                value: (p) => p.ridge,
-                render: (p) => number(p.ridge),
-              },
-            ]}
-          />
-        </Panel>
-      </div>
+      <ForecastValidation forecast={forecast} />
+      <CapacitySimulator forecast={forecast} scenario={scenario} setScenario={setScenario} />
+      <AnalyticsLab analysis={analysis} />
+      <AnomalyPanel anomalies={analysis.anomalies} />
     </>
   );
 }

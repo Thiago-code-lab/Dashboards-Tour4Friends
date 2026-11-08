@@ -58,7 +58,9 @@ test('filtros globais alteram KPIs, persistem ao navegar e podem ser limpos', as
   await expect(page.getByText('Sem dados para exibir').first()).toBeVisible();
   await page.getByRole('button', { name: 'Limpar filtros' }).click();
   await expect(page.getByLabel('Filtrar roteiro', { exact: true })).toHaveValue('all');
-  await expect(page.locator('tbody tr').first()).toBeVisible();
+  await expect(
+    page.getByRole('table', { name: 'Reservas', exact: true }).locator('tbody tr').first(),
+  ).toBeVisible();
 });
 test('cenários, busca, CSV e revisão local funcionam', async ({ page }) => {
   await page.goto('#/demanda');

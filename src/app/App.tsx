@@ -3,6 +3,7 @@ import { HashRouter, Link, Route, Routes } from 'react-router-dom';
 import { AppProvider, useApp } from './context';
 import { Layout } from '../components/layout';
 import Overview from '../pages/Overview';
+import { LoginPanel } from '../components/connection';
 
 const Demand = lazy(() => import('../pages/Demand'));
 const Reservations = lazy(() => import('../pages/Reservations'));
@@ -50,16 +51,23 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean
   }
 }
 function Workspace() {
-  const { data, error, retry } = useApp();
+  const { data, error, retry, mode, user, chooseDemo } = useApp();
   return (
     <Layout>
-      {error ? (
+      {mode === 'api' && !user ? (
+        <LoginPanel />
+      ) : error ? (
         <div className="fatal-error" role="alert">
           <h1>A base não pôde ser validada</h1>
           <p>{error}</p>
           <button className="button primary" onClick={retry}>
             Tentar novamente
           </button>
+          {mode === 'api' && (
+            <button className="button" onClick={chooseDemo}>
+              Retornar à demonstração
+            </button>
+          )}
         </div>
       ) : !data ? (
         <Loading />

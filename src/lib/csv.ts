@@ -7,7 +7,18 @@ export function exportCsv(filename: string, rows: Record<string, unknown>[]): vo
   const safeRows = rows.map((row) =>
     Object.fromEntries(
       Object.entries(row).map(([key, value]) => {
-        const text = value == null ? '' : Array.isArray(value) ? value.join('|') : String(value);
+        const text =
+          value == null
+            ? ''
+            : Array.isArray(value)
+              ? value
+                  .map((entry) =>
+                    typeof entry === 'object' ? JSON.stringify(entry) : String(entry),
+                  )
+                  .join('|')
+              : typeof value === 'object'
+                ? JSON.stringify(value)
+                : String(value);
         return [key, /^[=+@\-\t\r]/.test(text) ? `'${text}` : text];
       }),
     ),

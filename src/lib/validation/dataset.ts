@@ -75,7 +75,8 @@ export function validateDataset(input: unknown): Dataset {
   for (const row of data.payments) {
     const booking = bookings.get(row.bookingId);
     check(
-      booking?.status === 'confirmed' &&
+      (booking?.status === 'confirmed' ||
+        (booking?.status === 'cancelled' && !!booking.confirmedAt)) &&
         !!booking &&
         row.date >= booking.bookedAt &&
         row.date <= data.metadata.referenceDate,
@@ -110,6 +111,12 @@ function validateBookings(data: Dataset, check: (ok: boolean, message: string) =
     const dep = deps.get(booking.departureId);
     const lead = leads.get(booking.leadId);
     check(
+      booking.confirmedAt === null ||
+        (booking.confirmedAt >= booking.bookedAt &&
+          booking.confirmedAt <= data.metadata.referenceDate),
+      `${booking.id}: data do evento de confirmação inválida`,
+    );
+    check(
       !!dep && !!lead && lead.routeId === dep.routeId && lead.category === booking.category,
       `${booking.id}: lead/saída inválidos`,
     );
@@ -135,7 +142,7 @@ function validateBookings(data: Dataset, check: (ok: boolean, message: string) =
       `${booking.id}: confirmação inválida`,
     );
     check(
-      booking.status === 'confirmed' || booking.confirmedAt === null,
+      booking.status !== 'pending' || booking.confirmedAt === null,
       `${booking.id}: confirmação de reserva inativa`,
     );
     check(

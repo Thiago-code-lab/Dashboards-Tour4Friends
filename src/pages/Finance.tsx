@@ -6,6 +6,7 @@ import { FinancialChart, SimpleBarChart } from '../components/charts';
 import { compactMoney, divide, money, monthLabel, number, percent, sum } from '../lib/format';
 import { margin } from '../lib/analytics/metrics';
 import { exportCsv } from '../lib/csv';
+import { Management } from '../components/management';
 
 export default function Finance() {
   const { view, filters } = useAnalysis();
@@ -25,6 +26,7 @@ export default function Finance() {
         description="Receitas, custos e contribuição gerencial. Valores simulados em reais."
       />
       <GlobalFilters />
+      <Management resource="costs" />
       <div className="kpi-grid">
         <Kpi
           label="Receita contratada"
@@ -67,7 +69,7 @@ export default function Finance() {
         {money(view.paid)} em pagamentos recebidos das reservas selecionadas. Esses valores se
         sobrepõem e não devem ser somados.{' '}
         {filters.category !== 'all' &&
-          'Custos rateados por participação na receita da categoria; não representam custos individuais apurados.'}
+          'Custos rateados por participação na receita da categoria; não representam custos individuais apurados. Saídas sem receita confirmada não têm base de rateio: seus custos aparecem somente no consolidado.'}
       </div>
       <div className="two-column">
         <Panel title="Receita versus custo" subtitle="Coorte por mês da viagem · histórico">
@@ -122,9 +124,10 @@ export default function Finance() {
             </span>
           </div>
           <p className="panel-note">
-            Não há multas ou estornos modelados. O valor total de uma reserva cancelada é excluído
-            das receitas e pagamentos. Não é possível inferir perda líquida sem conhecer penalidades
-            e custos recuperados.
+            Não há multas ou estornos modelados. Reservas canceladas são excluídas da receita.
+            Recebimentos anteriores à desistência são preservados, separados da receita e sem
+            presumir reembolso. Não é possível inferir perda líquida sem conhecer penalidades e
+            custos recuperados.
           </p>
         </Panel>
       </div>
