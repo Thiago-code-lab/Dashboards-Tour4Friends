@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import {
   Activity,
@@ -44,9 +44,30 @@ export const NAVIGATION = [
 export function Layout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
-  const { data, activeAlerts, storageError, imported } = useApp();
+  const [compact, setCompact] = useState(() => window.matchMedia('(max-width: 1023px)').matches);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const sidebar = useRef<HTMLElement>(null);
+  const closeMenu = () => {
+    setOpen(false);
+    requestAnimationFrame(() => menuButton.current?.focus());
+  };
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 1023px)');
+    const update = () => {
+      setCompact(query.matches);
+      setOpen(false);
+    };
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+  useEffect(() => {
+    if (compact && open) sidebar.current?.querySelector<HTMLElement>('button, a')?.focus();
+  }, [open, compact]);
+  const { data, activeAlerts, storageError, imported, mode } = useApp();
   useEffect(() => {
     setOpen(false);
+    if (compact && open)
+      requestAnimationFrame(() => document.getElementById('main-content')?.focus());
     window.scrollTo({ top: 0 });
   }, [pathname]);
   const current = NAVIGATION.find((n) => n.to === pathname)?.label ?? 'Página não encontrada';
@@ -66,10 +87,45 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <button
           className="sidebar-backdrop"
           aria-label="Fechar menu"
-          onClick={() => setOpen(false)}
+          onClick={closeMenu}
+          tabIndex={-1}
         />
       )}
-      <aside className={`sidebar ${open ? 'is-open' : ''}`} aria-label="Menu principal">
+      <aside
+        ref={sidebar}
+        className={`sidebar ${open ? 'is-open' : ''}`}
+        aria-label="Menu principal"
+        inert={compact && !open}
+        onKeyDown={(event) => {
+          if (!compact || !open) return;
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            closeMenu();
+          }
+          if (event.key !== 'Tab') return;
+          const controls = [
+            ...sidebar.current!.querySelectorAll<HTMLElement>('a, button:not([disabled])'),
+          ];
+          const first = controls[0];
+          const last = controls.at(-1);
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }}
+      >
+        {compact && (
+          <button
+            className="icon-button sidebar-close"
+            aria-label="Fechar navegação"
+            onClick={closeMenu}
+          >
+            <X size={20} />
+          </button>
+        )}
         <Link to="/" className="brand">
           <span className="brand-mark">
             <Mountain size={26} strokeWidth={1.8} />
@@ -90,7 +146,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <ChevronRight size={14} />
         </div>
         <p className="nav-section">WORKSPACE</p>
-        <nav>
+        <nav aria-label="Módulos">
           {NAVIGATION.slice(0, 8).map((item) => (
             <NavLink end={item.to === '/'} to={item.to} key={item.to}>
               <item.icon size={18} />
@@ -102,7 +158,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           ))}
         </nav>
         <p className="nav-section resources-label">RECURSOS</p>
-        <nav>
+        <nav aria-label="Recursos">
           {NAVIGATION.slice(8).map((item) => (
             <NavLink to={item.to} key={item.to}>
               <item.icon size={18} />
@@ -123,14 +179,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </Link>
           </div>
           <div className="sidebar-status">
-            <i /> Ambiente demonstrativo <CircleHelp size={13} />
+            <i /> {mode === 'api' ? 'Modo laboratório' : 'Ambiente demonstrativo'}{' '}
+            <CircleHelp size={13} />
           </div>
         </div>
       </aside>
-      <div className="workspace">
+      <div className="workspace" inert={compact && open}>
         <header className="topbar">
           <div className="flex items-center gap-3">
             <button
+              ref={menuButton}
               className="icon-button mobile-menu"
               aria-label="Abrir menu"
               aria-expanded={open}

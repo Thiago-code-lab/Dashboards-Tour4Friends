@@ -127,7 +127,8 @@ export function DataTable<T>({
             searchText(r).toLocaleLowerCase('pt-BR').includes(query.toLocaleLowerCase('pt-BR')),
           )
         : rows;
-    const column = columns.find((c) => c.key === sort.key)!;
+    const column = columns.find((c) => c.key === sort.key) ?? columns[0];
+    if (!column) return subset;
     return [...subset].sort((a, b) => {
       const va = column.value(a) ?? '';
       const vb = column.value(b) ?? '';
@@ -139,6 +140,15 @@ export function DataTable<T>({
       );
     });
   }, [rows, query, searchText, columns, sort]);
+  const numericColumns = new Set(
+    columns
+      .filter((column) => {
+        if (column.align) return column.align === 'right';
+        const sample = rows.find((row) => column.value(row) !== null);
+        return sample !== undefined && typeof column.value(sample) === 'number';
+      })
+      .map((column) => column.key),
+  );
   const currentPage = Math.min(page, Math.max(0, Math.ceil(filtered.length / 10) - 1));
   return (
     <div>
@@ -180,7 +190,7 @@ export function DataTable<T>({
                   {columns.map((c) => (
                     <th
                       key={c.key}
-                      className={c.align === 'right' ? 'text-right' : ''}
+                      className={numericColumns.has(c.key) ? 'text-right' : ''}
                       aria-sort={
                         sort.key === c.key
                           ? sort.direction === 1
@@ -209,7 +219,7 @@ export function DataTable<T>({
                 {filtered.slice(currentPage * 10, currentPage * 10 + 10).map((row) => (
                   <tr key={rowKey(row)}>
                     {columns.map((c) => (
-                      <td key={c.key} className={c.align === 'right' ? 'text-right' : ''}>
+                      <td key={c.key} className={numericColumns.has(c.key) ? 'text-right' : ''}>
                         {c.render ? c.render(row) : (c.value(row) ?? '—')}
                       </td>
                     ))}

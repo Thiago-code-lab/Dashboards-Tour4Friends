@@ -191,7 +191,7 @@ function useAppState() {
           ? err.message
           : 'A gravação falhou.';
       setNotice(message);
-      throw new Error(message);
+      throw !saved && err instanceof Error ? err : new Error(message);
     } finally {
       setSaving(false);
     }

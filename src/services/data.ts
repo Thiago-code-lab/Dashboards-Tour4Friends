@@ -16,6 +16,13 @@ export const repository: DataRepository = new StaticDataRepository();
 export class ApiDataRepository implements DataRepository {
   constructor(private readonly client: ApiClient) {}
   async load(signal?: AbortSignal): Promise<Dataset> {
-    return validateDataset(await this.client.get<unknown>('/dataset', signal));
+    const payload = await this.client.get<unknown>('/dataset', signal);
+    try {
+      return validateDataset(payload);
+    } catch {
+      throw new Error(
+        'A resposta da API não segue o contrato da base ou possui vínculos inconsistentes. Corrija os registros e tente carregar novamente.',
+      );
+    }
   }
 }
