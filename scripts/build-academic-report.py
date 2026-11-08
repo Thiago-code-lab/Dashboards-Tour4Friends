@@ -2,8 +2,11 @@
 
 import json
 import math
+import os
+import re
 import subprocess
-from datetime import datetime
+from datetime import UTC, datetime
+from hashlib import sha256
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -273,7 +276,7 @@ def cover(c: canvas.Canvas, data: dict, revision: str) -> None:
         y = paragraph(c, escape(member), y, 11.3)
     y = paragraph(
         c,
-        "<b>Dados demonstrativos — cenário acadêmico simulado.</b><br/>Este documento apresenta a versão candidata da Etapa 04. A aplicação pública preservada continua na Etapa 01; a candidata completa pode ser executada pela branch indicada no repositório.",
+        "<b>Dados demonstrativos — cenário acadêmico simulado.</b><br/>Este documento apresenta a versão candidata à entrega final, preparada para integração. A aplicação pública preservada continua na Etapa 01; a candidata completa pode ser executada pela branch indicada no repositório.",
         y - 14,
         9.5,
     )
@@ -642,9 +645,15 @@ def conclusion_page(c: canvas.Canvas, data: dict, revision: str) -> None:
 def main() -> None:
     fonts()
     data = json.loads((ART / "report-data.json").read_text(encoding="utf8"))
-    revision = subprocess.check_output(
-        ["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, text=True
-    ).strip()
+    source_sha = (
+        os.environ.get("RELEASE_SOURCE_SHA")
+        or subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+        ).strip()
+    )
+    if not re.fullmatch(r"[a-f0-9]{40}", source_sha):
+        raise ValueError("Revisão de origem inválida para o PDF.")
+    revision = source_sha[:8]
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     document = canvas.Canvas(str(OUTPUT), pagesize=A4, pageCompression=1)
     document.setTitle("T4F Performance — Projeto Integrador V — Entrega Acadêmica")
@@ -666,6 +675,34 @@ def main() -> None:
     assert all(member in reader.pages[0].extract_text() for member in MEMBERS)
     assert all(page.extract_text().strip() for page in reader.pages)
     assert sum(len(page.get("/Annots", [])) for page in reader.pages) >= 4
+    if any(
+        abs(float(page.mediabox.width) - WIDTH) > 1
+        or abs(float(page.mediabox.height) - HEIGHT) > 1
+        for page in reader.pages
+    ):
+        raise ValueError("O relatório deve conter somente páginas A4.")
+    links = [
+        str(annotation.get_object().get("/A", {}).get("/URI", ""))
+        for page in reader.pages
+        for annotation in page.get("/Annots", [])
+        if annotation.get_object().get("/A", {}).get("/URI")
+    ]
+    if len(links) < 4 or not all(url.startswith("https://") for url in links):
+        raise ValueError("Links do relatório ausentes ou inválidos.")
+    manifest = {
+        "file": OUTPUT.name,
+        "bytes": OUTPUT.stat().st_size,
+        "pages": len(reader.pages),
+        "sha256": sha256(OUTPUT.read_bytes()).hexdigest(),
+        "generatedAt": datetime.now(UTC).isoformat(),
+        "sourceSha": source_sha,
+        "datasetSha256": data["datasetSha256"],
+        "links": links,
+        "visualInspection": "required: render and inspect every page",
+    }
+    OUTPUT.with_suffix(".manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf8"
+    )
     print(
         f"PDF acadêmico verificado estruturalmente: {OUTPUT} (8 páginas). Renderize e inspecione as oito imagens antes de entregar."
     )

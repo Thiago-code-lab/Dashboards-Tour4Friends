@@ -1,6 +1,10 @@
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-const tracked = execFileSync('git', ['ls-files', '-z'], { encoding: 'utf8' })
+const tracked = execFileSync(
+  'git',
+  ['ls-files', '--cached', '--others', '--exclude-standard', '-z'],
+  { encoding: 'utf8' },
+)
   .split('\0')
   .filter(Boolean);
 const forbiddenNames = tracked.filter(
@@ -25,18 +29,29 @@ if (existsSync('backend/.env')) {
     if (password.length >= 16) secrets.push(password);
   }
 }
-const violations = files('dist')
-  .filter((path) => /\.(js|html|json|css|map)$/.test(path))
+const candidates = [
+  ...tracked,
+  ...files('dist'),
+  ...['artifacts/release-05', 'artifacts/qa-final'].flatMap((root) =>
+    existsSync(root) ? files(root) : [],
+  ),
+];
+const violations = candidates
+  .filter((path) =>
+    /\.(js|mjs|cjs|ts|tsx|py|md|yml|yaml|toml|ini|html|json|css|map|txt)$/.test(path),
+  )
   .filter((path) => {
     const text = readFileSync(path, 'utf8');
     return (
-      /-----BEGIN [A-Z ]*PRIVATE KEY-----|ghp_[A-Za-z0-9]{30,}|sk-proj-[A-Za-z0-9_-]{35,}|postgresql\+psycopg:\/\//.test(
+      /-----BEGIN [A-Z ]*PRIVATE KEY-----|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|sk-proj-[A-Za-z0-9_-]{35,}/.test(
         text,
-      ) || secrets.some((secret) => text.includes(secret))
+      ) ||
+      (path.startsWith('dist/') && /postgresql\+psycopg:\/\//.test(text)) ||
+      secrets.some((secret) => text.includes(secret))
     );
   });
 if (violations.length)
   throw new Error(`Possível segredo no artefato: ${violations.join(', ')}. Conteúdo omitido.`);
 process.stdout.write(
-  'Artefato estático sem credenciais detectadas; arquivos de ambiente privados fora do Git.\n',
+  'Arquivos rastreados, build e evidências demo sem credenciais detectadas; configurações privadas fora do Git.\n',
 );

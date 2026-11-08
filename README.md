@@ -4,13 +4,13 @@ Plataforma de análise de desempenho corporativo da Tour4Friends, desenvolvida p
 
 Aplicação React/TypeScript com dois modos: demonstração estática independente e laboratório autenticado com FastAPI/PostgreSQL. Indicadores, alertas, insights e previsões utilizam a mesma base sintética. **Dados demonstrativos — cenário acadêmico simulado.** Nenhum resultado representa o desempenho real da agência.
 
-## Versão candidata · Etapa 04
+## Versão candidata · preparação da Release 05
 
 Consolidação em `feature/final-quality-and-delivery-v1`, baseada em Analytics e no backend. Os PRs formam uma cadeia; nenhum foi integrado à `main` automaticamente. O Pages público continua na Etapa 01. Para apresentar todos os avanços, execute a candidata localmente.
 
 - [Entrega e verificações finais](docs/entrega-04-final.md), [matriz de aceitação](docs/final-acceptance-checklist.md) e [roteiro oral de sete minutos](docs/roteiro-apresentacao-final.md).
 - PDF único para a disciplina: `output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.pdf`. A geração reproduzível usa dados calculados e capturas reais; são oito páginas A4 com o grupo na capa. Artefato local e da CI, sem versionar binários.
-- Validação final: 87 Vitest, 27 Pytest, oito testes conectados, 25 Playwright executados e uma dispensa intencional de captura duplicada. Auditoria de dez módulos em seis resoluções; acessibilidade automatizada sem declaração de conformidade WCAG completa.
+- Validação da release: 95 Vitest, 27 Pytest, oito testes conectados e 27 Playwright, com uma dispensa intencional de captura duplicada. Auditoria de dez módulos em seis resoluções; acessibilidade automatizada sem declaração de conformidade WCAG completa. Evidências e decisão em [readiness](docs/release-05-readiness.md).
 - `npm run build:demo` fixa demonstração e API vazia. `npm run qa:audit` requer preview na porta 4175. [Publicação futura somente após aprovação](docs/deployment.md).
 
 ## Etapa 02 — laboratório conectado
@@ -145,12 +145,12 @@ Destino configurado: **https://thiago-code-lab.github.io/Dashboards-Tour4Friends
 - `vite.config.ts`: `base: '/Dashboards-Tour4Friends/'`.
 - JSON carregado por `import.meta.env.BASE_URL`.
 - `HashRouter`: rotas como `/#/demanda`, sem 404 na recarga.
-- `.github/workflows/pages.yml`: reproduz dados, valida, testa, compila, executa E2E e publica o artefato `dist/`.
+- `.github/workflows/pages.yml`: reproduz dados, valida, testa, compila e executa E2E. Somente `push` em `refs/heads/main`, após aprovação dos jobs `build` e `backend`, pode publicar `dist/`.
 - Em **Settings → Pages → Build and deployment → Source**, selecione **GitHub Actions** se essa configuração ainda não estiver ativa.
-- Se necessário, execute **Actions → Validate and deploy GitHub Pages → Run workflow** no branch `main`.
+- **Run workflow** valida qualquer branch selecionada, inclusive `main`, sem publicar. O artefato `release-candidate-static` permite revisar o build sem deployment e fica retido por 14 dias.
 - A publicação precisa concluir o job `deploy`. O endereço deve ser verificado depois do deployment.
 
-Instruções e diagnóstico: [publicação](docs/deployment.md).
+Instruções e diagnóstico: [publicação](docs/deployment.md). Homologação da Fase A: [readiness da release 05](docs/release-05-readiness.md).
 
 ## Estrutura
 

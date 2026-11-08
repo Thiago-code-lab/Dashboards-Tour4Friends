@@ -15,6 +15,12 @@ Antes de cada merge, obter aprovação específica e confirmar base, HEAD, CI e 
 
 **Atenção ao efeito concreto:** o workflow publica após push/merge em `main` e validações aprovadas. Portanto o último merge é também autorização de publicação; não o executar como simples “organização de branches”. PRs e suas validações não publicam.
 
+## Contrato de deployment
+
+O upload do artefato Pages e o job `deploy` exigem exatamente `github.event_name == 'push' && github.ref == 'refs/heads/main'`. O deploy depende dos jobs `build` e `backend` aprovados. Execuções manuais em qualquer branch, inclusive `main`, apenas validam; push em branches de trabalho não aciona este workflow. O teste `tests/workflow-contract.test.ts` lê o YAML real e verifica os cinco cenários, dependências e permissões. Executar com `npm test`.
+
+O artefato comum `release-candidate-static` guarda `dist/` e seu manifesto por 14 dias, sem usar o mecanismo de deployment do Pages. Evidências analíticas e PDF têm retenção de sete dias. Copiar o PDF e o manifesto do workspace para armazenamento durável antes da submissão; esses arquivos locais não são downloads públicos.
+
 ## Checklist antes de publicar
 
 - Registrar SHA da `main` e do último deployment saudável. Comparar o conteúdo da candidata com o que foi revisado.

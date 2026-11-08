@@ -1,4 +1,5 @@
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { analyze, DEFAULT_FILTERS, DEFAULT_THRESHOLDS } from '../src/lib/analytics/metrics';
 import { validateDataset } from '../src/lib/validation/dataset';
 import { forecastDataset } from '../src/lib/forecasting/dataset';
@@ -19,6 +20,9 @@ writeFileSync(
   JSON.stringify(
     {
       metadata: data.metadata,
+      datasetSha256: createHash('sha256')
+        .update(readFileSync('public/data/demo.json'))
+        .digest('hex'),
       filters: DEFAULT_FILTERS,
       counts: Object.fromEntries(
         Object.entries(data)

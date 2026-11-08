@@ -85,9 +85,13 @@ jobs:
       - run: npm test
       - name: Reproduce advanced analytical results
         run: npm run analytics:report
-      - run: npm run build
+      - run: npm run build:demo
       - name: Check static artifacts for credentials
         run: npx tsx scripts/check-artifacts.ts
+      - name: Verify the static release package
+        run: npm run release:check
+        env:
+          RELEASE_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Install browser for interface tests
         run: npx playwright install --with-deps chromium
       - name: Interface tests on production build
@@ -107,6 +111,7 @@ jobs:
           pdftoppm -scale-to 1100 -png output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.pdf artifacts/qa-final/pdf-page
         env:
           CI: true
+          RELEASE_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -124,13 +129,24 @@ jobs:
             artifacts/analytics-report.pdf
             artifacts/analytics-results.json
             artifacts/qa-final/
+            artifacts/release-05/
             output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.pdf
+            output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.manifest.json
+      - name: Upload static candidate for review without deployment
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: release-candidate-static
+          retention-days: 14
+          path: |
+            dist/
+            artifacts/release-05/static-package.json
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         with:
           path: dist
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [build, backend]
     runs-on: ubuntu-latest
     permissions:
