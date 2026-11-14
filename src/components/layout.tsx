@@ -34,6 +34,7 @@ export const NAVIGATION = [
   { to: '/demanda', label: 'Demanda e previsões', icon: TrendingUp },
   { to: '/reservas', label: 'Reservas e comercial', icon: Ticket },
   { to: '/roteiros', label: 'Roteiros e destinos', icon: Compass },
+  { to: '/catalogo', label: 'Catálogo e orçamento', icon: Compass },
   { to: '/hospedagens', label: 'Hospedagens', icon: Building2 },
   { to: '/operacoes', label: 'Operações e alertas', icon: Activity },
   { to: '/experiencia', label: 'Experiência do cliente', icon: Smile },
@@ -147,7 +148,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <p className="nav-section">WORKSPACE</p>
         <nav aria-label="Módulos">
-          {NAVIGATION.slice(0, 8).map((item) => (
+          {NAVIGATION.slice(0, 9).map((item) => (
             <NavLink end={item.to === '/'} to={item.to} key={item.to}>
               <item.icon size={18} />
               <span>{item.label}</span>
@@ -159,7 +160,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </nav>
         <p className="nav-section resources-label">RECURSOS</p>
         <nav aria-label="Recursos">
-          {NAVIGATION.slice(8).map((item) => (
+          {NAVIGATION.slice(9).map((item) => (
             <NavLink to={item.to} key={item.to}>
               <item.icon size={18} />
               <span>{item.label}</span>

@@ -14,6 +14,7 @@ const Satisfaction = lazy(() => import('../pages/Satisfaction'));
 const Finance = lazy(() => import('../pages/Finance'));
 const Reports = lazy(() => import('../pages/Reports'));
 const Methodology = lazy(() => import('../pages/Methodology'));
+const Commercial = lazy(() => import('../pages/Commercial'));
 function Loading() {
   return (
     <div aria-label="Carregando dashboard" role="status" className="loading-state">
@@ -78,6 +79,7 @@ function Workspace() {
             <Route path="/demanda" element={<Demand />} />
             <Route path="/reservas" element={<Reservations />} />
             <Route path="/roteiros" element={<RoutesPage />} />
+            <Route path="/catalogo" element={<Commercial />} />
             <Route path="/hospedagens" element={<Accommodations />} />
             <Route path="/operacoes" element={<Operations />} />
             <Route path="/experiencia" element={<Satisfaction />} />

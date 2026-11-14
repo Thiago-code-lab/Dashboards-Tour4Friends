@@ -25,6 +25,8 @@ Não existe API cloud publicada nesta etapa. Nenhum recurso faturável foi criad
 
 ## Funcionalidades implementadas
 
+**Implementação 01 — Catálogo e orçamento:** acesse `/#/catalogo` para consultar caminhadas autoguiadas dos Caminhos Francês e Português, tarifas documentais de 2027 em EUR e preparar um orçamento preliminar com custos manuais. O módulo é separado do histórico sintético em BRL. Lisboa, Econômico e datas sem tarifa permanecem sem preço; fontes, regras e importações pendentes estão em [catálogo comercial](docs/catalogo-comercial-01.md).
+
 | Módulo                   | Recursos                                                                                                                                 |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | Visão geral              | Reservas, viajantes atendidos, receita realizada gerencial, NPS, ticket, ocupação, alertas, ranking, insights e Inteligência Gerencial   |
