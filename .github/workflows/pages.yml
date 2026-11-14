@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main, feature/backend-postgresql-v1, feature/advanced-analytics-v1]
+    branches: [main, feature/backend-postgresql-v1, feature/advanced-analytics-v1, feature/catalogo-orcamento-2027]
   workflow_dispatch:
 permissions:
   contents: read

@@ -21,7 +21,7 @@ export interface CommercialRoute {
   commercialLabel: string;
   modality: 'Caminhada autoguiada';
   rates: Rates | null;
-  // Operational stages/distances/duration await source documents; never reuse synthetic routes.
+  // Legacy PR #4 field; documentary itineraries are linked by routeId in operational-data.ts.
   operationalSource: null;
 }
 

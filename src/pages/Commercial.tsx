@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PageHeading } from '../components/layout';
 import { DataTable, Empty, Panel } from '../components/ui';
+import { OperationalRoutePanel } from '../components/operational-route';
 import { exportCsv } from '../lib/csv';
 import {
   accommodationReferences,
@@ -246,6 +247,9 @@ function QuoteForm() {
         Conferi e informei todos os custos de hospedagem desta viagem.
       </label>
       <QuoteSummary selection={selection} costs={costs} quote={quote} />
+      <div className="mt-6">
+        <OperationalRoutePanel routeId={selection.routeId} />
+      </div>
     </Panel>
   );
 }
@@ -361,13 +365,15 @@ export default function Commercial() {
       <Panel title="Fontes e decisões pendentes">
         <p>
           Documento acadêmico principal: Projeto_Integrador_5_-_2026_2 1.docx, versão 2.2, ainda não
-          disponível para conferência. T4F.txt, basic promt.txt, PDFs operacionais, planilhas e PDF
-          comercial original também pendentes.
+          disponível para conferência. T4F.txt, basic promt.txt, as duas planilhas de etapas e o PDF
+          comercial original também estão pendentes. Quatro PDFs operacionais foram conferidos nesta
+          implementação.
         </p>
         <p className="mt-3">
-          Dias, distâncias e etapas operacionais não foram preenchidos. O grupo deverá comparar os
-          PDFs operacionais ao pacote comercial e registrar as divergências com suas fontes antes de
-          decidir qualquer equivalência.
+          Dias, distâncias e etapas operacionais de Astorga, Sarria, Porto Central e Porto Costa
+          estão disponíveis acima, conforme o ponto de partida selecionado no orçamento. SJPP,
+          Lisboa e Tui/Valença continuam com cadastro pendente. A comparação com o pacote comercial
+          aguarda o PDF de 2027; nenhuma equivalência foi forçada.
         </p>
       </Panel>
     </>
