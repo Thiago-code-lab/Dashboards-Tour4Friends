@@ -1,5 +1,7 @@
 # Implementação 01 — catálogo comercial e orçamento preliminar
 
+Evolução posterior: a [Implementação 02](roteiros-documentais-02.md) conferiu quatro PDFs operacionais em outro checkout local e adicionou suas sequências. As pendências abaixo descrevem o estado da entrega 01; consulte a entrega 02 para o inventário atualizado de fontes.
+
 O módulo **Catálogo e orçamento**, em `/#/catalogo`, mantém React/TypeScript e a arquitetura existente. Não altera FastAPI, migrations, contratos, categorias históricas ou o snapshot sintético em BRL. O catálogo documental é um pequeno módulo estático carregado sob demanda; o rascunho é local à página, sem gravar custos na base histórica. Funciona na demonstração e, após login, no laboratório.
 
 ## Fonte e vigência
