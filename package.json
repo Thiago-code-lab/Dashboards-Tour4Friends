@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "presentation:executive": "node scripts/build-executive-slides.mjs",
     "build:demo": "tsx scripts/build-demo.ts",
     "qa:audit": "tsx scripts/qa-audit.ts",
     "delivery:data": "tsx scripts/export-delivery-data.ts",
