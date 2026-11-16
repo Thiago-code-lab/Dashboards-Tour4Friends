@@ -72,7 +72,7 @@ export default function Finance() {
           'Custos rateados por participação na receita da categoria; não representam custos individuais apurados. Saídas sem receita confirmada não têm base de rateio: seus custos aparecem somente no consolidado.'}
       </div>
       <div className="two-column">
-        <Panel title="Receita versus custo" subtitle="Coorte por mês da viagem · histórico">
+        <Panel title="Receita, custo e contribuição" subtitle="Coorte por mês da viagem · antes de tributos e despesas fixas">
           <FinancialChart rows={view.monthly} />
         </Panel>
         <Panel
