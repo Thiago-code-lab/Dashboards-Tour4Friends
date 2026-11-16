@@ -176,11 +176,19 @@ export function FinancialChart({
   rows: { month: string; revenue: number; cost: number }[];
 }) {
   if (!rows.length) return <Empty />;
+  const chartRows = rows.slice(-12).map((row) => ({
+    ...row,
+    contribution: row.revenue - row.cost,
+  }));
   return (
     <>
-      <div className="chart" role="img" aria-label="Receita e custos por mês">
+      <div
+        className="chart"
+        role="img"
+        aria-label="Receita, custos e contribuição gerencial por mês"
+      >
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={rows.slice(-12)} margin={{ top: 10, right: 8, left: -8, bottom: 0 }}>
+          <BarChart data={chartRows} margin={{ top: 10, right: 8, left: -8, bottom: 0 }}>
             <CartesianGrid stroke={grid} vertical={false} />
             <XAxis
               dataKey="month"
@@ -217,15 +225,26 @@ export function FinancialChart({
               maxBarSize={14}
               isAnimationActive={false}
             />
+            <Bar
+              dataKey="contribution"
+              name="Contribuição gerencial"
+              fill="#E8B45D"
+              radius={[3, 3, 0, 0]}
+              maxBarSize={14}
+              isAnimationActive={false}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>
       <ChartData
-        title="Receita e custos"
-        columns={['Mês', 'Receita contratada', 'Custo']}
-        rows={rows
-          .slice(-12)
-          .map((row) => [monthLabel(row.month), compactMoney(row.revenue), compactMoney(row.cost)])}
+        title="Receita, custos e contribuição gerencial"
+        columns={['Mês', 'Receita contratada', 'Custo', 'Contribuição gerencial']}
+        rows={chartRows.map((row) => [
+          monthLabel(row.month),
+          compactMoney(row.revenue),
+          compactMoney(row.cost),
+          compactMoney(row.contribution),
+        ])}
       />
     </>
   );
