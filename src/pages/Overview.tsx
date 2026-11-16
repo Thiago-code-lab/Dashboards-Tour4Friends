@@ -81,7 +81,9 @@ export default function Overview() {
       <div className="quick-metrics">
         <span>
           <Users size={16} /> Operação
-          <strong>{number(view.confirmed.length)} reservas · {number(view.servedTravelers)} atendidos</strong>
+          <strong>
+            {number(view.confirmed.length)} reservas · {number(view.servedTravelers)} atendidos
+          </strong>
         </span>
         <span>
           <Wallet size={16} /> Ticket médio
