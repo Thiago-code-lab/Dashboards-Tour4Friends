@@ -1,5 +1,11 @@
 # T4F Performance
 
+> Estado conferido em 16/11/2026: `main` em `0216dce` e site público com os dez
+> dashboards consolidados da Release 05. Catálogo/roteiros (#4/#5), KPIs (#6)
+> e esta evolução estão em revisão. Os parágrafos de preparação da candidata
+> abaixo são registros históricos. Consulte o [diagnóstico atual](docs/evolucao-professor-diagnostico.md)
+> e a [validação incremental](docs/evolucao-professor-validacao.md).
+
 Plataforma de análise de desempenho corporativo da Tour4Friends, desenvolvida para o **Projeto Integrador V da Fatec Ipiranga “Pastor Enéas Tognini”**.
 
 Aplicação React/TypeScript com dois modos: demonstração estática independente e laboratório autenticado com FastAPI/PostgreSQL. Indicadores, alertas, insights e previsões utilizam a mesma base sintética. **Dados demonstrativos — cenário acadêmico simulado.** Nenhum resultado representa o desempenho real da agência.

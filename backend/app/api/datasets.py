@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Annotated, Any
+from typing import Annotated, Any, Literal
 
 from fastapi import APIRouter, Depends
 
@@ -34,6 +34,7 @@ def filters(
     route_id: str | None = None,
     modality: Modality | None = None,
     category: Category | None = None,
+    way: Literal["Francês", "Português"] | None = None,
 ) -> dict:
     return {
         "start": start,
@@ -41,6 +42,7 @@ def filters(
         "route_id": route_id,
         "modality": modality,
         "category": category,
+        "way": way,
     }
 
 

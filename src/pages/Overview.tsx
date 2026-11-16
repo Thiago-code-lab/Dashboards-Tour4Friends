@@ -14,7 +14,7 @@ import { useAnalysis } from '../app/context';
 import { PageHeading, GlobalFilters } from '../components/layout';
 import { Badge, Empty, Kpi, Panel, Progress } from '../components/ui';
 import { DemandChart, FinancialChart } from '../components/charts';
-import { compactMoney, dateLabel, money, number, percent } from '../lib/format';
+import { compactMoney, dateLabel, money, number, percent, sum } from '../lib/format';
 import { useForecast } from '../hooks/useForecast';
 import { margin } from '../lib/analytics/metrics';
 import { useIntelligence } from '../hooks/useIntelligence';
@@ -51,13 +51,13 @@ export default function Overview() {
         <Kpi
           label="Taxa de ocupação"
           value={percent(view.occupancy)}
-          detail={`${view.allocations.length} slots de hospedagem no recorte`}
+          detail={`${number(sum(view.allocations, (slot) => slot.committed))} / ${number(sum(view.allocations, (slot) => slot.capacity))} vagas-noite`}
           icon={BedDouble}
           help="Vagas-noite comprometidas divididas pela capacidade dos mesmos slots de data, etapa e categoria. É uma taxa operacional, não market share."
         />
         <Kpi
           label="NPS dos viajantes"
-          value={number(view.nps)}
+          value={view.nps == null ? '—' : `${number(view.nps)} pts`}
           detail={`${view.feedback.length} respostas na amostra · pontos`}
           icon={Smile}
           tone="green"
