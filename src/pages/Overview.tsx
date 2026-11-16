@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  BadgeCheck,
   BedDouble,
   CircleAlert,
   FileDown,
@@ -17,6 +16,7 @@ import { Badge, Empty, Kpi, Panel, Progress } from '../components/ui';
 import { DemandChart, FinancialChart } from '../components/charts';
 import { compactMoney, dateLabel, money, number, percent } from '../lib/format';
 import { useForecast } from '../hooks/useForecast';
+import { margin } from '../lib/analytics/metrics';
 import { useIntelligence } from '../hooks/useIntelligence';
 import { IntelligencePanel } from '../components/intelligence-panel';
 import { PresentationGuide } from '../components/presentation-guide';
@@ -49,42 +49,43 @@ export default function Overview() {
       </div>
       <div className="kpi-grid">
         <Kpi
-          label="Reservas confirmadas"
-          value={number(view.confirmed.length)}
-          detail={`${view.bookings.length} reservas no período`}
-          icon={Ticket}
-          help="Reservas com status confirmado, selecionadas pela data da viagem. Uma reserva pode conter vários viajantes."
-        />
-        <Kpi
-          label="Viajantes atendidos"
-          value={number(view.servedTravelers)}
-          detail={`${view.uniqueCustomers} clientes únicos confirmados`}
-          icon={Users}
-          help="Participações em viagens concluídas até a data de referência. A mesma pessoa em duas viagens conta como duas participações."
-        />
-        <Kpi
-          label="Receita realizada"
-          value={compactMoney(view.realizedRevenue)}
-          detail={`${compactMoney(view.contractedFuture)} em viagens futuras`}
-          icon={Wallet}
-          help="Valor total das reservas confirmadas com viagem concluída; receita gerencial simulada, não um demonstrativo contábil. Canceladas são excluídas."
+          label="Taxa de ocupação"
+          value={percent(view.occupancy)}
+          detail={`${view.allocations.length} slots de hospedagem no recorte`}
+          icon={BedDouble}
+          help="Vagas-noite comprometidas divididas pela capacidade dos mesmos slots de data, etapa e categoria. É uma taxa operacional, não market share."
         />
         <Kpi
           label="NPS dos viajantes"
           value={number(view.nps)}
-          detail={`${view.feedback.length} respostas na amostra`}
+          detail={`${view.feedback.length} respostas na amostra · pontos`}
           icon={Smile}
           tone="green"
-          help="Percentual de promotores (9–10) menos detratores (0–6). Notas 7–8 são neutras. Escala de −100 a 100."
+          help="Percentual de promotores (9–10) menos detratores (0–6), em pontos de −100 a 100. Não é uma porcentagem de satisfação."
+        />
+        <Kpi
+          label="Conversão de leads"
+          value={percent(view.conversion)}
+          detail={`${view.leads.length} leads na coorte de contato`}
+          icon={Ticket}
+          help="Leads com reserva confirmada vinculada divididos pelos leads do período de primeiro contato, independentemente da data da viagem."
+        />
+        <Kpi
+          label="Margem de contribuição"
+          value={percent(margin(view.totalRevenue, view.cost))}
+          detail={`${compactMoney(view.totalRevenue - view.cost)} de contribuição`}
+          icon={Wallet}
+          help="Receita contratada menos custos operacionais, dividida pela receita contratada. Não equivale ao lucro líquido; valores do cenário acadêmico."
         />
       </div>
       <div className="quick-metrics">
         <span>
-          <BadgeCheck size={16} /> Ticket médio{' '}
-          <strong>{view.ticket == null ? '—' : money(view.ticket)}</strong>
+          <Users size={16} /> Operação
+          <strong>{number(view.confirmed.length)} reservas · {number(view.servedTravelers)} atendidos</strong>
         </span>
         <span>
-          <BedDouble size={16} /> Ocupação contratada <strong>{percent(view.occupancy)}</strong>
+          <BedDouble size={16} /> Ticket médio
+          <strong>{view.ticket == null ? '—' : money(view.ticket)}</strong>
         </span>
         <Link to="/operacoes" className={critical.length ? 'risk-text' : ''}>
           <CircleAlert size={16} /> Alertas críticos <strong>{critical.length}</strong>
