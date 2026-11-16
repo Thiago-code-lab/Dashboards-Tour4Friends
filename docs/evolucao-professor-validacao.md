@@ -23,8 +23,10 @@ Verificações executadas em 16/11/2026:
   55449. Paridade estendida a Francês, Português/bicicleta e combinação vazia.
 - Oito testes de navegador conectados aprovados. Cluster temporário encerrado;
   `.env` e banco existentes preservados. Logs em `artifacts/feedback-professor`.
-- A suíte Playwright completa está registrada ao final deste documento após
-  a conclusão de todos os cenários.
+- Suíte Playwright completa: 31 aprovados, uma dispensa móvel preexistente,
+  zero falhas; dez módulos, desktop/celular, acessibilidade e bloqueio de API.
+  O caso de filtro foi atualizado para o comportamento requerido: trocar para
+  bicicleta limpa o roteiro incompatível e oferece somente roteiros válidos.
 
 Auditoria pública atual: HTTP 200, quatro KPIs anteriores (reservas, atendidos,
 receita realizada, NPS) e nenhum link Catálogo. Confirma a ausência de #4/#5/#6
