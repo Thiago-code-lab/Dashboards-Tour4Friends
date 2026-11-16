@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { PageHeading } from '../components/layout';
 import { DataTable, Empty, Panel } from '../components/ui';
 import { OperationalRoutePanel } from '../components/operational-route';
+import { RouteRiskMap } from '../components/route-risk-map';
+import { AccommodationTiers } from '../components/accommodation-tiers';
 import { exportCsv } from '../lib/csv';
 import {
   accommodationReferences,
@@ -354,6 +356,8 @@ export default function Commercial() {
       </div>
       <Catalog />
       <QuoteForm />
+      <RouteRiskMap />
+      <AccommodationTiers />
       <Panel
         title="Hospedagens de referência"
         subtitle="Estrutura por cidade, etapa e categoria comercial: Econômico, Standard e Superior."

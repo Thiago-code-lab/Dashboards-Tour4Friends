@@ -6,6 +6,12 @@
 > abaixo são registros históricos. Consulte o [diagnóstico atual](docs/evolucao-professor-diagnostico.md)
 > e a [validação incremental](docs/evolucao-professor-validacao.md).
 
+> Incremento para revisão: [mapa, premissa de demanda brasileira e apresentação](docs/mapa-demanda-apresentacao.md).
+> O mapa do catálogo mostra partidas e etapas documentais, com disponibilidade
+> desconhecida até existir inventário verificado. A premissa de captura de 0,5%
+> fica separada das previsões sintéticas. Gerar os 15 slides: `npm run build:demo`
+> e `npm run presentation:executive` (HTML editável e PDF; PPTX pendente de runtime).
+
 Plataforma de análise de desempenho corporativo da Tour4Friends, desenvolvida para o **Projeto Integrador V da Fatec Ipiranga “Pastor Enéas Tognini”**.
 
 Aplicação React/TypeScript com dois modos: demonstração estática independente e laboratório autenticado com FastAPI/PostgreSQL. Indicadores, alertas, insights e previsões utilizam a mesma base sintética. **Dados demonstrativos — cenário acadêmico simulado.** Nenhum resultado representa o desempenho real da agência.
