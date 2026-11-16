@@ -44,6 +44,9 @@ async def test_frontend_backend_kpi_and_alert_parity(lab):
         {**base, "modality": "Bicicleta"},
         {**base, "start": "2026-01-01", "end": "2026-10-31"},
         {**base, "route": "portugues", "modality": "Bicicleta"},
+        {**base, "way": "Francês"},
+        {**base, "way": "Português", "modality": "Bicicleta"},
+        {**base, "way": "Francês", "route": "portugues"},
     ]
     expected = await asyncio.to_thread(frontend_results, dataset, scopes)
     for scope, frontend in zip(scopes, expected, strict=True):
@@ -56,6 +59,7 @@ async def test_frontend_backend_kpi_and_alert_parity(lab):
                     "route_id": scope["route"],
                     "modality": scope["modality"],
                     "category": scope["category"],
+                    "way": scope.get("way", "all"),
                 }.items()
                 if value != "all"
             },
@@ -117,7 +121,10 @@ async def test_authorized_change_rebuilds_history_and_existing_ridge(lab):
         == 1
     )
     assert original["forecast"]["history"] != updated["forecast"]["history"]
-    assert original["forecast"]["metadata"]["fingerprint"] != updated["forecast"]["metadata"]["fingerprint"]
+    assert (
+        original["forecast"]["metadata"]["fingerprint"]
+        != updated["forecast"]["metadata"]["fingerprint"]
+    )
     assert original["forecast"]["validation"] != updated["forecast"]["validation"]
     assert len(updated["forecast"]["predictions"]) == 6
     assert all(p["predicted"] >= 0 for p in updated["forecast"]["predictions"])
