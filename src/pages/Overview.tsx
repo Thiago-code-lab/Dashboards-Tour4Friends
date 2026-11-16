@@ -84,7 +84,7 @@ export default function Overview() {
           <strong>{number(view.confirmed.length)} reservas · {number(view.servedTravelers)} atendidos</strong>
         </span>
         <span>
-          <BedDouble size={16} /> Ticket médio
+          <Wallet size={16} /> Ticket médio
           <strong>{view.ticket == null ? '—' : money(view.ticket)}</strong>
         </span>
         <Link to="/operacoes" className={critical.length ? 'risk-text' : ''}>
@@ -142,8 +142,8 @@ export default function Overview() {
       />
       <div className="overview-secondary">
         <Panel
-          title="Receita e custos"
-          subtitle="Por mês da viagem · histórico"
+          title="Receita, custo e contribuição"
+          subtitle="Por mês da viagem · histórico · contribuição não é lucro líquido"
           action={
             <Link className="text-link" to="/financeiro">
               Ver financeiro <ArrowRight size={13} />
