@@ -36,6 +36,14 @@ MUTED = colors.HexColor("#52677b")
 WIDTH = A4[0] - 84
 STORY = []
 STYLES = getSampleStyleSheet()
+OFFICIAL_EVIDENCE = (
+    "KPIs, fórmulas, análises, ferramentas e framework de storytelling (páginas 2-3).",
+    "Web interativa, filtros e atualização; FastAPI/PostgreSQL comprovado em laboratório local (páginas 4, 6-7).",
+    "Wireframe, gráficos justificados, design e resultados estatísticos/preditivos (páginas 5-10).",
+    "Sete achados com cálculo, recorte, interpretação, ação e limites (páginas 8-10).",
+    "Ferramentas, estrutura dos dez capítulos e manual ilustrado (páginas 3-4 e 11).",
+    "Roteiro preparado; coleta real de feedback e ajustes baseados na experiência ainda não recebidos.",
+)
 
 
 def configure_fonts() -> None:
@@ -159,7 +167,7 @@ def cover() -> None:
         "<b>Dados sintéticos. Build local para revisão. Avaliação da Tour4Friends pendente.</b>"
     )
     p(
-        "O documento oficial P2_VD2026.docx não estava disponível. Este relatório atende ao roteiro textual fornecido; correspondência literal aos seis entregáveis aguarda conferência do DOCX.",
+        "P2_VD2026.docx conferido em 24/11/2026. Entregáveis 1-5 atendidos no escopo demonstrativo e laboratório local; entregável 6 pendente de feedback real e ajustes decorrentes. Correspondência dos seis entregáveis na página 12.",
         "SmallP2",
     )
 
@@ -502,9 +510,46 @@ def manual() -> None:
     )
 
 
-def validation() -> None:
+def official_requirements(requirements: dict[str, Any]) -> None:
     heading(
         12,
+        "Aderência aos seis entregáveis",
+        "Conferência do documento oficial; não equivale à aprovação do professor ou da empresa.",
+    )
+    p(
+        "O P2_VD2026.docx fornecido pelo solicitante contém seis entregáveis e vinte critérios. O original foi lido sem alteração; a transcrição e o hash da fonte acompanham a entrega."
+    )
+    table(
+        [
+            ["Entregável oficial", "Evidência e estado"],
+            *[
+                [
+                    f"{item['number']}. {item['title']}",
+                    f"{'Atendido no escopo demonstrativo/laboratório' if item['number'] < 6 else 'Pendente'}. {evidence}",
+                ]
+                for item, evidence in zip(
+                    requirements["deliverables"], OFFICIAL_EVIDENCE, strict=True
+                )
+            ],
+        ],
+        [180, WIDTH - 180],
+    )
+    p(
+        "<b>Integração de dados:</b> a exigência relacional é comprovada no laboratório local, com leitura, filtros, atualização e persistência. GitHub Pages permanece uma demonstração JSON estática. A base sintética não identifica nacionalidade nem comprova desempenho real."
+    )
+    p(
+        "<b>Validação com o parceiro:</b> o entregável 6 exige coleta de feedback da organização e ajustes baseados na experiência do usuário. O instrumento preparado não substitui essas evidências. As melhorias técnicas existentes não são atribuídas a uma avaliação empresarial não recebida."
+    )
+    p(
+        "Correspondência dos vinte critérios: aderencia-requisitos-oficiais.md. Fonte: evidencias/requisitos-oficiais.json.",
+        "SmallP2",
+    )
+    p(f"SHA-256 do DOCX original: {requirements['source']['sha256']}", "SmallP2")
+
+
+def validation() -> None:
+    heading(
+        13,
         "Validação, limites e conclusão",
         "Entrega técnica para revisão; validação empresarial e acadêmica integral pendentes.",
     )
@@ -523,13 +568,13 @@ def validation() -> None:
         "<b>Código e publicação:</b> branch feature/p2-visualizacao-2026, baseada no PR #8. PRs #4/#5/#6/#7/#8 permanecem abertos, sem merge. O site público respondeu HTTP 200 e não contém os capítulos P2 nem o catálogo dessas branches. As imagens deste relatório são locais. WIP de hospedagens foi preservado."
     )
     p(
-        "<b>Pendências:</b> disponibilizar P2_VD2026.docx para mapear literalmente seus seis entregáveis; realizar avaliação consentida da Tour4Friends e registrar comentários/ajustes; revisar a cadeia de PRs e autorizar eventual integração/publicação."
+        "<b>Pendências:</b> realizar avaliação consentida da Tour4Friends e registrar comentários/ajustes para concluir o entregável 6; submeter a entrega à revisão acadêmica; revisar a cadeia de PRs e autorizar eventual integração/publicação. O DOCX oficial já foi conferido."
     )
     p(
         "<b>Conclusão:</b> ocupação e NPS orientam uma jornada de dez capítulos com filtros, dados rastreáveis, análises e integração relacional comprovada localmente. A contribuição não é lucro líquido e a demonstração não representa desempenho real. A evidência permite revisão técnica sem antecipar aprovação humana."
     )
     p(
-        "Fontes: auditoria.md, planejamento.md, tecnicas-de-visualizacao.md, analises-e-insights.md, manual-do-usuario.md, integracao-relacional.md, validacao-parceiro.md e checklist-entrega.md, em docs/p2-visualizacao. Métricas e capturas possuem manifestos em evidencias/.",
+        "Fontes em docs/p2-visualizacao: aderencia-requisitos-oficiais.md, auditoria.md, planejamento.md, tecnicas-de-visualizacao.md, analises-e-insights.md, manual-do-usuario.md, integracao-relacional.md, validacao-parceiro.md e checklist-entrega.md. Fonte oficial, métricas e capturas estão em evidencias/.",
         "SmallP2",
     )
     p(
@@ -557,6 +602,11 @@ def main() -> None:
     configure_fonts()
     configure_styles()
     data = json.loads((EVIDENCE / "metricas.json").read_text(encoding="utf8"))
+    requirements = json.loads(
+        (EVIDENCE / "requisitos-oficiais.json").read_text(encoding="utf8")
+    )
+    if [item["number"] for item in requirements["deliverables"]] != list(range(1, 7)):
+        raise ValueError("A fonte oficial deve conter os seis entregáveis em ordem.")
     scope = data["scopes"][0]
     cover()
     planning()
@@ -569,6 +619,7 @@ def main() -> None:
     demand(scope)
     finance(scope["kpis"])
     manual()
+    official_requirements(requirements)
     validation()
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     document = SimpleDocTemplate(
@@ -583,9 +634,9 @@ def main() -> None:
     )
     document.build(STORY, onFirstPage=footer, onLaterPages=footer)
     pages = PdfReader(OUTPUT).pages
-    if len(pages) != 12 or any(not page.extract_text().strip() for page in pages):
+    if len(pages) != 13 or any(not page.extract_text().strip() for page in pages):
         raise RuntimeError(
-            f"Esperadas 12 páginas com texto; geradas {len(pages)}. Revise o layout."
+            f"Esperadas 13 páginas com texto; geradas {len(pages)}. Revise o layout."
         )
     shutil.copyfile(OUTPUT, DOCS / OUTPUT.name)
     manifest = {
@@ -593,7 +644,12 @@ def main() -> None:
         "pages": len(pages),
         "datasetSha256": data["datasetSha256"],
         "partnerValidation": "pending",
-        "officialRequirementsDocx": "not provided",
+        "officialRequirementsDocx": "reviewed",
+        "officialRequirementsSha256": requirements["source"]["sha256"],
+        "officialDeliverables": {
+            "1-5": "attended in demo/local lab scope",
+            "6": "pending partner feedback and resulting adjustments",
+        },
         "source": "local production build",
         "pdfSha256": hashlib.sha256(OUTPUT.read_bytes()).hexdigest(),
     }

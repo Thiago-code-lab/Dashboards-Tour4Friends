@@ -1,14 +1,19 @@
 {
-  "generatedAt": "2026-11-24T17:00:17.003054-03:00",
-  "pages": 12,
+  "generatedAt": "2026-11-24T17:10:31.138897-03:00",
+  "pages": 13,
   "datasetSha256": "b9362c92d4e8702eb685a532ee55dd7d9f21e2840ed10f652bad65e25fff237e",
   "partnerValidation": "pending",
-  "officialRequirementsDocx": "not provided",
+  "officialRequirementsDocx": "reviewed",
+  "officialRequirementsSha256": "ad8e431187b2b4eaec64d2b3dc41352a4cdf81a4d180d710de0abce17801f1da",
+  "officialDeliverables": {
+    "1-5": "attended in demo/local lab scope",
+    "6": "pending partner feedback and resulting adjustments"
+  },
   "source": "local production build",
-  "pdfSha256": "85b07662b5a016646b63208fc68df709c762418dbdc2091e0e9383d26bd207c5",
-  "renderedPages": 12,
+  "pdfSha256": "fee075ac19a7b5da99a4bade69ec57cb829e8377434805570c4b401e7e9ad015",
+  "renderedPages": 13,
   "textBoundsVerified": true,
-  "renderer": "PyMuPDF; visual review of all pages",
+  "renderer": "PyMuPDF; visual review of updated pages; unchanged pages 2-11 identical to previously reviewed rendering",
   "visuallyReviewedAt": "2026-11-24",
   "unchangedPagesComparedToPrevious": [
     2,

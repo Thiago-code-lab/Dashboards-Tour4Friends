@@ -1,0 +1,69 @@
+{
+    "source":  {
+                   "fileName":  "P2_VD2026.docx",
+                   "sha256":  "ad8e431187b2b4eaec64d2b3dc41352a4cdf81a4d180d710de0abce17801f1da",
+                   "bytes":  24503,
+                   "providedBy":  "Solicitante",
+                   "checkedOn":  "2026-11-24",
+                   "extraction":  "word/document.xml; parágrafos em ordem; espaços não separáveis normalizados",
+                   "originalModified":  false
+               },
+    "deliverables":  [
+                         {
+                             "number":  1,
+                             "title":  "Planejamento da Visualização",
+                             "requirements":  [
+                                                  "Definição dos indicadores (KPIs) que serão apresentados",
+                                                  "Definição dos tipos de análises e ferramentas utilizadas",
+                                                  "Indicação do framework de Storytelling que será usado"
+                                              ]
+                         },
+                         {
+                             "number":  2,
+                             "title":  "Desenvolvimento do Dashboard",
+                             "requirements":  [
+                                                  "Implementação de dashboard interativo em plataforma web",
+                                                  "Integração com base de dados (relacional ou NoSQL)",
+                                                  "Filtros dinâmicos (por período, categoria, unidade, etc.)",
+                                                  "Atualização automática ou sob demanda dos dados"
+                                              ]
+                         },
+                         {
+                             "number":  3,
+                             "title":  "Aplicação de Técnicas de Visualização",
+                             "requirements":  [
+                                                  "Protótipo do dashboard (wireframe ou mockup)",
+                                                  "Escolha dos tipos de gráficos mais adequados (linha, barra, dispersão, heatmap, etc.)",
+                                                  "Uso de princípios de design (cores, contraste, hierarquia visual)",
+                                                  "Aplicação de boas práticas de visualização (evitar poluição visual, clareza, legibilidade)",
+                                                  "Representação de resultados de análises estatísticas e modelos de IA"
+                                              ]
+                         },
+                         {
+                             "number":  4,
+                             "title":  "Análise e Interpretação dos Dados",
+                             "requirements":  [
+                                                  "Identificação de padrões, tendências e outliers",
+                                                  "Geração de insights relevantes para o negócio",
+                                                  "Relatório explicativo dos principais achados a partir do dashboard"
+                                              ]
+                         },
+                         {
+                             "number":  5,
+                             "title":  "Documentação da Solução de Visualização",
+                             "requirements":  [
+                                                  "Descrição das ferramentas utilizadas (ex: bibliotecas ou frameworks)",
+                                                  "Explicação da estrutura do dashboard",
+                                                  "Manual de uso do painel (como interpretar e interagir com os dados)"
+                                              ]
+                         },
+                         {
+                             "number":  6,
+                             "title":  "Validação com o Usuário/Parceiro",
+                             "requirements":  [
+                                                  "Coleta de feedback da organização parceira",
+                                                  "Ajustes baseados na experiência do usuário"
+                                              ]
+                         }
+                     ]
+}

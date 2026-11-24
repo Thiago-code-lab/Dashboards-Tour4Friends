@@ -2,6 +2,8 @@
 
 **Situação: pendente de avaliação real.** Não há nesta entrega resposta, reunião ou aprovação confirmada. O roteiro abaixo é instrumento preparado, não evidência de validação realizada.
 
+O entregável 6 do `P2_VD2026.docx`, conferido em 24/11/2026, exige **coleta de feedback da organização parceira** e **ajustes baseados na experiência do usuário**. Ambos permanecem pendentes até haver evidência real. A preparação deste instrumento não os atende; veja a [correspondência oficial](aderencia-requisitos-oficiais.md).
+
 ## Roteiro de 10 a 15 minutos
 
 Apresentar que os dados são sintéticos e identificar a versão/branch avaliada. Solicitar autorização para registrar comentários e evidências, conforme o procedimento da empresa. Registrar nome/função do avaliador, data, versão e formato somente quando ocorrer.

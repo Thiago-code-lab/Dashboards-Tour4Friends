@@ -1,10 +1,11 @@
 # P2 - Visualização de Dados - T4F Performance
 
-Entrega em branch própria para revisão, baseada em #8, sem merge ou deployment. Dados sintéticos. Avaliação do parceiro pendente. O `P2_VD2026.docx` não foi localizado; este pacote segue o texto solicitado e precisa de conferência literal do documento oficial.
+Entrega em branch própria para revisão, baseada em #8, sem merge ou deployment. Dados sintéticos. O `P2_VD2026.docx` foi fornecido e conferido em 24/11/2026: os entregáveis 1 a 5 têm evidências no escopo demonstrativo e laboratório local; o entregável 6 depende de coleta real de feedback da empresa e ajustes decorrentes. Veja a [correspondência literal dos vinte critérios](aderencia-requisitos-oficiais.md).
 
 ## Entregáveis
 
 - [Auditoria e estado dos PRs](auditoria.md)
+- [Correspondência aos seis entregáveis oficiais](aderencia-requisitos-oficiais.md)
 - [Planejamento, KPIs e storytelling](planejamento.md)
 - [Técnicas, wireframe e capturas](tecnicas-de-visualizacao.md)
 - [Análises e insights: sete achados com recorte e limitações](analises-e-insights.md)
@@ -34,7 +35,7 @@ python -m pip install -r scripts/requirements-delivery.txt
 npm run p2:report
 ```
 
-Chrome local é usado nas capturas. Em CI/Linux, usar `CI=true` e instalar Chromium por `npx playwright install --with-deps chromium`. `P2_BASE_URL` altera a URL de captura. O script salva onze capturas locais, wireframe e consulta pública separada. O PDF final fica em `output/pdf` e é copiado para esta pasta para revisão no PR. A geração exige 12 páginas com texto extraível; renderize e confira o layout antes de atualizar a entrega. A CI gera artefatos P2; não publica a branch.
+Chrome local é usado nas capturas. Em CI/Linux, usar `CI=true` e instalar Chromium por `npx playwright install --with-deps chromium`. `P2_BASE_URL` altera a URL de captura. O script salva onze capturas locais, wireframe e consulta pública separada. O PDF final fica em `output/pdf` e é copiado para esta pasta para revisão no PR. A geração exige 13 páginas com texto extraível, incluindo a correspondência aos seis entregáveis; renderize e confira o layout antes de atualizar a entrega. A CI gera artefatos P2; não publica a branch.
 
 As métricas e imagens são reproduzíveis, mas o resumo de testes em `evidencias/verificacao.json` é um registro da execução local, revalidado em 24/11/2026; não é substituído automaticamente por um comando de geração de PDF. As capturas ilustrativas de 23/11 representam o mesmo frontend, sem alteração visual nesta revalidação. Para registrar outra execução, execute as suítes e atualize a matriz com os resultados reais. O feedback nunca é gerado.
 

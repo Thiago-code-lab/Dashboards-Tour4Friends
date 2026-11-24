@@ -4,7 +4,7 @@
 
 Pacote específico em [docs/p2-visualizacao](docs/p2-visualizacao/README.md): auditoria da cadeia de PRs #4–#8, planejamento, narrativa dos dez capítulos, wireframe, capturas reais, sete análises rastreáveis, manual, comprovação PostgreSQL e roteiro de avaliação do parceiro. [Relatório acadêmico P2 em PDF](docs/p2-visualizacao/P2_Visualizacao_de_Dados_T4F_Performance.pdf).
 
-Branch `feature/p2-visualizacao-2026`, baseada no PR #8. Esta entrega não foi publicada. O site público foi conferido separadamente; código local e feedback da empresa não são presumidos como aprovados. **DOCX oficial da P2 e avaliação real da Tour4Friends pendentes.** Os registros de releases nas seções abaixo são históricos; para estado e evidências desta entrega, consulte o [checklist P2](docs/p2-visualizacao/checklist-entrega.md).
+Branch `feature/p2-visualizacao-2026`, baseada no PR #8. Esta entrega não foi publicada. O site público foi conferido separadamente; código local e feedback da empresa não são presumidos como aprovados. **DOCX oficial conferido: entregáveis 1–5 atendidos no escopo demonstrativo/laboratório; entregável 6 pendente de avaliação real da Tour4Friends e ajustes decorrentes.** Veja a [correspondência aos requisitos oficiais](docs/p2-visualizacao/aderencia-requisitos-oficiais.md). Os registros de releases nas seções abaixo são históricos; para estado e evidências desta entrega, consulte o [checklist P2](docs/p2-visualizacao/checklist-entrega.md).
 
 > Estado conferido em 16/11/2026: `main` em `0216dce` e site público com os dez
 > dashboards consolidados da Release 05. Catálogo/roteiros (#4/#5), KPIs (#6)

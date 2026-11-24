@@ -60,3 +60,7 @@ Verificação do publicado em 23/11/2026 (America/Sao_Paulo): HTTP 200, menu sem
 ## Reauditoria de 24/11/2026
 
 A entrega desta auditoria já estava nos commits `75c35ff` e `e3c9ea6`, com PR #9 em rascunho sobre #8. A [consulta atual dos PRs](evidencias/revisao-prs.json) confirma as mesmas bases e ausência de merges. A nova inspeção preservou o WIP original e identificou evidência de sucesso desatualizada após falha do runner por dependência ausente. Correção, repetição das suítes e limites estão na [revalidação](revalidacao.md). A auditoria inicial acima permanece como registro anterior à implementação.
+
+## Recebimento do documento oficial
+
+Posteriormente, em 24/11/2026, o solicitante indicou `D:/Downloads/P2_VD2026.docx`. O arquivo foi lido sem alteração e registrado por SHA-256. Seus seis entregáveis e vinte critérios foram [mapeados às evidências](aderencia-requisitos-oficiais.md). A pendência de acesso ao DOCX e de conferência literal foi encerrada. O entregável 6 continua pendente por exigir feedback real e ajustes decorrentes. As referências à ausência do arquivo nas seções anteriores descrevem o estado da auditoria inicial.

@@ -4,7 +4,7 @@ Entrega inicial de 23/11/2026, revalidada em 24/11/2026, America/Sao_Paulo. **At
 
 | Requisito                                                                             | Estado   | Evidência / limite                                                                                        |
 | ------------------------------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------- |
-| Conferir literalmente os seis entregáveis do DOCX                                     | Pendente | `P2_VD2026.docx` ausente; segue-se o texto anexado                                                        |
+| Conferir literalmente os seis entregáveis do DOCX                                     | Atendido | [Vinte critérios mapeados](aderencia-requisitos-oficiais.md); [fonte e SHA-256](evidencias/requisitos-oficiais.json) |
 | Auditar Git, branches, WIP e PRs #4–#8 antes do código                                | Atendido | [Auditoria](auditoria.md); worktree próprio preserva WIP                                                  |
 | Planejar problema, público, KPIs, fórmulas e gráficos                                 | Atendido | [Planejamento](planejamento.md)                                                                           |
 | Público brasileiro nos Caminhos Francês/Português                                     | Parcial  | Escopo documentado e filtro existente; nacionalidade não consta da base sintética                         |
@@ -28,7 +28,7 @@ Entrega inicial de 23/11/2026, revalidada em 24/11/2026, America/Sao_Paulo. **At
 | Manual ilustrado e execução relacional                                                | Atendido | [Manual](manual-do-usuario.md)                                                                            |
 | Roteiro de avaliação da empresa                                                       | Atendido | [Instrumento](validacao-parceiro.md)                                                                      |
 | Feedback confirmado, ajustes e aprovação da empresa                                   | Pendente | Nenhuma avaliação recebida; instrumento não é feedback                                                    |
-| PDF com identificação, planejamento, arquitetura, imagens, análises, manual e limites | Atendido | [Relatório P2](P2_Visualizacao_de_Dados_T4F_Performance.pdf), 12 páginas; texto e renderização conferidos |
+| PDF com identificação, planejamento, arquitetura, imagens, análises, manual e limites | Atendido | [Relatório P2](P2_Visualizacao_de_Dados_T4F_Performance.pdf), 13 páginas, incluindo aderência aos seis entregáveis; texto e renderização conferidos |
 | Build/TypeScript/dados/unitários/integração/navegação                                 | Atendido | [Resumo](evidencias/verificacao.json)                                                                     |
 | Console e ativos nos fluxos verificados                                               | Atendido | E2E e auditoria de seis resoluções sem erros                                                              |
 | Documentação e links internos                                                         | Atendido | Conferência dos destinos locais no pacote P2                                                              |
@@ -43,4 +43,4 @@ Entrega inicial de 23/11/2026, revalidada em 24/11/2026, America/Sao_Paulo. **At
 
 O código desta branch inclui P2 e a ancestralidade #4/#5/#6/#7/#8. [Consulta pública](evidencias/publicado.json): HTTP 200, sem catálogo e sem capítulo P2. A implementação de hospedagens ainda não commitada no checkout original não foi incorporada. Nenhum repositório independente foi modificado.
 
-Pendências humanas: fornecer DOCX oficial, avaliar com a empresa, registrar ajustes, revisar dependências dos PRs e autorizar integração/publicação. O projeto não está integralmente validado pela Tour4Friends.
+O DOCX oficial foi fornecido e conferido. Os entregáveis 1–5 estão atendidos no escopo demonstrativo/laboratório; o entregável 6 permanece pendente. Pendências humanas: avaliar com a empresa, registrar ajustes com base no feedback real, revisar dependências dos PRs e autorizar integração/publicação. O projeto não está integralmente validado pela Tour4Friends.

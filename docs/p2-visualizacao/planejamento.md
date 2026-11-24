@@ -52,4 +52,4 @@ Escopo técnico: reutilizar #8, corrigir seleção estatística por caminho, tor
 
 ## Aceitação
 
-Conferir [matriz de entrega](checklist-entrega.md). O DOCX oficial e o feedback da empresa impedem declarar validação acadêmica/empresarial integral. Não há prazo, reunião ou aprovação presumidos.
+Conferir [matriz de entrega](checklist-entrega.md) e [correspondência aos seis entregáveis oficiais](aderencia-requisitos-oficiais.md). O DOCX foi recebido e conferido em 24/11/2026. O entregável 6, com coleta real de feedback e ajustes decorrentes, permanece pendente; aprovação acadêmica/empresarial não é presumida. Não há prazo, reunião ou aprovação presumidos.
