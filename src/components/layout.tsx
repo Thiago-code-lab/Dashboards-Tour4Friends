@@ -29,6 +29,7 @@ import { DEFAULT_FILTERS } from '../lib/analytics/metrics';
 import type { Filters } from '../types/domain';
 import { dependentScope, historicalWays } from '../lib/analytics/route-scope';
 import { ConnectionBar } from './connection';
+import { ChapterStory } from './chapter-story';
 
 export const NAVIGATION = [
   { to: '/', label: 'Visão geral', icon: LayoutDashboard },
@@ -255,14 +256,17 @@ export function PageHeading({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="page-heading">
-      <div>
-        <p className="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <p className="page-description">{description}</p>
+    <>
+      <div className="page-heading">
+        <div>
+          <p className="eyebrow">{eyebrow}</p>
+          <h1>{title}</h1>
+          <p className="page-description">{description}</p>
+        </div>
+        {action}
       </div>
-      {action}
-    </div>
+      <ChapterStory />
+    </>
   );
 }
 
