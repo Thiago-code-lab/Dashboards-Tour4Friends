@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-11-23T21:38:39.084941-03:00",
+  "pages": 12,
+  "datasetSha256": "b9362c92d4e8702eb685a532ee55dd7d9f21e2840ed10f652bad65e25fff237e",
+  "partnerValidation": "pending",
+  "officialRequirementsDocx": "not provided",
+  "source": "local production build",
+  "pdfSha256": "125032e42ec7475bda16b0a35fd904f6a6a1910d87f0b5c689a2f8a37c730c50",
+  "renderedPages": 12,
+  "textBoundsVerified": true,
+  "renderer": "PyMuPDF; visual review of all pages"
+}
