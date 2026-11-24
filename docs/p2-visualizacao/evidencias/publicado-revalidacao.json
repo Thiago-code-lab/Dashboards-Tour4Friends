@@ -1,0 +1,31 @@
+{
+  "observedAt": "2026-11-24T19:58:42.578Z",
+  "url": "https://thiago-code-lab.github.io/Dashboards-Tour4Friends/",
+  "status": 200,
+  "title": "T4F Performance | Inteligência para cada jornada",
+  "kpis": [
+    "Reservas confirmadas",
+    "Viajantes atendidos",
+    "Receita realizada",
+    "NPS dos viajantes"
+  ],
+  "navigation": [
+    "Visão geral",
+    "Demanda e previsões",
+    "Reservas e comercial",
+    "Roteiros e destinos",
+    "Hospedagens",
+    "Operações e alertas12",
+    "Experiência do cliente",
+    "Financeiro",
+    "Relatório executivo",
+    "Sobre e metodologia",
+    "1. Panorama e indicadores",
+    "2. Reservas e filtros",
+    "3. Previsão, validação e estatística",
+    "4. Disponibilidade por etapa",
+    "5. Alertas e anomalias",
+    "6. Relatório executivo"
+  ],
+  "catalogLink": 0
+}

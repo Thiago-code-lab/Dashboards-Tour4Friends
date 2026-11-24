@@ -1,5 +1,6 @@
 """Build the P2 report from calculated metrics and real local-browser captures."""
 
+import hashlib
 import json
 import shutil
 from datetime import datetime
@@ -152,7 +153,8 @@ def cover() -> None:
     ]:
         p(name)
     STORY.append(Spacer(1, 32))
-    p("23 de novembro de 2026 | São Paulo", "SmallP2")
+    checked = json.loads((EVIDENCE / "verificacao.json").read_text(encoding="utf8"))
+    p(f"Verificação técnica: {checked['date']} | São Paulo", "SmallP2")
     p(
         "<b>Dados sintéticos. Build local para revisão. Avaliação da Tour4Friends pendente.</b>"
     )
@@ -593,6 +595,7 @@ def main() -> None:
         "partnerValidation": "pending",
         "officialRequirementsDocx": "not provided",
         "source": "local production build",
+        "pdfSha256": hashlib.sha256(OUTPUT.read_bytes()).hexdigest(),
     }
     (EVIDENCE / "relatorio.json").write_text(
         json.dumps(manifest, indent=2) + "\n", encoding="utf8"

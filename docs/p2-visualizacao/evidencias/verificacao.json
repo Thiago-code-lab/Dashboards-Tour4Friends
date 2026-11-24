@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "timezone": "America/Sao_Paulo",
   "checks": {
     "Build demo e TypeScript": "Aprovados (npm run build:demo)",
@@ -10,7 +10,8 @@
     "Playwright desktop/celular": "39 aprovados; 1 dispensa móvel preexistente",
     "Auditoria de interface": "60 telas / 6 resoluções; sem overflow ou erro de console",
     "Acessibilidade automatizada": "Sem violações nos recortes axe-core executados",
-    "Ruff backend": "Aprovado"
+    "Ruff backend": "Aprovado",
+    "Runner do laboratório": "5 regressões aprovadas; falhas não preservam sucesso antigo"
   },
   "commands": [
     "npm test",
@@ -18,11 +19,13 @@
     "npm run build:demo",
     "python scripts/verify-p2-lab.py --pg-bin <postgres-bin>",
     "npm run test:e2e",
-    "QA_BASE_URL=http://127.0.0.1:4177 QA_PHASE=p2 npm run qa:audit"
+    "QA_BASE_URL=http://127.0.0.1:4177 QA_PHASE=p2 npm run qa:audit",
+    "python -m unittest discover -s scripts/tests -p \"test_*.py\""
   ],
   "limits": [
     "Auditoria automatizada não comprova conformidade WCAG completa",
     "Dispensa móvel é duplicação da captura/PDF analítico desktop, não falha de navegação",
-    "Sem teste de carga de produção ou aprovação da empresa"
+    "Sem teste de carga de produção ou aprovação da empresa",
+    "Capturas ilustrativas locais de 23/11/2026; interface revalidada em 24/11/2026 sem alteração visual"
   ]
 }

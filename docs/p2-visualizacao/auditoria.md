@@ -56,3 +56,7 @@ O README da branch contém textos históricos conflitantes sobre publicação. V
 Na implementação, identificou-se que `historicalBookings`, utilizado por cancelamentos/satisfação/anomalias, ignorava `way`, embora os KPIs e a previsão respeitassem o caminho. Corrigido usando `matchesRoute`, com dois testes de regressão que comparam cada caminho a uma base previamente restrita aos seus roteiros. `StaticDataRepository` passou a usar `cache: no-store` para atualização sob demanda do JSON. Nenhum dataset foi modificado.
 
 Verificação do publicado em 23/11/2026 (America/Sao_Paulo): HTTP 200, menu sem catálogo e sem capítulos P2. [Registro](evidencias/publicado.json) e [captura pública](evidencias/publicado.png) são separados das imagens locais.
+
+## Reauditoria de 24/11/2026
+
+A entrega desta auditoria já estava nos commits `75c35ff` e `e3c9ea6`, com PR #9 em rascunho sobre #8. A [consulta atual dos PRs](evidencias/revisao-prs.json) confirma as mesmas bases e ausência de merges. A nova inspeção preservou o WIP original e identificou evidência de sucesso desatualizada após falha do runner por dependência ausente. Correção, repetição das suítes e limites estão na [revalidação](revalidacao.md). A auditoria inicial acima permanece como registro anterior à implementação.

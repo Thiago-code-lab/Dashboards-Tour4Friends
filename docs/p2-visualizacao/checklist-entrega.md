@@ -1,6 +1,6 @@
 # Checklist final da P2
 
-Execução local em 23/11/2026, America/Sao_Paulo. **Atendido** = implementado e/ou comprovado no escopo indicado; **parcial** = há entrega com dependência explicitada; **pendente** = evidência externa não recebida. Não é declaração de aprovação da disciplina ou da empresa.
+Entrega inicial de 23/11/2026, revalidada em 24/11/2026, America/Sao_Paulo. **Atendido** = implementado e/ou comprovado no escopo indicado; **parcial** = há entrega com dependência explicitada; **pendente** = evidência externa não recebida. Não é declaração de aprovação da disciplina ou da empresa. A [revalidação](revalidacao.md) detalha a execução atual e a correção do runner.
 
 | Requisito                                                                             | Estado   | Evidência / limite                                                                                        |
 | ------------------------------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------- |
@@ -32,12 +32,12 @@ Execução local em 23/11/2026, America/Sao_Paulo. **Atendido** = implementado e
 | Build/TypeScript/dados/unitários/integração/navegação                                 | Atendido | [Resumo](evidencias/verificacao.json)                                                                     |
 | Console e ativos nos fluxos verificados                                               | Atendido | E2E e auditoria de seis resoluções sem erros                                                              |
 | Documentação e links internos                                                         | Atendido | Conferência dos destinos locais no pacote P2                                                              |
-| Branch própria e PR em rascunho                                                       | Atendido | Branch `feature/p2-visualizacao-2026`, PR encadeado ao #8; ver repositório                                |
+| Branch própria e PR em rascunho                                                       | Atendido | Branch `feature/p2-visualizacao-2026`, [PR #9](https://github.com/Thiago-code-lab/Dashboards-Tour4Friends/pull/9) encadeado ao #8 |
 | Merge/publicação                                                                      | Pendente | Exigem autorização expressa; não realizados nesta tarefa                                                  |
 
 ## Resultados executados
 
-184 Vitest; 27 Pytest; 8 Playwright conectados; 39 Playwright estáticos aprovados, com uma dispensa preexistente da captura/PDF analítico duplicado no projeto mobile. Build demo inclui TypeScript. `data:validate` e Ruff aprovados. Auditoria: dez módulos × seis resoluções (60 telas), sem overflow, erros de console ou violações axe-core nos recortes verificados. Cinco medições locais da página Demanda: pronta em 1.100–1.200 ms; aplicação de filtro em 249–304 ms, sem compromisso de desempenho em outros ambientes. Testes executados em Chrome local e PostgreSQL 18 local, não em produção.
+184 Vitest; 27 Pytest; 8 Playwright conectados; 39 Playwright estáticos aprovados, com uma dispensa preexistente da captura/PDF analítico duplicado no projeto mobile. Cinco regressões do runner aprovadas e incluídas na CI. Build demo inclui TypeScript. `data:validate`, Ruff e `pip check` aprovados. Auditoria: dez módulos × seis resoluções (60 telas), sem overflow, erros de console ou violações axe-core nos recortes verificados. Cinco medições locais da página Demanda: pronta em 1.179–1.280 ms; aplicação de filtro em 259–387 ms, sem compromisso de desempenho em outros ambientes. Testes executados em Chrome local e PostgreSQL 18 local, não em produção. O manifesto relacional registra sucesso da rodada atual e cluster encerrado; a falha inicial por dependência ausente não conta como aprovação.
 
 ## Código versus site publicado
 

@@ -1,5 +1,5 @@
 {
-  "phase": "p2",
+  "phase": "p2-revalidacao",
   "results": [
     {
       "route": "overview",
@@ -485,38 +485,38 @@
   "performance": [
     {
       "run": 1,
-      "readyMs": 1100,
-      "applyMs": 276,
+      "readyMs": 1179,
+      "applyMs": 387,
       "resourceBytes": 324437,
-      "heapBytes": 22746745
+      "heapBytes": 18522126
     },
     {
       "run": 2,
-      "readyMs": 1131,
-      "applyMs": 304,
+      "readyMs": 1207,
+      "applyMs": 310,
       "resourceBytes": 324437,
-      "heapBytes": 22936743
+      "heapBytes": 22935026
     },
     {
       "run": 3,
-      "readyMs": 1200,
-      "applyMs": 249,
+      "readyMs": 1188,
+      "applyMs": 306,
       "resourceBytes": 324437,
-      "heapBytes": 22938738
+      "heapBytes": 22942114
     },
     {
       "run": 4,
-      "readyMs": 1178,
-      "applyMs": 265,
+      "readyMs": 1280,
+      "applyMs": 275,
       "resourceBytes": 324437,
-      "heapBytes": 22936609
+      "heapBytes": 22941046
     },
     {
       "run": 5,
-      "readyMs": 1151,
-      "applyMs": 300,
+      "readyMs": 1223,
+      "applyMs": 259,
       "resourceBytes": 324437,
-      "heapBytes": 22939239
+      "heapBytes": 22940782
     }
   ],
   "assets": [
