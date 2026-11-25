@@ -55,7 +55,13 @@ test('filtros globais alteram KPIs, persistem ao navegar e podem ser limpos', as
   await expect(page.getByLabel('Filtrar roteiro', { exact: true })).toHaveValue('portugues');
   await page.getByLabel('Filtrar modalidade', { exact: true }).selectOption('Bicicleta');
   await page.getByRole('button', { name: 'Aplicar', exact: true }).click();
-  await expect(page.getByText('Sem dados para exibir').first()).toBeVisible();
+  await expect(page.getByLabel('Filtrar roteiro', { exact: true })).toHaveValue('all');
+  await expect(
+    page.getByLabel('Filtrar roteiro', { exact: true }).locator('option[value="portugues"]'),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole('table', { name: 'Reservas', exact: true }).locator('tbody tr').first(),
+  ).toBeVisible();
   await page.getByRole('button', { name: 'Limpar filtros' }).click();
   await expect(page.getByLabel('Filtrar roteiro', { exact: true })).toHaveValue('all');
   await expect(

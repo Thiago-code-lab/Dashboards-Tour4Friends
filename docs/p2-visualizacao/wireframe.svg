@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000" role="img" aria-label="Wireframe da visão geral T4F Performance">
+ <rect width="1440" height="1000" fill="#f4f6fa"/>
+ <style>text{font-family:Segoe UI,Arial,sans-serif;fill:#273e55;font-size:17px}.small{font-size:14px;fill:#53677c}.title{font-weight:700;font-size:24px}.box{fill:white;stroke:#a6b2bf;stroke-width:1.5}.line{stroke:#9baab9;stroke-width:2}</style>
+ <rect x="0" y="0" width="240" height="1000" fill="#e3e9f0"/>
+ <text x="24" y="48" class="title">T4F PERFORMANCE</text><text x="24" y="80" class="small">Menu lateral · 10 temáticas</text>
+ <text x="24" y="138">01 Visão geral</text><text x="24" y="182">02 Demanda e previsões</text><text x="24" y="226">03 Reservas e comercial</text><text x="24" y="270">04 Roteiros e destinos</text><text x="24" y="314">05 Hospedagens</text><text x="24" y="358">06 Operações e alertas</text><text x="24" y="402">07 Experiência do cliente</text><text x="24" y="446">08 Financeiro</text><text x="24" y="490">09 Relatório executivo</text><text x="24" y="534">10 Sobre e metodologia</text><text x="24" y="610" class="small">Complemento documental:</text><text x="24" y="638">Catálogo e orçamento</text>
+ <text x="274" y="36" class="small">Workspace / Visão geral</text><text x="1100" y="36" class="small">Referência do cenário</text>
+ <rect class="box" x="274" y="58" width="1130" height="44" rx="7"/><text x="294" y="87">Fonte explícita: demonstração / laboratório autenticado</text>
+ <text x="274" y="144" class="title">Visão geral</text><text x="1200" y="144">Gerar relatório</text>
+ <rect class="box" x="274" y="164" width="1130" height="44" rx="7"/><text x="294" y="193">Capítulo 01 · Entenda a decisão (recolhível)</text>
+ <rect class="box" x="274" y="224" width="1130" height="92" rx="7"/><text x="294" y="254">Filtros compartilhados</text><text x="294" y="288" class="small">Período | Caminho | Roteiro | Modalidade | Categoria | Aplicar | Limpar</text>
+ <text x="274" y="346" class="small">Período aplicado · histórico sintético em BRL</text>
+ <rect class="box" x="274" y="364" width="268" height="114" rx="9"/><text x="292" y="394">Taxa de ocupação</text><text x="292" y="433" class="title">% calculada</text><text x="292" y="460" class="small">Comprometido / capacidade</text>
+ <rect class="box" x="560" y="364" width="268" height="114" rx="9"/><text x="578" y="394">NPS dos viajantes</text><text x="578" y="433" class="title">Pontos calculados</text><text x="578" y="460" class="small">Amostra de respostas</text>
+ <rect class="box" x="846" y="364" width="268" height="114" rx="9"/><text x="864" y="394">Conversão de leads</text><text x="864" y="433" class="title">% calculada</text><text x="864" y="460" class="small">Coorte de primeiro contato</text>
+ <rect class="box" x="1132" y="364" width="272" height="114" rx="9"/><text x="1150" y="394">Margem de contribuição</text><text x="1150" y="433" class="title">% calculada</text><text x="1150" y="460" class="small">Não é lucro líquido</text>
+ <text x="274" y="514" class="small">Reservas e atendidos | Ticket médio | Alertas críticos</text>
+ <rect class="box" x="274" y="542" width="720" height="230" rx="9"/><text x="294" y="575">Demanda observada e projeção diferenciada</text><line class="line" x1="308" y1="722" x2="962" y2="722"/><line class="line" x1="308" y1="610" x2="308" y2="722"/><text x="450" y="674" class="small">Série temporal + tabela acessível</text><text x="294" y="754" class="small">Modelo · limites de incerteza</text>
+ <rect class="box" x="1012" y="542" width="392" height="230" rx="9"/><text x="1032" y="575">Insights calculados</text><text x="1032" y="620" class="small">Evidência → interpretação</text><text x="1032" y="658" class="small">Ação recomendada e limites</text><text x="1032" y="731" class="small">Regras, sem LLM</text>
+ <rect class="box" x="274" y="792" width="1130" height="61" rx="9"/><text x="294" y="829">Inteligência gerencial · demanda, experiência e operação</text>
+ <rect class="box" x="274" y="873" width="550" height="70" rx="9"/><text x="294" y="913">Receita, custos e contribuição</text><rect class="box" x="842" y="873" width="562" height="70" rx="9"/><text x="862" y="913">Ranking de roteiros e alertas (continuação)</text>
+ <text x="274" y="978" class="small">Wireframe esquemático fiel à hierarquia; sem números simulados. Mobile: menu recolhido e cartões empilhados.</text>
+</svg>

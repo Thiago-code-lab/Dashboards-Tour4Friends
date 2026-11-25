@@ -7,7 +7,10 @@ export interface DataRepository {
 }
 export class StaticDataRepository implements DataRepository {
   async load(signal?: AbortSignal): Promise<Dataset> {
-    const response = await fetch(`${import.meta.env.BASE_URL}data/demo.json`, { signal });
+    const response = await fetch(`${import.meta.env.BASE_URL}data/demo.json`, {
+      signal,
+      cache: 'no-store',
+    });
     if (!response.ok) throw new Error(`Não foi possível carregar a base (${response.status}).`);
     return validateDataset(await response.json());
   }

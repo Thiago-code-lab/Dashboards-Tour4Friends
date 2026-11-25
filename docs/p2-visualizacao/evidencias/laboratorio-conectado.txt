@@ -1,0 +1,17 @@
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+
+Running 8 tests using 1 worker
+
+(node:26244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\connected\api.spec.ts:18:1 › login, gravação, nova sessão, auditoria e logout com PostgreSQL real (23.9s)
+  ok 2 tests\connected\api.spec.ts:66:1 › visualizador consulta dados e não acessa controles de gravação (2.6s)
+  ok 3 tests\connected\api.spec.ts:81:1 › falha da API não troca a fonte silenciosamente (3.7s)
+  ok 4 tests\connected\api.spec.ts:97:1 › revisão de alerta sobrevive a uma nova sessão (3.5s)
+  ok 5 tests\connected\api.spec.ts:115:1 › administrador gerencia usuários e pagina os eventos de auditoria (5.1s)
+  ok 6 tests\connected\api.spec.ts:145:1 › conflitos e validação preservam o formulário; modal cabe no celular e restaura foco (3.2s)
+  ok 7 tests\connected\api.spec.ts:188:1 › erros de serviço e respostas inválidas mantêm a fonte; 401 encerra a sessão (5.7s)
+  ok 8 tests\connected\api.spec.ts:220:1 › trocar rapidamente o registro não aplica a resposta antiga sobre a seleção nova (2.8s)
+
+  8 passed (52.4s)

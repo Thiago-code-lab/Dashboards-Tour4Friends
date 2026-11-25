@@ -1,0 +1,108 @@
+{
+  "datasetSha256": "b9362c92d4e8702eb685a532ee55dd7d9f21e2840ed10f652bad65e25fff237e",
+  "captures": [
+    {
+      "file": "visao-geral-desktop.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/#/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "local production build; viewport capture"
+    },
+    {
+      "file": "demanda.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/#/demanda",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "local production build; viewport capture"
+    },
+    {
+      "file": "demanda-serie.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/#/demanda",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "local production build; chart panel capture"
+    },
+    {
+      "file": "experiencia.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/#/experiencia",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "local production build; viewport capture"
+    },
+    {
+      "file": "financeiro.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/#/financeiro",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "local production build; viewport capture"
+    },
+    {
+      "file": "financeiro-serie.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/#/financeiro",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "local production build; chart panel capture"
+    },
+    {
+      "file": "hospedagens.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/#/hospedagens",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "local production build; viewport capture"
+    },
+    {
+      "file": "relatorio.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/#/relatorios",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "local production build; viewport capture"
+    },
+    {
+      "file": "narrativa.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "local production build; expanded chapter"
+    },
+    {
+      "file": "filtro-portugues.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "filters": {
+        "way": "Português"
+      },
+      "source": "local production build"
+    },
+    {
+      "file": "visao-geral-mobile.png",
+      "url": "http://127.0.0.1:4177/Dashboards-Tour4Friends/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "local production build; full page"
+    }
+  ],
+  "errors": []
+}
