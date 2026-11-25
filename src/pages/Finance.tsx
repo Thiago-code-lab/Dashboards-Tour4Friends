@@ -71,8 +71,16 @@ export default function Finance() {
         {filters.category !== 'all' &&
           'Custos rateados por participação na receita da categoria; não representam custos individuais apurados. Saídas sem receita confirmada não têm base de rateio: seus custos aparecem somente no consolidado.'}
       </div>
+      <p className="mb-5 text-sm text-slate-600">
+        Cobertura: hospedagem, transporte e guias/apoio, com custos realizados e estimados.
+        Tributos, despesas fixas e demais custos não estão integralmente cobertos; a contribuição
+        gerencial não é lucro bruto apurado.
+      </p>
       <div className="two-column">
-        <Panel title="Receita versus custo" subtitle="Coorte por mês da viagem · histórico">
+        <Panel
+          title="Receita, custo e contribuição"
+          subtitle="Coorte por mês da viagem · antes de tributos e despesas fixas"
+        >
           <FinancialChart rows={view.monthly} />
         </Panel>
         <Panel

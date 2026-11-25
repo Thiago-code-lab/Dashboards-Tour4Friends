@@ -27,6 +27,7 @@ const storedSchema = z.object({
   filters: z.object({
     start: z.iso.date(),
     end: z.iso.date(),
+    way: z.enum(['all', 'Francês', 'Português']).optional(),
     route: z.string(),
     modality: z.string(),
     category: z.string(),

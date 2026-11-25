@@ -1,5 +1,11 @@
 # Publicação futura · executar somente após autorização
 
+> Atualização de auditoria, 16/11/2026: `main` já está em `0216dce`, resultado
+> da integração histórica de #3 → #2 → #1. Os passos abaixo descrevem aquela
+> preparação. As novas entregas #4/#5/#6 continuam abertas. Esta tarefa não
+> autoriza nova integração ou publicação. O site foi consultado por navegador;
+> detalhes em `evolucao-professor-validacao.md`.
+
 Repositório: `Thiago-code-lab/Dashboards-Tour4Friends`. URL preservada: <https://thiago-code-lab.github.io/Dashboards-Tour4Friends/>. Na entrega 04, `main` continua em `5ea96ab`, versão demonstrativa da Etapa 01. A candidata completa está em `feature/final-quality-and-delivery-v1`. Nenhum passo de integração abaixo foi executado automaticamente.
 
 ## Cadeia e ordem segura

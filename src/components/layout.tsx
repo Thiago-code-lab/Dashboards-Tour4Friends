@@ -27,7 +27,9 @@ import { useApp } from '../app/context';
 import { dateLabel } from '../lib/format';
 import { DEFAULT_FILTERS } from '../lib/analytics/metrics';
 import type { Filters } from '../types/domain';
+import { dependentScope, historicalWays } from '../lib/analytics/route-scope';
 import { ConnectionBar } from './connection';
+import { ChapterStory } from './chapter-story';
 
 export const NAVIGATION = [
   { to: '/', label: 'Visão geral', icon: LayoutDashboard },
@@ -254,14 +256,17 @@ export function PageHeading({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="page-heading">
-      <div>
-        <p className="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <p className="page-description">{description}</p>
+    <>
+      <div className="page-heading">
+        <div>
+          <p className="eyebrow">{eyebrow}</p>
+          <h1>{title}</h1>
+          <p className="page-description">{description}</p>
+        </div>
+        {action}
       </div>
-      {action}
-    </div>
+      <ChapterStory />
+    </>
   );
 }
 
@@ -270,7 +275,19 @@ export function GlobalFilters() {
   const [draft, setDraft] = useState<Filters>(filters);
   const [error, setError] = useState('');
   useEffect(() => setDraft(filters), [filters]);
-  const change = (key: keyof Filters, value: string) => setDraft((p) => ({ ...p, [key]: value }));
+  const change = (key: keyof Filters, value: string) =>
+    setDraft((previous) =>
+      ['way', 'route', 'modality'].includes(key)
+        ? dependentScope(data?.routes ?? [], previous, key as 'way' | 'route' | 'modality', value)
+        : { ...previous, [key]: value },
+    );
+  const wayRoutes = (data?.routes ?? []).filter(
+    (route) => !draft.way || draft.way === 'all' || historicalWays[route.id] === draft.way,
+  );
+  const routeOptions = wayRoutes.filter(
+    (route) => draft.modality === 'all' || route.modality === draft.modality,
+  );
+  const modalities = [...new Set(wayRoutes.map((route) => route.modality))];
   return (
     <form
       className="filter-bar"
@@ -310,14 +327,26 @@ export function GlobalFilters() {
         </div>
       </label>
       <label>
-        <span>Roteiro</span>
+        <span>Caminho (histórico)</span>
+        <select
+          aria-label="Filtrar caminho"
+          value={draft.way ?? 'all'}
+          onChange={(event) => change('way', event.target.value)}
+        >
+          <option value="all">Histórico completo</option>
+          <option>Francês</option>
+          <option>Português</option>
+        </select>
+      </label>
+      <label>
+        <span>Roteiro histórico</span>
         <select
           aria-label="Filtrar roteiro"
           value={draft.route}
           onChange={(e) => change('route', e.target.value)}
         >
           <option value="all">Todos os roteiros</option>
-          {data?.routes.map((r) => (
+          {routeOptions.map((r) => (
             <option value={r.id} key={r.id}>
               {r.shortName}
             </option>
@@ -332,13 +361,13 @@ export function GlobalFilters() {
           onChange={(e) => change('modality', e.target.value)}
         >
           <option value="all">Todas</option>
-          {['A pé', 'Bicicleta', 'Cultural'].map((m) => (
+          {modalities.map((m) => (
             <option key={m}>{m}</option>
           ))}
         </select>
       </label>
       <label>
-        <span>Hospedagem</span>
+        <span>Categoria histórica</span>
         <select
           aria-label="Filtrar categoria"
           value={draft.category}
@@ -367,6 +396,14 @@ export function GlobalFilters() {
           <RotateCcw size={15} />
         </button>
       </div>
+      <p className="basis-full text-xs text-slate-600">
+        Histórico sintético em BRL; categorias originais preservadas. As sete partidas e os tiers
+        comerciais de 2027 estão no{' '}
+        <Link to="/catalogo" className="underline">
+          Catálogo e orçamento
+        </Link>
+        .
+      </p>
       {error && (
         <p role="alert" className="filter-error">
           {error}

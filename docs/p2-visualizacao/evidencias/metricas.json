@@ -1,0 +1,4344 @@
+{
+  "datasetSha256": "b9362c92d4e8702eb685a532ee55dd7d9f21e2840ed10f652bad65e25fff237e",
+  "metadata": {
+    "source_type": "synthetic_demo",
+    "version": "1.0.0",
+    "seed": 42,
+    "generatedAt": "2026-11-07T12:00:00Z",
+    "referenceDate": "2026-11-07",
+    "historyStart": "2024-01-01",
+    "historyEnd": "2026-10-31",
+    "currency": "BRL"
+  },
+  "source": "public/data/demo.json",
+  "scopes": [
+    {
+      "name": "Histórico completo e compromissos até dezembro de 2026",
+      "filters": {
+        "start": "2024-01-01",
+        "end": "2026-12-31",
+        "route": "all",
+        "modality": "all",
+        "category": "all"
+      },
+      "kpis": {
+        "bookings": 160,
+        "confirmed": 143,
+        "travelers": 213,
+        "cancelled": 16,
+        "cancellationRate": 10,
+        "occupancy": 42.95233213736545,
+        "committed": 838,
+        "capacity": 1951,
+        "shortageSlots": 4,
+        "nps": 43.05555555555556,
+        "responses": 72,
+        "promoters": 38,
+        "detractors": 7,
+        "service": 9.11111111111111,
+        "accommodation": 7.486111111111111,
+        "logistics": 7.958333333333333,
+        "revenue": 1838900,
+        "realizedRevenue": 1618600,
+        "cost": 1301456,
+        "contribution": 537444
+      },
+      "routes": [
+        {
+          "id": "portugues",
+          "name": "Caminho Português",
+          "shortName": "Português",
+          "modality": "A pé",
+          "country": "Portugal · Espanha",
+          "days": 8,
+          "distanceKm": 118,
+          "stages": [
+            "Tui",
+            "O Porriño",
+            "Redondela",
+            "Santiago de Compostela"
+          ],
+          "travelers": 94,
+          "departures": 21,
+          "revenue": 774800,
+          "cost": 553224,
+          "contribution": 221576,
+          "margin": 28.59783169850284,
+          "ticket": 12496.774193548386,
+          "cancellations": 6,
+          "nps": 32.25806451612903,
+          "satisfaction": 8.935483870967742,
+          "responses": 31,
+          "occupancy": 45.08393285371702
+        },
+        {
+          "id": "santiago",
+          "name": "Caminho de Santiago a Pé",
+          "shortName": "Santiago a pé",
+          "modality": "A pé",
+          "country": "Espanha",
+          "days": 9,
+          "distanceKm": 115,
+          "stages": [
+            "Sarria",
+            "Portomarín",
+            "Palas de Rei",
+            "Santiago de Compostela"
+          ],
+          "travelers": 37,
+          "departures": 9,
+          "revenue": 334200,
+          "cost": 227817,
+          "contribution": 106383,
+          "margin": 31.83213644524237,
+          "ticket": 14530.434782608696,
+          "cancellations": 2,
+          "nps": 25,
+          "satisfaction": 8.916666666666666,
+          "responses": 12,
+          "occupancy": 43.14868804664723
+        },
+        {
+          "id": "frances-bike",
+          "name": "Caminho Francês de Bicicleta",
+          "shortName": "Francês de bike",
+          "modality": "Bicicleta",
+          "country": "Espanha",
+          "days": 12,
+          "distanceKm": 310,
+          "stages": [
+            "León",
+            "Astorga",
+            "Ponferrada",
+            "Santiago de Compostela"
+          ],
+          "travelers": 34,
+          "departures": 8,
+          "revenue": 312600,
+          "cost": 211963,
+          "contribution": 100637,
+          "margin": 32.193538067818295,
+          "ticket": 13591.304347826086,
+          "cancellations": 3,
+          "nps": 58.333333333333336,
+          "satisfaction": 9.416666666666666,
+          "responses": 12,
+          "occupancy": 42.10526315789473
+        },
+        {
+          "id": "portugues-bike",
+          "name": "Caminho Português de Bicicleta",
+          "shortName": "Português de bike",
+          "modality": "Bicicleta",
+          "country": "Portugal · Espanha",
+          "days": 7,
+          "distanceKm": 240,
+          "stages": [
+            "Porto",
+            "Ponte de Lima",
+            "Tui",
+            "Santiago de Compostela"
+          ],
+          "travelers": 23,
+          "departures": 6,
+          "revenue": 196700,
+          "cost": 143687,
+          "contribution": 53013,
+          "margin": 26.95119471276055,
+          "ticket": 11570.588235294117,
+          "cancellations": 2,
+          "nps": 85.71428571428571,
+          "satisfaction": 9.714285714285714,
+          "responses": 7,
+          "occupancy": 38.983050847457626
+        },
+        {
+          "id": "assis",
+          "name": "Caminho de Assis",
+          "shortName": "Assis",
+          "modality": "A pé",
+          "country": "Itália",
+          "days": 10,
+          "distanceKm": 100,
+          "stages": [
+            "Gubbio",
+            "Valfabbrica",
+            "Assis"
+          ],
+          "travelers": 14,
+          "departures": 4,
+          "revenue": 125100,
+          "cost": 90019,
+          "contribution": 35081,
+          "margin": 28.042366107114308,
+          "ticket": 11372.727272727272,
+          "cancellations": 3,
+          "nps": 50,
+          "satisfaction": 9,
+          "responses": 4,
+          "occupancy": 41.17647058823529
+        },
+        {
+          "id": "espanha",
+          "name": "Roteiro Cultural pela Espanha",
+          "shortName": "Espanha cultural",
+          "modality": "Cultural",
+          "country": "Espanha",
+          "days": 8,
+          "distanceKm": 0,
+          "stages": [
+            "Madri",
+            "Toledo",
+            "Córdoba",
+            "Sevilha"
+          ],
+          "travelers": 11,
+          "departures": 3,
+          "revenue": 95500,
+          "cost": 74746,
+          "contribution": 20754,
+          "margin": 21.73193717277487,
+          "ticket": 13642.857142857143,
+          "cancellations": 0,
+          "nps": 50,
+          "satisfaction": 9.166666666666666,
+          "responses": 6,
+          "occupancy": 38.93805309734513
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2024-01",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-02",
+          "travelers": 4,
+          "reservations": 3,
+          "revenue": 31500,
+          "cost": 25314,
+          "nps": 100,
+          "ticket": 10500
+        },
+        {
+          "month": "2024-03",
+          "travelers": 3,
+          "reservations": 4,
+          "revenue": 29500,
+          "cost": 19538,
+          "nps": 100,
+          "ticket": 9833.333333333334
+        },
+        {
+          "month": "2024-04",
+          "travelers": 4,
+          "reservations": 5,
+          "revenue": 37200,
+          "cost": 28348,
+          "nps": 100,
+          "ticket": 12400
+        },
+        {
+          "month": "2024-05",
+          "travelers": 10,
+          "reservations": 7,
+          "revenue": 84700,
+          "cost": 64157,
+          "nps": 75,
+          "ticket": 14116.666666666666
+        },
+        {
+          "month": "2024-06",
+          "travelers": 12,
+          "reservations": 8,
+          "revenue": 102200,
+          "cost": 66615,
+          "nps": 0,
+          "ticket": 12775
+        },
+        {
+          "month": "2024-07",
+          "travelers": 5,
+          "reservations": 2,
+          "revenue": 43800,
+          "cost": 27479,
+          "nps": 0,
+          "ticket": 21900
+        },
+        {
+          "month": "2024-08",
+          "travelers": 2,
+          "reservations": 2,
+          "revenue": 14800,
+          "cost": 9551,
+          "nps": 100,
+          "ticket": 14800
+        },
+        {
+          "month": "2024-09",
+          "travelers": 6,
+          "reservations": 6,
+          "revenue": 55100,
+          "cost": 40137,
+          "nps": 100,
+          "ticket": 11020
+        },
+        {
+          "month": "2024-10",
+          "travelers": 12,
+          "reservations": 7,
+          "revenue": 98100,
+          "cost": 71988,
+          "nps": -16.666666666666668,
+          "ticket": 14014.285714285714
+        },
+        {
+          "month": "2024-11",
+          "travelers": 1,
+          "reservations": 2,
+          "revenue": 10500,
+          "cost": 8020,
+          "nps": 0,
+          "ticket": 10500
+        },
+        {
+          "month": "2024-12",
+          "travelers": 3,
+          "reservations": 3,
+          "revenue": 18900,
+          "cost": 11759,
+          "nps": null,
+          "ticket": 9450
+        },
+        {
+          "month": "2025-01",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-02",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-03",
+          "travelers": 5,
+          "reservations": 3,
+          "revenue": 37000,
+          "cost": 30242,
+          "nps": 100,
+          "ticket": 12333.333333333334
+        },
+        {
+          "month": "2025-04",
+          "travelers": 7,
+          "reservations": 4,
+          "revenue": 61100,
+          "cost": 44458,
+          "nps": 50,
+          "ticket": 15275
+        },
+        {
+          "month": "2025-05",
+          "travelers": 8,
+          "reservations": 7,
+          "revenue": 69100,
+          "cost": 50474,
+          "nps": 80,
+          "ticket": 11516.666666666666
+        },
+        {
+          "month": "2025-06",
+          "travelers": 8,
+          "reservations": 6,
+          "revenue": 73500,
+          "cost": 52443,
+          "nps": 50,
+          "ticket": 12250
+        },
+        {
+          "month": "2025-07",
+          "travelers": 12,
+          "reservations": 6,
+          "revenue": 97500,
+          "cost": 70099,
+          "nps": 66.66666666666667,
+          "ticket": 16250
+        },
+        {
+          "month": "2025-08",
+          "travelers": 9,
+          "reservations": 7,
+          "revenue": 73000,
+          "cost": 55969,
+          "nps": -50,
+          "ticket": 10428.57142857143
+        },
+        {
+          "month": "2025-09",
+          "travelers": 11,
+          "reservations": 8,
+          "revenue": 100100,
+          "cost": 69185,
+          "nps": 33.333333333333336,
+          "ticket": 12512.5
+        },
+        {
+          "month": "2025-10",
+          "travelers": 7,
+          "reservations": 8,
+          "revenue": 58200,
+          "cost": 43637,
+          "nps": 25,
+          "ticket": 8314.285714285714
+        },
+        {
+          "month": "2025-11",
+          "travelers": 3,
+          "reservations": 2,
+          "revenue": 29500,
+          "cost": 20733,
+          "nps": 100,
+          "ticket": 14750
+        },
+        {
+          "month": "2025-12",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-01",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-02",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-03",
+          "travelers": 8,
+          "reservations": 5,
+          "revenue": 69600,
+          "cost": 53626,
+          "nps": 20,
+          "ticket": 13920
+        },
+        {
+          "month": "2026-04",
+          "travelers": 8,
+          "reservations": 6,
+          "revenue": 72000,
+          "cost": 51627,
+          "nps": 66.66666666666667,
+          "ticket": 12000
+        },
+        {
+          "month": "2026-05",
+          "travelers": 7,
+          "reservations": 5,
+          "revenue": 56100,
+          "cost": 37498,
+          "nps": 0,
+          "ticket": 14025
+        },
+        {
+          "month": "2026-06",
+          "travelers": 12,
+          "reservations": 9,
+          "revenue": 99800,
+          "cost": 74884,
+          "nps": 50,
+          "ticket": 12475
+        },
+        {
+          "month": "2026-07",
+          "travelers": 4,
+          "reservations": 4,
+          "revenue": 38500,
+          "cost": 23441,
+          "nps": 66.66666666666667,
+          "ticket": 12833.333333333334
+        },
+        {
+          "month": "2026-08",
+          "travelers": 5,
+          "reservations": 4,
+          "revenue": 45900,
+          "cost": 28709,
+          "nps": 66.66666666666667,
+          "ticket": 11475
+        },
+        {
+          "month": "2026-09",
+          "travelers": 7,
+          "reservations": 6,
+          "revenue": 66800,
+          "cost": 49470,
+          "nps": 75,
+          "ticket": 13360
+        },
+        {
+          "month": "2026-10",
+          "travelers": 5,
+          "reservations": 5,
+          "revenue": 44600,
+          "cost": 31781,
+          "nps": 0,
+          "ticket": 14866.666666666666
+        }
+      ],
+      "forecast": {
+        "selected": "Ridge temporal",
+        "reason": "Ridge temporal selecionado em origens expansivas de três meses pelo MAE; métodos a até 1% do menor erro favorecem o mais simples. Os seis meses finais foram excluídos da seleção; só depois do teste o modelo é reajustado ao histórico completo.",
+        "sample": 34,
+        "validation": [
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 1,
+            "windows": 16,
+            "mae": 3,
+            "rmse": 3.7080992435478315,
+            "bias": -0.75,
+            "wape": 55.81395348837209,
+            "count": 16
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 1,
+            "windows": 16,
+            "mae": 3.3437499999999996,
+            "rmse": 3.9244160924482343,
+            "bias": -0.4062499999999999,
+            "wape": 62.20930232558138,
+            "count": 16
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 1,
+            "windows": 16,
+            "mae": 3.8874167004866274,
+            "rmse": 4.401698137697026,
+            "bias": -0.31761928289966723,
+            "wape": 72.32403163696051,
+            "count": 16
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 1,
+            "windows": 16,
+            "mae": 2.305935307387998,
+            "rmse": 2.787262315738741,
+            "bias": -0.27611861704544155,
+            "wape": 42.90112199791624,
+            "count": 16
+          },
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 3,
+            "windows": 14,
+            "mae": 3.2142857142857144,
+            "rmse": 3.882193783343198,
+            "bias": -0.8333333333333334,
+            "wape": 57.69230769230769,
+            "count": 42
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 3,
+            "windows": 14,
+            "mae": 4.321097883597885,
+            "rmse": 5.001434152786187,
+            "bias": -0.22718253968253976,
+            "wape": 77.55816714150049,
+            "count": 42
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 3,
+            "windows": 14,
+            "mae": 4.928737696488158,
+            "rmse": 5.617946136501255,
+            "bias": -0.033836580409498385,
+            "wape": 88.46452275747976,
+            "count": 42
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 3,
+            "windows": 14,
+            "mae": 2.5817044738013415,
+            "rmse": 3.126524376464803,
+            "bias": -0.401996504747896,
+            "wape": 46.338285427203566,
+            "count": 42
+          },
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 6,
+            "windows": 11,
+            "mae": 3.606060606060606,
+            "rmse": 4.213973867690183,
+            "bias": -0.9696969696969697,
+            "wape": 58.47665847665848,
+            "count": 66
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 6,
+            "windows": 11,
+            "mae": 5.322487023007857,
+            "rmse": 6.213801652099366,
+            "bias": -0.020403689674523152,
+            "wape": 86.31060037310039,
+            "count": 66
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 6,
+            "windows": 11,
+            "mae": 6.10903546185135,
+            "rmse": 7.048463009658858,
+            "bias": 0.14842049121159667,
+            "wape": 99.06543992191379,
+            "count": 66
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 6,
+            "windows": 11,
+            "mae": 2.8031639093477567,
+            "rmse": 3.4146908431109417,
+            "bias": -0.7701720410358468,
+            "wape": 45.45671204347714,
+            "count": 66
+          }
+        ],
+        "test": [
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 3.8333333333333335,
+            "rmse": 4.415880433163924,
+            "bias": 2.5,
+            "wape": 57.5,
+            "count": 6
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 2.1334876543209873,
+            "rmse": 2.6409382609713656,
+            "bias": 0.46682098765432095,
+            "wape": 32.00231481481481,
+            "count": 6
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 2.136559227780113,
+            "rmse": 2.920856984211433,
+            "bias": -0.9743924948696748,
+            "wape": 32.0483884167017,
+            "count": 6
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 2.5566699870100056,
+            "rmse": 2.750766255921746,
+            "bias": 1.377065113775157,
+            "wape": 38.35004980515008,
+            "count": 6
+          }
+        ],
+        "independentTest": true,
+        "trainEnd": "2026-04",
+        "testStart": "2026-05",
+        "predictions": [
+          {
+            "month": "2026-11",
+            "predicted": 4.645369147573369,
+            "errorSample": 16,
+            "lower": 1.7555025880589419,
+            "upper": 8.550196839907516
+          },
+          {
+            "month": "2026-12",
+            "predicted": 2.3404959646930616,
+            "errorSample": 14,
+            "lower": 0,
+            "upper": 6.754134764912397
+          },
+          {
+            "month": "2027-01",
+            "predicted": 1.1127147423284107,
+            "errorSample": 14,
+            "lower": 0,
+            "upper": 6.252753488575204
+          },
+          {
+            "month": "2027-02",
+            "predicted": 2.0623618806380373,
+            "errorSample": 11,
+            "lower": 0,
+            "upper": 7.693486143617729
+          },
+          {
+            "month": "2027-03",
+            "predicted": 4.705892114571009,
+            "errorSample": 11,
+            "lower": 1.1080781795147794,
+            "upper": 10.358927800905406
+          },
+          {
+            "month": "2027-04",
+            "predicted": 7.3358214357027585,
+            "errorSample": 11,
+            "lower": 4.218531485955627,
+            "upper": 13.060485035073231
+          }
+        ],
+        "uncertainty": {
+          "kind": "exploratory",
+          "bands": [
+            {
+              "lead": 1,
+              "sample": 16,
+              "lowerError": -2.8898665595144273,
+              "upperError": 3.904827692334146
+            },
+            {
+              "lead": 2,
+              "sample": 14,
+              "lowerError": -3.2536661073430304,
+              "upperError": 4.413638800219335
+            },
+            {
+              "lead": 3,
+              "sample": 14,
+              "lowerError": -3.2034609508399097,
+              "upperError": 5.140038746246793
+            },
+            {
+              "lead": 4,
+              "sample": 11,
+              "lowerError": -3.5368411353773785,
+              "upperError": 5.631124262979692
+            },
+            {
+              "lead": 5,
+              "sample": 11,
+              "lowerError": -3.5978139350562297,
+              "upperError": 5.6530356863343965
+            },
+            {
+              "lead": 6,
+              "sample": 11,
+              "lowerError": -3.117289949747131,
+              "upperError": 5.724663599370473
+            }
+          ],
+          "description": "Quantis 10/90 dos erros fora da amostra, separados por passo e com mínimo de 8 erros. Faixa exploratória, sem garantia de cobertura. Acima de seis meses, sem faixa.",
+          "coverage": {
+            "hits": 5,
+            "count": 6,
+            "rate": 83.33333333333333
+          }
+        }
+      },
+      "seasonality": {
+        "months": [
+          {
+            "month": 1,
+            "n": 3,
+            "mean": 0,
+            "median": 0,
+            "q1": 0,
+            "q3": 0,
+            "min": 0,
+            "max": 0,
+            "sd": 0
+          },
+          {
+            "month": 2,
+            "n": 3,
+            "mean": 1.3333333333333333,
+            "median": 0,
+            "q1": 0,
+            "q3": 2,
+            "min": 0,
+            "max": 4,
+            "sd": 2.3094010767585034
+          },
+          {
+            "month": 3,
+            "n": 3,
+            "mean": 5.333333333333333,
+            "median": 5,
+            "q1": 4,
+            "q3": 6.5,
+            "min": 3,
+            "max": 8,
+            "sd": 2.516611478423583
+          },
+          {
+            "month": 4,
+            "n": 3,
+            "mean": 6.333333333333333,
+            "median": 7,
+            "q1": 5.5,
+            "q3": 7.5,
+            "min": 4,
+            "max": 8,
+            "sd": 2.0816659994661326
+          },
+          {
+            "month": 5,
+            "n": 3,
+            "mean": 8.333333333333334,
+            "median": 8,
+            "q1": 7.5,
+            "q3": 9,
+            "min": 7,
+            "max": 10,
+            "sd": 1.5275252316519468
+          },
+          {
+            "month": 6,
+            "n": 3,
+            "mean": 10.666666666666666,
+            "median": 12,
+            "q1": 10,
+            "q3": 12,
+            "min": 8,
+            "max": 12,
+            "sd": 2.3094010767585034
+          },
+          {
+            "month": 7,
+            "n": 3,
+            "mean": 7,
+            "median": 5,
+            "q1": 4.5,
+            "q3": 8.5,
+            "min": 4,
+            "max": 12,
+            "sd": 4.358898943540674
+          },
+          {
+            "month": 8,
+            "n": 3,
+            "mean": 5.333333333333333,
+            "median": 5,
+            "q1": 3.5,
+            "q3": 7,
+            "min": 2,
+            "max": 9,
+            "sd": 3.5118845842842465
+          },
+          {
+            "month": 9,
+            "n": 3,
+            "mean": 8,
+            "median": 7,
+            "q1": 6.5,
+            "q3": 9,
+            "min": 6,
+            "max": 11,
+            "sd": 2.6457513110645907
+          },
+          {
+            "month": 10,
+            "n": 3,
+            "mean": 8,
+            "median": 7,
+            "q1": 6,
+            "q3": 9.5,
+            "min": 5,
+            "max": 12,
+            "sd": 3.605551275463989
+          },
+          {
+            "month": 11,
+            "n": 2,
+            "mean": 2,
+            "median": 2,
+            "q1": 1.5,
+            "q3": 2.5,
+            "min": 1,
+            "max": 3,
+            "sd": 1.4142135623730951
+          },
+          {
+            "month": 12,
+            "n": 2,
+            "mean": 1.5,
+            "median": 1.5,
+            "q1": 0.75,
+            "q3": 2.25,
+            "min": 0,
+            "max": 3,
+            "sd": 2.1213203435596424
+          }
+        ],
+        "distribution": {
+          "n": 34,
+          "mean": 5.529411764705882,
+          "median": 5,
+          "q1": 3,
+          "q3": 8,
+          "min": 0,
+          "max": 12,
+          "sd": 3.917600487911918
+        },
+        "histogram": [
+          {
+            "name": "0",
+            "value": 6
+          },
+          {
+            "name": "1–3",
+            "value": 5
+          },
+          {
+            "name": "4–6",
+            "value": 8
+          },
+          {
+            "name": "7–9",
+            "value": 9
+          },
+          {
+            "name": "10+",
+            "value": 6
+          }
+        ],
+        "conclusion": "O mês 6 tem a maior média observada (10,7 viajantes; n=3), ante 0 no mês 1. Compare disponibilidade antes de ampliar vendas; são apenas 3 repetições do mês, sem comprovação inferencial de sazonalidade."
+      },
+      "cancellations": {
+        "groups": [
+          {
+            "dimension": "Roteiro",
+            "name": "Português",
+            "n": 65,
+            "cancelled": 6,
+            "rate": 9.23076923076923,
+            "lower": 4.299508961134096,
+            "upper": 18.71200051596039,
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Português de bike",
+            "n": 15,
+            "cancelled": 2,
+            "rate": 13.333333333333334,
+            "lower": 3.736125910306537,
+            "upper": 37.881982832322365,
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Assis",
+            "n": 14,
+            "cancelled": 3,
+            "rate": 21.428571428571427,
+            "lower": 7.571386712693185,
+            "upper": 47.589230586600294,
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Santiago a pé",
+            "n": 21,
+            "cancelled": 2,
+            "rate": 9.523809523809524,
+            "lower": 2.6518767438074518,
+            "upper": 28.91413907391826,
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Francês de bike",
+            "n": 22,
+            "cancelled": 3,
+            "rate": 13.636363636363637,
+            "lower": 4.749003714055252,
+            "upper": 33.334987166571715,
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Espanha cultural",
+            "n": 7,
+            "cancelled": 0,
+            "rate": 0,
+            "lower": 0,
+            "upper": 35.433043506668746,
+            "lowSample": true
+          },
+          {
+            "dimension": "Canal",
+            "name": "Agência parceira",
+            "n": 42,
+            "cancelled": 3,
+            "rate": 7.142857142857143,
+            "lower": 2.4590409873305923,
+            "upper": 19.009426801158313,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Indicação",
+            "n": 39,
+            "cancelled": 3,
+            "rate": 7.6923076923076925,
+            "lower": 2.650739530377974,
+            "upper": 20.321071167954997,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Instagram",
+            "n": 31,
+            "cancelled": 4,
+            "rate": 12.903225806451612,
+            "lower": 5.134284374629148,
+            "upper": 28.852406256306423,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Site",
+            "n": 32,
+            "cancelled": 6,
+            "rate": 18.75,
+            "lower": 8.889544689565954,
+            "upper": 35.30915520137596,
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Premium",
+            "n": 65,
+            "cancelled": 4,
+            "rate": 6.153846153846154,
+            "lower": 2.4189054966350287,
+            "upper": 14.782151865523192,
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Conforto",
+            "n": 47,
+            "cancelled": 9,
+            "rate": 19.148936170212767,
+            "lower": 10.415932698542258,
+            "upper": 32.54400457966177,
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Alternativa",
+            "n": 32,
+            "cancelled": 3,
+            "rate": 9.375,
+            "lower": 3.2401551298366194,
+            "upper": 24.218154728387866,
+            "lowSample": false
+          }
+        ],
+        "n": 144,
+        "cancelled": 16,
+        "conclusion": "Assis apresenta a maior taxa observada entre roteiros com ao menos dez reservas: 21,4% (3/14), Wilson 95% 7,6–47,6%. Investigue motivos e canais; ranking descritivo não comprova diferença entre grupos."
+      },
+      "satisfaction": {
+        "groups": [
+          {
+            "dimension": "Roteiro",
+            "name": "Santiago a pé",
+            "n": 12,
+            "nps": 25,
+            "scores": {
+              "n": 12,
+              "mean": 8.083333333333334,
+              "median": 8,
+              "q1": 7.75,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.378954368902449
+            },
+            "service": {
+              "n": 12,
+              "mean": 8.916666666666666,
+              "median": 9,
+              "q1": 8.75,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.164500152881315
+            },
+            "accommodation": {
+              "n": 12,
+              "mean": 7.083333333333333,
+              "median": 6.5,
+              "q1": 6,
+              "q3": 8.25,
+              "min": 5,
+              "max": 10,
+              "sd": 1.6764862244009227
+            },
+            "logistics": {
+              "n": 12,
+              "mean": 7.666666666666667,
+              "median": 8,
+              "q1": 7,
+              "q3": 8.25,
+              "min": 5,
+              "max": 9,
+              "sd": 1.1547005383792515
+            },
+            "bootstrap": {
+              "lower": 0,
+              "upper": 50,
+              "iterations": 500,
+              "clusters": 12
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Português",
+            "n": 31,
+            "nps": 32.25806451612903,
+            "scores": {
+              "n": 31,
+              "mean": 8.225806451612904,
+              "median": 8,
+              "q1": 7,
+              "q3": 10,
+              "min": 5,
+              "max": 10,
+              "sd": 1.5429339458610414
+            },
+            "service": {
+              "n": 31,
+              "mean": 8.935483870967742,
+              "median": 9,
+              "q1": 8,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.2365404393162869
+            },
+            "accommodation": {
+              "n": 31,
+              "mean": 7.32258064516129,
+              "median": 7,
+              "q1": 6,
+              "q3": 9,
+              "min": 4,
+              "max": 10,
+              "sd": 1.9388501192578649
+            },
+            "logistics": {
+              "n": 31,
+              "mean": 7.774193548387097,
+              "median": 8,
+              "q1": 6.5,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.6675266598439504
+            },
+            "bootstrap": {
+              "lower": 15.106951871657758,
+              "upper": 48.38709677419355,
+              "iterations": 500,
+              "clusters": 28
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Francês de bike",
+            "n": 12,
+            "nps": 58.333333333333336,
+            "scores": {
+              "n": 12,
+              "mean": 8.583333333333334,
+              "median": 9,
+              "q1": 8,
+              "q3": 9,
+              "min": 6,
+              "max": 10,
+              "sd": 1.164500152881315
+            },
+            "service": {
+              "n": 12,
+              "mean": 9.416666666666666,
+              "median": 10,
+              "q1": 9,
+              "q3": 10,
+              "min": 7,
+              "max": 10,
+              "sd": 0.996204919895622
+            },
+            "accommodation": {
+              "n": 12,
+              "mean": 7.75,
+              "median": 8.5,
+              "q1": 6.75,
+              "q3": 9,
+              "min": 5,
+              "max": 9,
+              "sd": 1.4847711791873706
+            },
+            "logistics": {
+              "n": 12,
+              "mean": 8.25,
+              "median": 8.5,
+              "q1": 8,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.2880570286640687
+            },
+            "bootstrap": {
+              "lower": 33.333333333333336,
+              "upper": 80.18181818181823,
+              "iterations": 500,
+              "clusters": 10
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Português de bike",
+            "n": 7,
+            "nps": 85.71428571428571,
+            "scores": {
+              "n": 7,
+              "mean": 8.857142857142858,
+              "median": 9,
+              "q1": 9,
+              "q3": 9,
+              "min": 7,
+              "max": 10,
+              "sd": 0.8997354108424372
+            },
+            "service": {
+              "n": 7,
+              "mean": 9.714285714285714,
+              "median": 10,
+              "q1": 10,
+              "q3": 10,
+              "min": 8,
+              "max": 10,
+              "sd": 0.7559289460184545
+            },
+            "accommodation": {
+              "n": 7,
+              "mean": 8.142857142857142,
+              "median": 9,
+              "q1": 8,
+              "q3": 9,
+              "min": 5,
+              "max": 9,
+              "sd": 1.5735915849388864
+            },
+            "logistics": {
+              "n": 7,
+              "mean": 8.142857142857142,
+              "median": 8,
+              "q1": 8,
+              "q3": 8.5,
+              "min": 6,
+              "max": 10,
+              "sd": 1.2149857925879117
+            },
+            "bootstrap": null,
+            "lowSample": true
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Espanha cultural",
+            "n": 6,
+            "nps": 50,
+            "scores": {
+              "n": 6,
+              "mean": 8.5,
+              "median": 8.5,
+              "q1": 7.25,
+              "q3": 9.75,
+              "min": 7,
+              "max": 10,
+              "sd": 1.378404875209022
+            },
+            "service": {
+              "n": 6,
+              "mean": 9.166666666666666,
+              "median": 9.5,
+              "q1": 8.25,
+              "q3": 10,
+              "min": 8,
+              "max": 10,
+              "sd": 0.9831920802501751
+            },
+            "accommodation": {
+              "n": 6,
+              "mean": 7.833333333333333,
+              "median": 8,
+              "q1": 7.25,
+              "q3": 8.75,
+              "min": 5,
+              "max": 10,
+              "sd": 1.7224014243685086
+            },
+            "logistics": {
+              "n": 6,
+              "mean": 8.5,
+              "median": 8.5,
+              "q1": 7.25,
+              "q3": 9.75,
+              "min": 7,
+              "max": 10,
+              "sd": 1.378404875209022
+            },
+            "bootstrap": null,
+            "lowSample": true
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Assis",
+            "n": 4,
+            "nps": 50,
+            "scores": {
+              "n": 4,
+              "mean": 8.5,
+              "median": 8.5,
+              "q1": 7,
+              "q3": 10,
+              "min": 7,
+              "max": 10,
+              "sd": 1.7320508075688772
+            },
+            "service": {
+              "n": 4,
+              "mean": 9,
+              "median": 9,
+              "q1": 8,
+              "q3": 10,
+              "min": 8,
+              "max": 10,
+              "sd": 1.1547005383792515
+            },
+            "accommodation": {
+              "n": 4,
+              "mean": 7.5,
+              "median": 7.5,
+              "q1": 7,
+              "q3": 8,
+              "min": 7,
+              "max": 8,
+              "sd": 0.5773502691896257
+            },
+            "logistics": {
+              "n": 4,
+              "mean": 8.25,
+              "median": 8.5,
+              "q1": 6.75,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 2.0615528128088303
+            },
+            "bootstrap": null,
+            "lowSample": true
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Alternativa",
+            "n": 14,
+            "nps": 42.857142857142854,
+            "scores": {
+              "n": 14,
+              "mean": 8.5,
+              "median": 8.5,
+              "q1": 7.25,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.4005493427717788
+            },
+            "service": {
+              "n": 14,
+              "mean": 9.142857142857142,
+              "median": 9.5,
+              "q1": 8.25,
+              "q3": 10,
+              "min": 7,
+              "max": 10,
+              "sd": 1.027105182026191
+            },
+            "accommodation": {
+              "n": 14,
+              "mean": 7.714285714285714,
+              "median": 8,
+              "q1": 7,
+              "q3": 8.75,
+              "min": 5,
+              "max": 10,
+              "sd": 1.489892687336984
+            },
+            "logistics": {
+              "n": 14,
+              "mean": 8.285714285714286,
+              "median": 8.5,
+              "q1": 7,
+              "q3": 9.75,
+              "min": 5,
+              "max": 10,
+              "sd": 1.5406577730392863
+            },
+            "bootstrap": {
+              "lower": 25,
+              "upper": 61.53846153846154,
+              "iterations": 500,
+              "clusters": 13
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Premium",
+            "n": 39,
+            "nps": 48.717948717948715,
+            "scores": {
+              "n": 39,
+              "mean": 8.461538461538462,
+              "median": 9,
+              "q1": 8,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.2946479677209115
+            },
+            "service": {
+              "n": 39,
+              "mean": 9.256410256410257,
+              "median": 10,
+              "q1": 9,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.09347222711461
+            },
+            "accommodation": {
+              "n": 39,
+              "mean": 7.564102564102564,
+              "median": 8,
+              "q1": 6,
+              "q3": 9,
+              "min": 4,
+              "max": 10,
+              "sd": 1.8466879569262402
+            },
+            "logistics": {
+              "n": 39,
+              "mean": 7.9743589743589745,
+              "median": 8,
+              "q1": 7,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.3472619306770128
+            },
+            "bootstrap": {
+              "lower": 35.714285714285715,
+              "upper": 61.575091575091584,
+              "iterations": 500,
+              "clusters": 33
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Conforto",
+            "n": 19,
+            "nps": 31.57894736842105,
+            "scores": {
+              "n": 19,
+              "mean": 8.052631578947368,
+              "median": 8,
+              "q1": 7,
+              "q3": 9.5,
+              "min": 5,
+              "max": 10,
+              "sd": 1.5446568914424659
+            },
+            "service": {
+              "n": 19,
+              "mean": 8.789473684210526,
+              "median": 9,
+              "q1": 8,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.2283207764360908
+            },
+            "accommodation": {
+              "n": 19,
+              "mean": 7.157894736842105,
+              "median": 7,
+              "q1": 6,
+              "q3": 8,
+              "min": 5,
+              "max": 10,
+              "sd": 1.5727950313140984
+            },
+            "logistics": {
+              "n": 19,
+              "mean": 7.684210526315789,
+              "median": 7,
+              "q1": 6.5,
+              "q3": 9.5,
+              "min": 5,
+              "max": 10,
+              "sd": 1.6684201302412267
+            },
+            "bootstrap": {
+              "lower": 10.526315789473685,
+              "upper": 47.89473684210539,
+              "iterations": 500,
+              "clusters": 19
+            },
+            "lowSample": false
+          }
+        ],
+        "n": 72,
+        "distribution": [
+          {
+            "score": 0,
+            "count": 0
+          },
+          {
+            "score": 1,
+            "count": 0
+          },
+          {
+            "score": 2,
+            "count": 0
+          },
+          {
+            "score": 3,
+            "count": 0
+          },
+          {
+            "score": 4,
+            "count": 0
+          },
+          {
+            "score": 5,
+            "count": 2
+          },
+          {
+            "score": 6,
+            "count": 5
+          },
+          {
+            "score": 7,
+            "count": 14
+          },
+          {
+            "score": 8,
+            "count": 13
+          },
+          {
+            "score": 9,
+            "count": 20
+          },
+          {
+            "score": 10,
+            "count": 18
+          }
+        ],
+        "conclusion": "Santiago a pé tem o menor NPS observado entre roteiros com 12 respostas: 25 (n=12). Hospedagem 7,1, atendimento 8,9 e logística 7,7 em dez pontos. Revise comentários; seleção de respondentes e amostra pequena impedem concluir causalidade ou diferença robusta."
+      },
+      "alerts": [
+        {
+          "id": "transfer-DEP-048",
+          "type": "Transfer de bagagem",
+          "severity": "critical",
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-03",
+          "cause": "Transfer sem confirmação após o prazo operacional.",
+          "action": "Confirmar o prestador e o horário de coleta."
+        },
+        {
+          "id": "forms-DEP-048",
+          "type": "Ficha pré-viagem",
+          "severity": "critical",
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-10",
+          "cause": "1 reserva(s) com ficha incompleta a 3 dias da saída.",
+          "action": "Concluir a conferência das fichas antes da saída."
+        },
+        {
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-11",
+          "id": "occupancy-ALC-0556",
+          "type": "Ocupação de hospedagem",
+          "severity": "critical",
+          "cause": "O Porriño · Premium: 3/2 vagas (150%).",
+          "action": "Contratar pelo menos 1 vaga(s) para esta data/etapa."
+        },
+        {
+          "id": "forms-DEP-049",
+          "type": "Ficha pré-viagem",
+          "severity": "critical",
+          "routeId": "santiago",
+          "departureId": "DEP-049",
+          "date": "2026-11-13",
+          "cause": "2 reserva(s) com ficha incompleta a 6 dias da saída.",
+          "action": "Concluir a conferência das fichas antes da saída."
+        },
+        {
+          "routeId": "santiago",
+          "departureId": "DEP-049",
+          "date": "2026-11-14",
+          "id": "occupancy-ALC-0568",
+          "type": "Ocupação de hospedagem",
+          "severity": "critical",
+          "cause": "Portomarín · Premium: 3/2 vagas (150%).",
+          "action": "Contratar pelo menos 1 vaga(s) para esta data/etapa."
+        },
+        {
+          "routeId": "frances-bike",
+          "departureId": "DEP-050",
+          "date": "2026-11-26",
+          "id": "occupancy-ALC-0580",
+          "type": "Ocupação de hospedagem",
+          "severity": "critical",
+          "cause": "Astorga · Premium: 4/3 vagas (133%).",
+          "action": "Contratar pelo menos 1 vaga(s) para esta data/etapa."
+        },
+        {
+          "routeId": "portugues-bike",
+          "departureId": "DEP-051",
+          "date": "2026-12-09",
+          "id": "occupancy-ALC-0592",
+          "type": "Ocupação de hospedagem",
+          "severity": "critical",
+          "cause": "Ponte de Lima · Premium: 3/2 vagas (150%).",
+          "action": "Contratar pelo menos 1 vaga(s) para esta data/etapa."
+        },
+        {
+          "id": "cost-DEP-048",
+          "type": "Desvio de custo",
+          "severity": "attention",
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-10",
+          "cause": "Custo estimado 38.9% acima do orçamento.",
+          "action": "Revisar cotações e a margem da saída."
+        },
+        {
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-10",
+          "id": "unconfirmed-ALC-0553",
+          "type": "Hospedagem sem confirmação",
+          "severity": "attention",
+          "cause": "Tui · Premium: 3 vagas comprometidas sem confirmação.",
+          "action": "Confirmar a contratação com a hospedagem demonstrativa."
+        },
+        {
+          "routeId": "santiago",
+          "departureId": "DEP-049",
+          "date": "2026-11-13",
+          "id": "unconfirmed-ALC-0565",
+          "type": "Hospedagem sem confirmação",
+          "severity": "attention",
+          "cause": "Sarria · Premium: 3 vagas comprometidas sem confirmação.",
+          "action": "Confirmar a contratação com a hospedagem demonstrativa."
+        },
+        {
+          "routeId": "frances-bike",
+          "departureId": "DEP-050",
+          "date": "2026-11-25",
+          "id": "unconfirmed-ALC-0577",
+          "type": "Hospedagem sem confirmação",
+          "severity": "attention",
+          "cause": "León · Premium: 4 vagas comprometidas sem confirmação.",
+          "action": "Confirmar a contratação com a hospedagem demonstrativa."
+        },
+        {
+          "routeId": "portugues-bike",
+          "departureId": "DEP-051",
+          "date": "2026-12-08",
+          "id": "unconfirmed-ALC-0589",
+          "type": "Hospedagem sem confirmação",
+          "severity": "attention",
+          "cause": "Porto · Premium: 3 vagas comprometidas sem confirmação.",
+          "action": "Confirmar a contratação com a hospedagem demonstrativa."
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "Caminho Francês",
+      "filters": {
+        "start": "2024-01-01",
+        "end": "2026-12-31",
+        "route": "all",
+        "modality": "all",
+        "category": "all",
+        "way": "Francês"
+      },
+      "kpis": {
+        "bookings": 51,
+        "confirmed": 46,
+        "travelers": 71,
+        "cancelled": 5,
+        "cancellationRate": 9.803921568627452,
+        "occupancy": 42.64264264264264,
+        "committed": 284,
+        "capacity": 666,
+        "shortageSlots": 2,
+        "nps": 41.666666666666664,
+        "responses": 24,
+        "promoters": 12,
+        "detractors": 2,
+        "service": 9.166666666666666,
+        "accommodation": 7.416666666666667,
+        "logistics": 7.958333333333333,
+        "revenue": 646800,
+        "realizedRevenue": 538900,
+        "cost": 439780,
+        "contribution": 207020
+      },
+      "routes": [
+        {
+          "id": "santiago",
+          "name": "Caminho de Santiago a Pé",
+          "shortName": "Santiago a pé",
+          "modality": "A pé",
+          "country": "Espanha",
+          "days": 9,
+          "distanceKm": 115,
+          "stages": [
+            "Sarria",
+            "Portomarín",
+            "Palas de Rei",
+            "Santiago de Compostela"
+          ],
+          "travelers": 37,
+          "departures": 9,
+          "revenue": 334200,
+          "cost": 227817,
+          "contribution": 106383,
+          "margin": 31.83213644524237,
+          "ticket": 14530.434782608696,
+          "cancellations": 2,
+          "nps": 25,
+          "satisfaction": 8.916666666666666,
+          "responses": 12,
+          "occupancy": 43.14868804664723
+        },
+        {
+          "id": "frances-bike",
+          "name": "Caminho Francês de Bicicleta",
+          "shortName": "Francês de bike",
+          "modality": "Bicicleta",
+          "country": "Espanha",
+          "days": 12,
+          "distanceKm": 310,
+          "stages": [
+            "León",
+            "Astorga",
+            "Ponferrada",
+            "Santiago de Compostela"
+          ],
+          "travelers": 34,
+          "departures": 8,
+          "revenue": 312600,
+          "cost": 211963,
+          "contribution": 100637,
+          "margin": 32.193538067818295,
+          "ticket": 13591.304347826086,
+          "cancellations": 3,
+          "nps": 58.333333333333336,
+          "satisfaction": 9.416666666666666,
+          "responses": 12,
+          "occupancy": 42.10526315789473
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2024-01",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-02",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-03",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-04",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-05",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-06",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-07",
+          "travelers": 5,
+          "reservations": 2,
+          "revenue": 43800,
+          "cost": 27479,
+          "nps": 0,
+          "ticket": 21900
+        },
+        {
+          "month": "2024-08",
+          "travelers": 2,
+          "reservations": 2,
+          "revenue": 14800,
+          "cost": 9551,
+          "nps": 100,
+          "ticket": 14800
+        },
+        {
+          "month": "2024-09",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-10",
+          "travelers": 6,
+          "reservations": 3,
+          "revenue": 51000,
+          "cost": 40605,
+          "nps": 0,
+          "ticket": 17000
+        },
+        {
+          "month": "2024-11",
+          "travelers": 1,
+          "reservations": 2,
+          "revenue": 10500,
+          "cost": 8020,
+          "nps": 0,
+          "ticket": 10500
+        },
+        {
+          "month": "2024-12",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-01",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-02",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-03",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-04",
+          "travelers": 4,
+          "reservations": 2,
+          "revenue": 34400,
+          "cost": 24258,
+          "nps": 100,
+          "ticket": 17200
+        },
+        {
+          "month": "2025-05",
+          "travelers": 3,
+          "reservations": 4,
+          "revenue": 27300,
+          "cost": 16444,
+          "nps": 100,
+          "ticket": 9100
+        },
+        {
+          "month": "2025-06",
+          "travelers": 6,
+          "reservations": 4,
+          "revenue": 55200,
+          "cost": 38117,
+          "nps": 33.333333333333336,
+          "ticket": 13800
+        },
+        {
+          "month": "2025-07",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-08",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-09",
+          "travelers": 11,
+          "reservations": 8,
+          "revenue": 100100,
+          "cost": 69185,
+          "nps": 33.333333333333336,
+          "ticket": 12512.5
+        },
+        {
+          "month": "2025-10",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-11",
+          "travelers": 3,
+          "reservations": 2,
+          "revenue": 29500,
+          "cost": 20733,
+          "nps": 100,
+          "ticket": 14750
+        },
+        {
+          "month": "2025-12",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-01",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-02",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-03",
+          "travelers": 2,
+          "reservations": 2,
+          "revenue": 18600,
+          "cost": 12496,
+          "nps": 0,
+          "ticket": 9300
+        },
+        {
+          "month": "2026-04",
+          "travelers": 4,
+          "reservations": 2,
+          "revenue": 37000,
+          "cost": 25505,
+          "nps": 0,
+          "ticket": 18500
+        },
+        {
+          "month": "2026-05",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-06",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-07",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-08",
+          "travelers": 5,
+          "reservations": 4,
+          "revenue": 45900,
+          "cost": 28709,
+          "nps": 66.66666666666667,
+          "ticket": 11475
+        },
+        {
+          "month": "2026-09",
+          "travelers": 5,
+          "reservations": 4,
+          "revenue": 49000,
+          "cost": 36054,
+          "nps": 50,
+          "ticket": 16333.333333333334
+        },
+        {
+          "month": "2026-10",
+          "travelers": 2,
+          "reservations": 2,
+          "revenue": 21800,
+          "cost": 14450,
+          "nps": null,
+          "ticket": 21800
+        }
+      ],
+      "forecast": {
+        "selected": "Sazonal ingênuo",
+        "reason": "Sazonal ingênuo selecionado em origens expansivas de três meses pelo MAE; métodos a até 1% do menor erro favorecem o mais simples. Os seis meses finais foram excluídos da seleção; só depois do teste o modelo é reajustado ao histórico completo.",
+        "sample": 34,
+        "validation": [
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 1,
+            "windows": 7,
+            "mae": 1.4285714285714286,
+            "rmse": 2.5071326821120348,
+            "bias": 0.2857142857142857,
+            "wape": 111.11111111111111,
+            "count": 7
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 1,
+            "windows": 7,
+            "mae": 2.2857142857142856,
+            "rmse": 2.8298297666001937,
+            "bias": 0.8571428571428571,
+            "wape": 177.77777777777777,
+            "count": 7
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 1,
+            "windows": 7,
+            "mae": 2.4772853086815196,
+            "rmse": 2.9959265790967784,
+            "bias": 1.022991926259787,
+            "wape": 192.67774623078486,
+            "count": 7
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 1,
+            "windows": 7,
+            "mae": 1.4478263351113836,
+            "rmse": 1.9497303326296278,
+            "bias": 0.7916430353134352,
+            "wape": 112.60871495310761,
+            "count": 7
+          },
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 3,
+            "windows": 5,
+            "mae": 0.9333333333333333,
+            "rmse": 1.8618986725025255,
+            "bias": -0.13333333333333333,
+            "wape": 100,
+            "count": 15
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 3,
+            "windows": 5,
+            "mae": 2.75,
+            "rmse": 3.263248558149283,
+            "bias": 1.866666666666667,
+            "wape": 294.64285714285717,
+            "count": 15
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 3,
+            "windows": 5,
+            "mae": 2.8974131622556762,
+            "rmse": 3.379527121429686,
+            "bias": 2.134197901207043,
+            "wape": 310.4371245273939,
+            "count": 15
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 3,
+            "windows": 5,
+            "mae": 1.2848930156660003,
+            "rmse": 1.641506006609936,
+            "bias": 0.9979746716618557,
+            "wape": 137.66710882135717,
+            "count": 15
+          },
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 6,
+            "windows": 2,
+            "mae": 1.1666666666666667,
+            "rmse": 2.0816659994661326,
+            "bias": -0.16666666666666666,
+            "wape": 100,
+            "count": 12
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 6,
+            "windows": 2,
+            "mae": 3.856819058641976,
+            "rmse": 4.4069029282565495,
+            "bias": 3.7376060956790127,
+            "wape": 330.5844907407408,
+            "count": 12
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 6,
+            "windows": 2,
+            "mae": 4.072506436595966,
+            "rmse": 4.681962321068349,
+            "bias": 4.030126970930104,
+            "wape": 349.07198027965427,
+            "count": 12
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 6,
+            "windows": 2,
+            "mae": 1.3997444405111654,
+            "rmse": 1.781391444010487,
+            "bias": 1.1298530912030855,
+            "wape": 119.97809490095703,
+            "count": 12
+          }
+        ],
+        "test": [
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 3.6666666666666665,
+            "rmse": 4.281744192888376,
+            "bias": 1.3333333333333333,
+            "wape": 183.33333333333334,
+            "count": 6
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 2.291280864197531,
+            "rmse": 2.3994982629429065,
+            "bias": 0.9502314814814813,
+            "wape": 114.56404320987654,
+            "count": 6
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 2.0639728034902354,
+            "rmse": 2.187817354250842,
+            "bias": 0.3375083606405698,
+            "wape": 103.19864017451175,
+            "count": 6
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 2.2409434610655743,
+            "rmse": 2.401095054708326,
+            "bias": 1.470138897950175,
+            "wape": 112.0471730532787,
+            "count": 6
+          }
+        ],
+        "independentTest": true,
+        "trainEnd": "2026-04",
+        "testStart": "2026-05",
+        "predictions": [
+          {
+            "month": "2026-11",
+            "predicted": 3,
+            "errorSample": 7
+          },
+          {
+            "month": "2026-12",
+            "predicted": 0,
+            "errorSample": 5
+          },
+          {
+            "month": "2027-01",
+            "predicted": 0,
+            "errorSample": 5
+          },
+          {
+            "month": "2027-02",
+            "predicted": 0,
+            "errorSample": 2
+          },
+          {
+            "month": "2027-03",
+            "predicted": 2,
+            "errorSample": 2
+          },
+          {
+            "month": "2027-04",
+            "predicted": 4,
+            "errorSample": 2
+          }
+        ],
+        "uncertainty": {
+          "kind": "unavailable",
+          "bands": [
+            {
+              "lead": 1,
+              "sample": 7,
+              "lowerError": null,
+              "upperError": null
+            },
+            {
+              "lead": 2,
+              "sample": 5,
+              "lowerError": null,
+              "upperError": null
+            },
+            {
+              "lead": 3,
+              "sample": 5,
+              "lowerError": null,
+              "upperError": null
+            },
+            {
+              "lead": 4,
+              "sample": 2,
+              "lowerError": null,
+              "upperError": null
+            },
+            {
+              "lead": 5,
+              "sample": 2,
+              "lowerError": null,
+              "upperError": null
+            },
+            {
+              "lead": 6,
+              "sample": 2,
+              "lowerError": null,
+              "upperError": null
+            }
+          ],
+          "description": "Quantis 10/90 dos erros fora da amostra, separados por passo e com mínimo de 8 erros. Faixa exploratória, sem garantia de cobertura. Acima de seis meses, sem faixa.",
+          "coverage": null
+        }
+      },
+      "seasonality": {
+        "months": [
+          {
+            "month": 1,
+            "n": 3,
+            "mean": 0,
+            "median": 0,
+            "q1": 0,
+            "q3": 0,
+            "min": 0,
+            "max": 0,
+            "sd": 0
+          },
+          {
+            "month": 2,
+            "n": 3,
+            "mean": 0,
+            "median": 0,
+            "q1": 0,
+            "q3": 0,
+            "min": 0,
+            "max": 0,
+            "sd": 0
+          },
+          {
+            "month": 3,
+            "n": 3,
+            "mean": 0.6666666666666666,
+            "median": 0,
+            "q1": 0,
+            "q3": 1,
+            "min": 0,
+            "max": 2,
+            "sd": 1.1547005383792517
+          },
+          {
+            "month": 4,
+            "n": 3,
+            "mean": 2.6666666666666665,
+            "median": 4,
+            "q1": 2,
+            "q3": 4,
+            "min": 0,
+            "max": 4,
+            "sd": 2.3094010767585034
+          },
+          {
+            "month": 5,
+            "n": 3,
+            "mean": 1,
+            "median": 0,
+            "q1": 0,
+            "q3": 1.5,
+            "min": 0,
+            "max": 3,
+            "sd": 1.7320508075688772
+          },
+          {
+            "month": 6,
+            "n": 3,
+            "mean": 2,
+            "median": 0,
+            "q1": 0,
+            "q3": 3,
+            "min": 0,
+            "max": 6,
+            "sd": 3.4641016151377544
+          },
+          {
+            "month": 7,
+            "n": 3,
+            "mean": 1.6666666666666667,
+            "median": 0,
+            "q1": 0,
+            "q3": 2.5,
+            "min": 0,
+            "max": 5,
+            "sd": 2.8867513459481287
+          },
+          {
+            "month": 8,
+            "n": 3,
+            "mean": 2.3333333333333335,
+            "median": 2,
+            "q1": 1,
+            "q3": 3.5,
+            "min": 0,
+            "max": 5,
+            "sd": 2.5166114784235836
+          },
+          {
+            "month": 9,
+            "n": 3,
+            "mean": 5.333333333333333,
+            "median": 5,
+            "q1": 2.5,
+            "q3": 8,
+            "min": 0,
+            "max": 11,
+            "sd": 5.507570547286102
+          },
+          {
+            "month": 10,
+            "n": 3,
+            "mean": 2.6666666666666665,
+            "median": 2,
+            "q1": 1,
+            "q3": 4,
+            "min": 0,
+            "max": 6,
+            "sd": 3.055050463303893
+          },
+          {
+            "month": 11,
+            "n": 2,
+            "mean": 2,
+            "median": 2,
+            "q1": 1.5,
+            "q3": 2.5,
+            "min": 1,
+            "max": 3,
+            "sd": 1.4142135623730951
+          },
+          {
+            "month": 12,
+            "n": 2,
+            "mean": 0,
+            "median": 0,
+            "q1": 0,
+            "q3": 0,
+            "min": 0,
+            "max": 0,
+            "sd": 0
+          }
+        ],
+        "distribution": {
+          "n": 34,
+          "mean": 1.7352941176470589,
+          "median": 0,
+          "q1": 0,
+          "q3": 3,
+          "min": 0,
+          "max": 11,
+          "sd": 2.632072849795578
+        },
+        "histogram": [
+          {
+            "name": "0",
+            "value": 20
+          },
+          {
+            "name": "1–3",
+            "value": 6
+          },
+          {
+            "name": "4–6",
+            "value": 7
+          },
+          {
+            "name": "7–9",
+            "value": 0
+          },
+          {
+            "name": "10+",
+            "value": 1
+          }
+        ],
+        "conclusion": "O mês 9 tem a maior média observada (5,3 viajantes; n=3), ante 0 no mês 12. Compare disponibilidade antes de ampliar vendas; são apenas 3 repetições do mês, sem comprovação inferencial de sazonalidade."
+      },
+      "cancellations": {
+        "groups": [
+          {
+            "dimension": "Roteiro",
+            "name": "Santiago a pé",
+            "n": 21,
+            "cancelled": 2,
+            "rate": 9.523809523809524,
+            "lower": 2.6518767438074518,
+            "upper": 28.91413907391826,
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Francês de bike",
+            "n": 22,
+            "cancelled": 3,
+            "rate": 13.636363636363637,
+            "lower": 4.749003714055252,
+            "upper": 33.334987166571715,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Indicação",
+            "n": 11,
+            "cancelled": 1,
+            "rate": 9.090909090909092,
+            "lower": 1.6232172885884855,
+            "upper": 37.73584364515957,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Site",
+            "n": 9,
+            "cancelled": 1,
+            "rate": 11.11111111111111,
+            "lower": 1.9890887638544907,
+            "upper": 43.4999705576656,
+            "lowSample": true
+          },
+          {
+            "dimension": "Canal",
+            "name": "Instagram",
+            "n": 12,
+            "cancelled": 3,
+            "rate": 25,
+            "lower": 8.894166839405472,
+            "upper": 53.23053349335657,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Agência parceira",
+            "n": 11,
+            "cancelled": 0,
+            "rate": 0,
+            "lower": 0,
+            "upper": 25.88329669680317,
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Premium",
+            "n": 21,
+            "cancelled": 1,
+            "rate": 4.761904761904762,
+            "lower": 0.8455987809826399,
+            "upper": 22.66936007412256,
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Conforto",
+            "n": 15,
+            "cancelled": 3,
+            "rate": 20,
+            "lower": 7.0475493469815635,
+            "upper": 45.185448715169365,
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Alternativa",
+            "n": 7,
+            "cancelled": 1,
+            "rate": 14.285714285714286,
+            "lower": 2.5679624344743552,
+            "upper": 51.31278292743189,
+            "lowSample": true
+          }
+        ],
+        "n": 43,
+        "cancelled": 5,
+        "conclusion": "Francês de bike apresenta a maior taxa observada entre roteiros com ao menos dez reservas: 13,6% (3/22), Wilson 95% 4,7–33,3%. Investigue motivos e canais; ranking descritivo não comprova diferença entre grupos."
+      },
+      "satisfaction": {
+        "groups": [
+          {
+            "dimension": "Roteiro",
+            "name": "Santiago a pé",
+            "n": 12,
+            "nps": 25,
+            "scores": {
+              "n": 12,
+              "mean": 8.083333333333334,
+              "median": 8,
+              "q1": 7.75,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.378954368902449
+            },
+            "service": {
+              "n": 12,
+              "mean": 8.916666666666666,
+              "median": 9,
+              "q1": 8.75,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.164500152881315
+            },
+            "accommodation": {
+              "n": 12,
+              "mean": 7.083333333333333,
+              "median": 6.5,
+              "q1": 6,
+              "q3": 8.25,
+              "min": 5,
+              "max": 10,
+              "sd": 1.6764862244009227
+            },
+            "logistics": {
+              "n": 12,
+              "mean": 7.666666666666667,
+              "median": 8,
+              "q1": 7,
+              "q3": 8.25,
+              "min": 5,
+              "max": 9,
+              "sd": 1.1547005383792515
+            },
+            "bootstrap": {
+              "lower": 0,
+              "upper": 50,
+              "iterations": 500,
+              "clusters": 12
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Francês de bike",
+            "n": 12,
+            "nps": 58.333333333333336,
+            "scores": {
+              "n": 12,
+              "mean": 8.583333333333334,
+              "median": 9,
+              "q1": 8,
+              "q3": 9,
+              "min": 6,
+              "max": 10,
+              "sd": 1.164500152881315
+            },
+            "service": {
+              "n": 12,
+              "mean": 9.416666666666666,
+              "median": 10,
+              "q1": 9,
+              "q3": 10,
+              "min": 7,
+              "max": 10,
+              "sd": 0.996204919895622
+            },
+            "accommodation": {
+              "n": 12,
+              "mean": 7.75,
+              "median": 8.5,
+              "q1": 6.75,
+              "q3": 9,
+              "min": 5,
+              "max": 9,
+              "sd": 1.4847711791873706
+            },
+            "logistics": {
+              "n": 12,
+              "mean": 8.25,
+              "median": 8.5,
+              "q1": 8,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.2880570286640687
+            },
+            "bootstrap": {
+              "lower": 33.333333333333336,
+              "upper": 80.18181818181823,
+              "iterations": 500,
+              "clusters": 10
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Alternativa",
+            "n": 4,
+            "nps": 25,
+            "scores": {
+              "n": 4,
+              "mean": 8,
+              "median": 8,
+              "q1": 7.75,
+              "q3": 8.25,
+              "min": 7,
+              "max": 9,
+              "sd": 0.816496580927726
+            },
+            "service": {
+              "n": 4,
+              "mean": 9,
+              "median": 9,
+              "q1": 8.75,
+              "q3": 9.25,
+              "min": 8,
+              "max": 10,
+              "sd": 0.816496580927726
+            },
+            "accommodation": {
+              "n": 4,
+              "mean": 7.5,
+              "median": 7.5,
+              "q1": 6.75,
+              "q3": 8.25,
+              "min": 6,
+              "max": 9,
+              "sd": 1.2909944487358056
+            },
+            "logistics": {
+              "n": 4,
+              "mean": 8,
+              "median": 8,
+              "q1": 7.75,
+              "q3": 8.25,
+              "min": 7,
+              "max": 9,
+              "sd": 0.816496580927726
+            },
+            "bootstrap": null,
+            "lowSample": true
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Premium",
+            "n": 15,
+            "nps": 53.333333333333336,
+            "scores": {
+              "n": 15,
+              "mean": 8.6,
+              "median": 9,
+              "q1": 8,
+              "q3": 9,
+              "min": 6,
+              "max": 10,
+              "sd": 1.121223821162776
+            },
+            "service": {
+              "n": 15,
+              "mean": 9.4,
+              "median": 10,
+              "q1": 9,
+              "q3": 10,
+              "min": 7,
+              "max": 10,
+              "sd": 0.9102589898327995
+            },
+            "accommodation": {
+              "n": 15,
+              "mean": 7.4,
+              "median": 7,
+              "q1": 6,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.6818357317441646
+            },
+            "logistics": {
+              "n": 15,
+              "mean": 8.066666666666666,
+              "median": 8,
+              "q1": 8,
+              "q3": 9,
+              "min": 5,
+              "max": 9,
+              "sd": 1.0997835284835875
+            },
+            "bootstrap": {
+              "lower": 28.571428571428573,
+              "upper": 75,
+              "iterations": 500,
+              "clusters": 14
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Conforto",
+            "n": 5,
+            "nps": 20,
+            "scores": {
+              "n": 5,
+              "mean": 7.8,
+              "median": 8,
+              "q1": 7,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.9235384061671346
+            },
+            "service": {
+              "n": 5,
+              "mean": 8.6,
+              "median": 9,
+              "q1": 8,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.6733200530681511
+            },
+            "accommodation": {
+              "n": 5,
+              "mean": 7.4,
+              "median": 8,
+              "q1": 6,
+              "q3": 9,
+              "min": 5,
+              "max": 9,
+              "sd": 1.816590212458495
+            },
+            "logistics": {
+              "n": 5,
+              "mean": 7.6,
+              "median": 7,
+              "q1": 7,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.9493588689617927
+            },
+            "bootstrap": null,
+            "lowSample": true
+          }
+        ],
+        "n": 24,
+        "distribution": [
+          {
+            "score": 0,
+            "count": 0
+          },
+          {
+            "score": 1,
+            "count": 0
+          },
+          {
+            "score": 2,
+            "count": 0
+          },
+          {
+            "score": 3,
+            "count": 0
+          },
+          {
+            "score": 4,
+            "count": 0
+          },
+          {
+            "score": 5,
+            "count": 1
+          },
+          {
+            "score": 6,
+            "count": 1
+          },
+          {
+            "score": 7,
+            "count": 3
+          },
+          {
+            "score": 8,
+            "count": 7
+          },
+          {
+            "score": 9,
+            "count": 8
+          },
+          {
+            "score": 10,
+            "count": 4
+          }
+        ],
+        "conclusion": "Santiago a pé tem o menor NPS observado entre roteiros com 12 respostas: 25 (n=12). Hospedagem 7,1, atendimento 8,9 e logística 7,7 em dez pontos. Revise comentários; seleção de respondentes e amostra pequena impedem concluir causalidade ou diferença robusta."
+      },
+      "alerts": [
+        {
+          "id": "forms-DEP-049",
+          "type": "Ficha pré-viagem",
+          "severity": "critical",
+          "routeId": "santiago",
+          "departureId": "DEP-049",
+          "date": "2026-11-13",
+          "cause": "2 reserva(s) com ficha incompleta a 6 dias da saída.",
+          "action": "Concluir a conferência das fichas antes da saída."
+        },
+        {
+          "routeId": "santiago",
+          "departureId": "DEP-049",
+          "date": "2026-11-14",
+          "id": "occupancy-ALC-0568",
+          "type": "Ocupação de hospedagem",
+          "severity": "critical",
+          "cause": "Portomarín · Premium: 3/2 vagas (150%).",
+          "action": "Contratar pelo menos 1 vaga(s) para esta data/etapa."
+        },
+        {
+          "routeId": "frances-bike",
+          "departureId": "DEP-050",
+          "date": "2026-11-26",
+          "id": "occupancy-ALC-0580",
+          "type": "Ocupação de hospedagem",
+          "severity": "critical",
+          "cause": "Astorga · Premium: 4/3 vagas (133%).",
+          "action": "Contratar pelo menos 1 vaga(s) para esta data/etapa."
+        },
+        {
+          "routeId": "santiago",
+          "departureId": "DEP-049",
+          "date": "2026-11-13",
+          "id": "unconfirmed-ALC-0565",
+          "type": "Hospedagem sem confirmação",
+          "severity": "attention",
+          "cause": "Sarria · Premium: 3 vagas comprometidas sem confirmação.",
+          "action": "Confirmar a contratação com a hospedagem demonstrativa."
+        },
+        {
+          "routeId": "frances-bike",
+          "departureId": "DEP-050",
+          "date": "2026-11-25",
+          "id": "unconfirmed-ALC-0577",
+          "type": "Hospedagem sem confirmação",
+          "severity": "attention",
+          "cause": "León · Premium: 4 vagas comprometidas sem confirmação.",
+          "action": "Confirmar a contratação com a hospedagem demonstrativa."
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "Caminho Português",
+      "filters": {
+        "start": "2024-01-01",
+        "end": "2026-12-31",
+        "route": "all",
+        "modality": "all",
+        "category": "all",
+        "way": "Português"
+      },
+      "kpis": {
+        "bookings": 88,
+        "confirmed": 79,
+        "travelers": 117,
+        "cancelled": 8,
+        "cancellationRate": 9.090909090909092,
+        "occupancy": 43.73831775700935,
+        "committed": 468,
+        "capacity": 1070,
+        "shortageSlots": 2,
+        "nps": 42.10526315789474,
+        "responses": 38,
+        "promoters": 21,
+        "detractors": 5,
+        "service": 9.078947368421053,
+        "accommodation": 7.473684210526316,
+        "logistics": 7.842105263157895,
+        "revenue": 971500,
+        "realizedRevenue": 859100,
+        "cost": 696911,
+        "contribution": 274589
+      },
+      "routes": [
+        {
+          "id": "portugues",
+          "name": "Caminho Português",
+          "shortName": "Português",
+          "modality": "A pé",
+          "country": "Portugal · Espanha",
+          "days": 8,
+          "distanceKm": 118,
+          "stages": [
+            "Tui",
+            "O Porriño",
+            "Redondela",
+            "Santiago de Compostela"
+          ],
+          "travelers": 94,
+          "departures": 21,
+          "revenue": 774800,
+          "cost": 553224,
+          "contribution": 221576,
+          "margin": 28.59783169850284,
+          "ticket": 12496.774193548386,
+          "cancellations": 6,
+          "nps": 32.25806451612903,
+          "satisfaction": 8.935483870967742,
+          "responses": 31,
+          "occupancy": 45.08393285371702
+        },
+        {
+          "id": "portugues-bike",
+          "name": "Caminho Português de Bicicleta",
+          "shortName": "Português de bike",
+          "modality": "Bicicleta",
+          "country": "Portugal · Espanha",
+          "days": 7,
+          "distanceKm": 240,
+          "stages": [
+            "Porto",
+            "Ponte de Lima",
+            "Tui",
+            "Santiago de Compostela"
+          ],
+          "travelers": 23,
+          "departures": 6,
+          "revenue": 196700,
+          "cost": 143687,
+          "contribution": 53013,
+          "margin": 26.95119471276055,
+          "ticket": 11570.588235294117,
+          "cancellations": 2,
+          "nps": 85.71428571428571,
+          "satisfaction": 9.714285714285714,
+          "responses": 7,
+          "occupancy": 38.983050847457626
+        }
+      ],
+      "monthly": [
+        {
+          "month": "2024-01",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-02",
+          "travelers": 4,
+          "reservations": 3,
+          "revenue": 31500,
+          "cost": 25314,
+          "nps": 100,
+          "ticket": 10500
+        },
+        {
+          "month": "2024-03",
+          "travelers": 3,
+          "reservations": 4,
+          "revenue": 29500,
+          "cost": 19538,
+          "nps": 100,
+          "ticket": 9833.333333333334
+        },
+        {
+          "month": "2024-04",
+          "travelers": 2,
+          "reservations": 2,
+          "revenue": 21200,
+          "cost": 15370,
+          "nps": 100,
+          "ticket": 21200
+        },
+        {
+          "month": "2024-05",
+          "travelers": 10,
+          "reservations": 7,
+          "revenue": 84700,
+          "cost": 64157,
+          "nps": 75,
+          "ticket": 14116.666666666666
+        },
+        {
+          "month": "2024-06",
+          "travelers": 12,
+          "reservations": 8,
+          "revenue": 102200,
+          "cost": 66615,
+          "nps": 0,
+          "ticket": 12775
+        },
+        {
+          "month": "2024-07",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-08",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-09",
+          "travelers": 3,
+          "reservations": 2,
+          "revenue": 26300,
+          "cost": 20567,
+          "nps": 100,
+          "ticket": 13150
+        },
+        {
+          "month": "2024-10",
+          "travelers": 6,
+          "reservations": 4,
+          "revenue": 47100,
+          "cost": 31383,
+          "nps": -33.333333333333336,
+          "ticket": 11775
+        },
+        {
+          "month": "2024-11",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2024-12",
+          "travelers": 3,
+          "reservations": 3,
+          "revenue": 18900,
+          "cost": 11759,
+          "nps": null,
+          "ticket": 9450
+        },
+        {
+          "month": "2025-01",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-02",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-03",
+          "travelers": 5,
+          "reservations": 3,
+          "revenue": 37000,
+          "cost": 30242,
+          "nps": 100,
+          "ticket": 12333.333333333334
+        },
+        {
+          "month": "2025-04",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-05",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-06",
+          "travelers": 2,
+          "reservations": 2,
+          "revenue": 18300,
+          "cost": 14326,
+          "nps": 100,
+          "ticket": 9150
+        },
+        {
+          "month": "2025-07",
+          "travelers": 12,
+          "reservations": 6,
+          "revenue": 97500,
+          "cost": 70099,
+          "nps": 66.66666666666667,
+          "ticket": 16250
+        },
+        {
+          "month": "2025-08",
+          "travelers": 9,
+          "reservations": 7,
+          "revenue": 73000,
+          "cost": 55969,
+          "nps": -50,
+          "ticket": 10428.57142857143
+        },
+        {
+          "month": "2025-09",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-10",
+          "travelers": 7,
+          "reservations": 8,
+          "revenue": 58200,
+          "cost": 43637,
+          "nps": 25,
+          "ticket": 8314.285714285714
+        },
+        {
+          "month": "2025-11",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2025-12",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-01",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-02",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-03",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-04",
+          "travelers": 4,
+          "reservations": 4,
+          "revenue": 35000,
+          "cost": 26122,
+          "nps": 100,
+          "ticket": 8750
+        },
+        {
+          "month": "2026-05",
+          "travelers": 7,
+          "reservations": 5,
+          "revenue": 56100,
+          "cost": 37498,
+          "nps": 0,
+          "ticket": 14025
+        },
+        {
+          "month": "2026-06",
+          "travelers": 12,
+          "reservations": 9,
+          "revenue": 99800,
+          "cost": 74884,
+          "nps": 50,
+          "ticket": 12475
+        },
+        {
+          "month": "2026-07",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": 100,
+          "ticket": null
+        },
+        {
+          "month": "2026-08",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-09",
+          "travelers": 0,
+          "reservations": 0,
+          "revenue": 0,
+          "cost": 0,
+          "nps": null,
+          "ticket": null
+        },
+        {
+          "month": "2026-10",
+          "travelers": 3,
+          "reservations": 3,
+          "revenue": 22800,
+          "cost": 17331,
+          "nps": 0,
+          "ticket": 11400
+        }
+      ],
+      "forecast": {
+        "selected": "Média ponderada",
+        "reason": "Média ponderada selecionado em origens expansivas de três meses pelo MAE; métodos a até 1% do menor erro favorecem o mais simples. Os seis meses finais foram excluídos da seleção; só depois do teste o modelo é reajustado ao histórico completo.",
+        "sample": 34,
+        "validation": [
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 1,
+            "windows": 16,
+            "mae": 4.0625,
+            "rmse": 5.640257086339239,
+            "bias": 0.5625,
+            "wape": 166.66666666666666,
+            "count": 16
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 1,
+            "windows": 16,
+            "mae": 3.125,
+            "rmse": 4.2878219023959785,
+            "bias": 1.1102230246251565e-16,
+            "wape": 128.2051282051282,
+            "count": 16
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 1,
+            "windows": 16,
+            "mae": 3.2836295508367126,
+            "rmse": 4.3403516281348224,
+            "bias": 0.02221412977435311,
+            "wape": 134.71300721381385,
+            "count": 16
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 1,
+            "windows": 16,
+            "mae": 3.2827982049756748,
+            "rmse": 4.056906792330266,
+            "bias": 0.2023527444787891,
+            "wape": 134.67890071695075,
+            "count": 16
+          },
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 3,
+            "windows": 14,
+            "mae": 4.238095238095238,
+            "rmse": 5.883795341363228,
+            "bias": 0.6190476190476191,
+            "wape": 163.30275229357798,
+            "count": 42
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 3,
+            "windows": 14,
+            "mae": 3.521825396825397,
+            "rmse": 4.767190766503141,
+            "bias": 0.1686507936507934,
+            "wape": 135.7033639143731,
+            "count": 42
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 3,
+            "windows": 14,
+            "mae": 3.7058214394076523,
+            "rmse": 4.943928435210802,
+            "bias": 0.19725011444925236,
+            "wape": 142.7931196835976,
+            "count": 42
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 3,
+            "windows": 14,
+            "mae": 3.5980017403820455,
+            "rmse": 4.378663828666398,
+            "bias": 0.19526095727763862,
+            "wape": 138.63859917068433,
+            "count": 42
+          },
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 6,
+            "windows": 11,
+            "mae": 4.712121212121212,
+            "rmse": 6.3734772394048855,
+            "bias": 0.4090909090909091,
+            "wape": 156.28140703517587,
+            "count": 66
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 6,
+            "windows": 11,
+            "mae": 4.507987864758699,
+            "rmse": 5.645175896955401,
+            "bias": 0.23338418911335598,
+            "wape": 149.5111553136051,
+            "count": 66
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 6,
+            "windows": 11,
+            "mae": 4.749243513081732,
+            "rmse": 5.997050249244767,
+            "bias": 0.18071810938927313,
+            "wape": 157.51259892632876,
+            "count": 66
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 6,
+            "windows": 11,
+            "mae": 3.9159720763806747,
+            "rmse": 4.672105311380678,
+            "bias": -0.14730392765155126,
+            "wape": 129.8764608246857,
+            "count": 66
+          }
+        ],
+        "test": [
+          {
+            "model": "Sazonal ingênuo",
+            "modelId": "seasonal",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 7,
+            "rmse": 8.06225774829855,
+            "bias": 1.3333333333333333,
+            "wape": 190.9090909090909,
+            "count": 6
+          },
+          {
+            "model": "Média ponderada",
+            "modelId": "weighted",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 3.7542438271604937,
+            "rmse": 4.767888176754773,
+            "bias": -1.3329475308641971,
+            "wape": 102.388468013468,
+            "count": 6
+          },
+          {
+            "model": "Tendência amortecida",
+            "modelId": "damped",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 3.6670420853600896,
+            "rmse": 5.058136002152056,
+            "bias": -2.314478652756732,
+            "wape": 100.01023869163882,
+            "count": 6
+          },
+          {
+            "model": "Ridge temporal",
+            "modelId": "ridge",
+            "horizon": 6,
+            "windows": 1,
+            "mae": 3.711662023922495,
+            "rmse": 4.219259996052184,
+            "bias": -0.1290811768546316,
+            "wape": 101.22714610697713,
+            "count": 6
+          }
+        ],
+        "independentTest": true,
+        "trainEnd": "2026-04",
+        "testStart": "2026-05",
+        "predictions": [
+          {
+            "month": "2026-11",
+            "predicted": 1.5,
+            "errorSample": 16,
+            "lower": 0,
+            "upper": 5.75
+          },
+          {
+            "month": "2026-12",
+            "predicted": 1.75,
+            "errorSample": 14,
+            "lower": 0,
+            "upper": 8.433333333333337
+          },
+          {
+            "month": "2027-01",
+            "predicted": 1.875,
+            "errorSample": 14,
+            "lower": 0,
+            "upper": 9.034722222222227
+          },
+          {
+            "month": "2027-02",
+            "predicted": 1.7708333333333333,
+            "errorSample": 11,
+            "lower": 0,
+            "upper": 9.243055555555555
+          },
+          {
+            "month": "2027-03",
+            "predicted": 1.8020833333333333,
+            "errorSample": 11,
+            "lower": 0,
+            "upper": 8.310185185185185
+          },
+          {
+            "month": "2027-04",
+            "predicted": 1.8038194444444444,
+            "errorSample": 11,
+            "lower": 0,
+            "upper": 10.503472222222223
+          }
+        ],
+        "uncertainty": {
+          "kind": "exploratory",
+          "bands": [
+            {
+              "lead": 1,
+              "sample": 16,
+              "lowerError": -3.75,
+              "upperError": 4.25
+            },
+            {
+              "lead": 2,
+              "sample": 14,
+              "lowerError": -4.583333333333333,
+              "upperError": 6.683333333333337
+            },
+            {
+              "lead": 3,
+              "sample": 14,
+              "lowerError": -4.775,
+              "upperError": 7.159722222222227
+            },
+            {
+              "lead": 4,
+              "sample": 11,
+              "lowerError": -7.694444444444444,
+              "upperError": 7.472222222222222
+            },
+            {
+              "lead": 5,
+              "sample": 11,
+              "lowerError": -7.810185185185186,
+              "upperError": 6.508101851851852
+            },
+            {
+              "lead": 6,
+              "sample": 11,
+              "lowerError": -7.8125,
+              "upperError": 8.699652777777779
+            }
+          ],
+          "description": "Quantis 10/90 dos erros fora da amostra, separados por passo e com mínimo de 8 erros. Faixa exploratória, sem garantia de cobertura. Acima de seis meses, sem faixa.",
+          "coverage": {
+            "hits": 4,
+            "count": 6,
+            "rate": 66.66666666666667
+          }
+        }
+      },
+      "seasonality": {
+        "months": [
+          {
+            "month": 1,
+            "n": 3,
+            "mean": 0,
+            "median": 0,
+            "q1": 0,
+            "q3": 0,
+            "min": 0,
+            "max": 0,
+            "sd": 0
+          },
+          {
+            "month": 2,
+            "n": 3,
+            "mean": 1.3333333333333333,
+            "median": 0,
+            "q1": 0,
+            "q3": 2,
+            "min": 0,
+            "max": 4,
+            "sd": 2.3094010767585034
+          },
+          {
+            "month": 3,
+            "n": 3,
+            "mean": 2.6666666666666665,
+            "median": 3,
+            "q1": 1.5,
+            "q3": 4,
+            "min": 0,
+            "max": 5,
+            "sd": 2.5166114784235836
+          },
+          {
+            "month": 4,
+            "n": 3,
+            "mean": 2,
+            "median": 2,
+            "q1": 1,
+            "q3": 3,
+            "min": 0,
+            "max": 4,
+            "sd": 2
+          },
+          {
+            "month": 5,
+            "n": 3,
+            "mean": 5.666666666666667,
+            "median": 7,
+            "q1": 3.5,
+            "q3": 8.5,
+            "min": 0,
+            "max": 10,
+            "sd": 5.131601439446884
+          },
+          {
+            "month": 6,
+            "n": 3,
+            "mean": 8.666666666666666,
+            "median": 12,
+            "q1": 7,
+            "q3": 12,
+            "min": 2,
+            "max": 12,
+            "sd": 5.773502691896257
+          },
+          {
+            "month": 7,
+            "n": 3,
+            "mean": 4,
+            "median": 0,
+            "q1": 0,
+            "q3": 6,
+            "min": 0,
+            "max": 12,
+            "sd": 6.928203230275509
+          },
+          {
+            "month": 8,
+            "n": 3,
+            "mean": 3,
+            "median": 0,
+            "q1": 0,
+            "q3": 4.5,
+            "min": 0,
+            "max": 9,
+            "sd": 5.196152422706632
+          },
+          {
+            "month": 9,
+            "n": 3,
+            "mean": 1,
+            "median": 0,
+            "q1": 0,
+            "q3": 1.5,
+            "min": 0,
+            "max": 3,
+            "sd": 1.7320508075688772
+          },
+          {
+            "month": 10,
+            "n": 3,
+            "mean": 5.333333333333333,
+            "median": 6,
+            "q1": 4.5,
+            "q3": 6.5,
+            "min": 3,
+            "max": 7,
+            "sd": 2.0816659994661326
+          },
+          {
+            "month": 11,
+            "n": 2,
+            "mean": 0,
+            "median": 0,
+            "q1": 0,
+            "q3": 0,
+            "min": 0,
+            "max": 0,
+            "sd": 0
+          },
+          {
+            "month": 12,
+            "n": 2,
+            "mean": 1.5,
+            "median": 1.5,
+            "q1": 0.75,
+            "q3": 2.25,
+            "min": 0,
+            "max": 3,
+            "sd": 2.1213203435596424
+          }
+        ],
+        "distribution": {
+          "n": 34,
+          "mean": 3.0588235294117645,
+          "median": 1,
+          "q1": 0,
+          "q3": 4.75,
+          "min": 0,
+          "max": 12,
+          "sd": 4.00712378124478
+        },
+        "histogram": [
+          {
+            "name": "0",
+            "value": 17
+          },
+          {
+            "name": "1–3",
+            "value": 6
+          },
+          {
+            "name": "4–6",
+            "value": 4
+          },
+          {
+            "name": "7–9",
+            "value": 3
+          },
+          {
+            "name": "10+",
+            "value": 4
+          }
+        ],
+        "conclusion": "O mês 6 tem a maior média observada (8,7 viajantes; n=3), ante 0 no mês 11. Compare disponibilidade antes de ampliar vendas; são apenas 3 repetições do mês, sem comprovação inferencial de sazonalidade."
+      },
+      "cancellations": {
+        "groups": [
+          {
+            "dimension": "Roteiro",
+            "name": "Português",
+            "n": 65,
+            "cancelled": 6,
+            "rate": 9.23076923076923,
+            "lower": 4.299508961134096,
+            "upper": 18.71200051596039,
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Português de bike",
+            "n": 15,
+            "cancelled": 2,
+            "rate": 13.333333333333334,
+            "lower": 3.736125910306537,
+            "upper": 37.881982832322365,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Agência parceira",
+            "n": 24,
+            "cancelled": 3,
+            "rate": 12.5,
+            "lower": 4.344334080123444,
+            "upper": 31.003881270500067,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Indicação",
+            "n": 22,
+            "cancelled": 1,
+            "rate": 4.545454545454546,
+            "lower": 0.8069427621263849,
+            "upper": 21.79804583865733,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Instagram",
+            "n": 16,
+            "cancelled": 1,
+            "rate": 6.25,
+            "lower": 1.1119344764642518,
+            "upper": 28.328737570298944,
+            "lowSample": false
+          },
+          {
+            "dimension": "Canal",
+            "name": "Site",
+            "n": 18,
+            "cancelled": 3,
+            "rate": 16.666666666666668,
+            "lower": 5.836576805861446,
+            "upper": 39.22203810391572,
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Premium",
+            "n": 35,
+            "cancelled": 3,
+            "rate": 8.571428571428571,
+            "lower": 2.958236826696982,
+            "upper": 22.379273965896495,
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Conforto",
+            "n": 25,
+            "cancelled": 4,
+            "rate": 16,
+            "lower": 6.40345145667644,
+            "upper": 34.653621607178856,
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Alternativa",
+            "n": 20,
+            "cancelled": 1,
+            "rate": 5,
+            "lower": 0.8881448800795402,
+            "upper": 23.613119344674203,
+            "lowSample": false
+          }
+        ],
+        "n": 80,
+        "cancelled": 8,
+        "conclusion": "Português de bike apresenta a maior taxa observada entre roteiros com ao menos dez reservas: 13,3% (2/15), Wilson 95% 3,7–37,9%. Investigue motivos e canais; ranking descritivo não comprova diferença entre grupos."
+      },
+      "satisfaction": {
+        "groups": [
+          {
+            "dimension": "Roteiro",
+            "name": "Português",
+            "n": 31,
+            "nps": 32.25806451612903,
+            "scores": {
+              "n": 31,
+              "mean": 8.225806451612904,
+              "median": 8,
+              "q1": 7,
+              "q3": 10,
+              "min": 5,
+              "max": 10,
+              "sd": 1.5429339458610414
+            },
+            "service": {
+              "n": 31,
+              "mean": 8.935483870967742,
+              "median": 9,
+              "q1": 8,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.2365404393162869
+            },
+            "accommodation": {
+              "n": 31,
+              "mean": 7.32258064516129,
+              "median": 7,
+              "q1": 6,
+              "q3": 9,
+              "min": 4,
+              "max": 10,
+              "sd": 1.9388501192578649
+            },
+            "logistics": {
+              "n": 31,
+              "mean": 7.774193548387097,
+              "median": 8,
+              "q1": 6.5,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.6675266598439504
+            },
+            "bootstrap": {
+              "lower": 15.106951871657758,
+              "upper": 48.38709677419355,
+              "iterations": 500,
+              "clusters": 28
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Roteiro",
+            "name": "Português de bike",
+            "n": 7,
+            "nps": 85.71428571428571,
+            "scores": {
+              "n": 7,
+              "mean": 8.857142857142858,
+              "median": 9,
+              "q1": 9,
+              "q3": 9,
+              "min": 7,
+              "max": 10,
+              "sd": 0.8997354108424372
+            },
+            "service": {
+              "n": 7,
+              "mean": 9.714285714285714,
+              "median": 10,
+              "q1": 10,
+              "q3": 10,
+              "min": 8,
+              "max": 10,
+              "sd": 0.7559289460184545
+            },
+            "accommodation": {
+              "n": 7,
+              "mean": 8.142857142857142,
+              "median": 9,
+              "q1": 8,
+              "q3": 9,
+              "min": 5,
+              "max": 9,
+              "sd": 1.5735915849388864
+            },
+            "logistics": {
+              "n": 7,
+              "mean": 8.142857142857142,
+              "median": 8,
+              "q1": 8,
+              "q3": 8.5,
+              "min": 6,
+              "max": 10,
+              "sd": 1.2149857925879117
+            },
+            "bootstrap": null,
+            "lowSample": true
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Premium",
+            "n": 21,
+            "nps": 47.61904761904762,
+            "scores": {
+              "n": 21,
+              "mean": 8.428571428571429,
+              "median": 9,
+              "q1": 8,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.4687215042828428
+            },
+            "service": {
+              "n": 21,
+              "mean": 9.19047619047619,
+              "median": 10,
+              "q1": 9,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.2497618820818472
+            },
+            "accommodation": {
+              "n": 21,
+              "mean": 7.619047619047619,
+              "median": 9,
+              "q1": 6,
+              "q3": 9,
+              "min": 4,
+              "max": 10,
+              "sd": 2.0850944936906455
+            },
+            "logistics": {
+              "n": 21,
+              "mean": 7.9523809523809526,
+              "median": 8,
+              "q1": 7,
+              "q3": 9,
+              "min": 5,
+              "max": 10,
+              "sd": 1.532194193834139
+            },
+            "bootstrap": {
+              "lower": 26.31578947368421,
+              "upper": 66.66666666666667,
+              "iterations": 500,
+              "clusters": 19
+            },
+            "lowSample": false
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Conforto",
+            "n": 10,
+            "nps": 30,
+            "scores": {
+              "n": 10,
+              "mean": 8,
+              "median": 7.5,
+              "q1": 7,
+              "q3": 9,
+              "min": 6,
+              "max": 10,
+              "sd": 1.4142135623730951
+            },
+            "service": {
+              "n": 10,
+              "mean": 8.8,
+              "median": 8.5,
+              "q1": 8,
+              "q3": 10,
+              "min": 7,
+              "max": 10,
+              "sd": 1.1352924243950933
+            },
+            "accommodation": {
+              "n": 10,
+              "mean": 6.9,
+              "median": 7,
+              "q1": 6,
+              "q3": 7,
+              "min": 5,
+              "max": 10,
+              "sd": 1.370320319406298
+            },
+            "logistics": {
+              "n": 10,
+              "mean": 7.4,
+              "median": 7,
+              "q1": 6,
+              "q3": 8,
+              "min": 6,
+              "max": 10,
+              "sd": 1.577621275493231
+            },
+            "bootstrap": null,
+            "lowSample": true
+          },
+          {
+            "dimension": "Categoria",
+            "name": "Alternativa",
+            "n": 7,
+            "nps": 42.857142857142854,
+            "scores": {
+              "n": 7,
+              "mean": 8.571428571428571,
+              "median": 9,
+              "q1": 7.5,
+              "q3": 10,
+              "min": 6,
+              "max": 10,
+              "sd": 1.618347187425374
+            },
+            "service": {
+              "n": 7,
+              "mean": 9.142857142857142,
+              "median": 10,
+              "q1": 8.5,
+              "q3": 10,
+              "min": 7,
+              "max": 10,
+              "sd": 1.2149857925879117
+            },
+            "accommodation": {
+              "n": 7,
+              "mean": 7.857142857142857,
+              "median": 8,
+              "q1": 6.5,
+              "q3": 9.5,
+              "min": 5,
+              "max": 10,
+              "sd": 1.9518001458970662
+            },
+            "logistics": {
+              "n": 7,
+              "mean": 8.142857142857142,
+              "median": 9,
+              "q1": 7,
+              "q3": 9.5,
+              "min": 5,
+              "max": 10,
+              "sd": 1.8644544714716087
+            },
+            "bootstrap": null,
+            "lowSample": true
+          }
+        ],
+        "n": 38,
+        "distribution": [
+          {
+            "score": 0,
+            "count": 0
+          },
+          {
+            "score": 1,
+            "count": 0
+          },
+          {
+            "score": 2,
+            "count": 0
+          },
+          {
+            "score": 3,
+            "count": 0
+          },
+          {
+            "score": 4,
+            "count": 0
+          },
+          {
+            "score": 5,
+            "count": 1
+          },
+          {
+            "score": 6,
+            "count": 4
+          },
+          {
+            "score": 7,
+            "count": 7
+          },
+          {
+            "score": 8,
+            "count": 5
+          },
+          {
+            "score": 9,
+            "count": 11
+          },
+          {
+            "score": 10,
+            "count": 10
+          }
+        ],
+        "conclusion": "Português tem o menor NPS observado entre roteiros com 12 respostas: 32,3 (n=31). Hospedagem 7,3, atendimento 8,9 e logística 7,8 em dez pontos. Revise comentários; seleção de respondentes e amostra pequena impedem concluir causalidade ou diferença robusta."
+      },
+      "alerts": [
+        {
+          "id": "transfer-DEP-048",
+          "type": "Transfer de bagagem",
+          "severity": "critical",
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-03",
+          "cause": "Transfer sem confirmação após o prazo operacional.",
+          "action": "Confirmar o prestador e o horário de coleta."
+        },
+        {
+          "id": "forms-DEP-048",
+          "type": "Ficha pré-viagem",
+          "severity": "critical",
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-10",
+          "cause": "1 reserva(s) com ficha incompleta a 3 dias da saída.",
+          "action": "Concluir a conferência das fichas antes da saída."
+        },
+        {
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-11",
+          "id": "occupancy-ALC-0556",
+          "type": "Ocupação de hospedagem",
+          "severity": "critical",
+          "cause": "O Porriño · Premium: 3/2 vagas (150%).",
+          "action": "Contratar pelo menos 1 vaga(s) para esta data/etapa."
+        },
+        {
+          "routeId": "portugues-bike",
+          "departureId": "DEP-051",
+          "date": "2026-12-09",
+          "id": "occupancy-ALC-0592",
+          "type": "Ocupação de hospedagem",
+          "severity": "critical",
+          "cause": "Ponte de Lima · Premium: 3/2 vagas (150%).",
+          "action": "Contratar pelo menos 1 vaga(s) para esta data/etapa."
+        },
+        {
+          "id": "cost-DEP-048",
+          "type": "Desvio de custo",
+          "severity": "attention",
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-10",
+          "cause": "Custo estimado 38.9% acima do orçamento.",
+          "action": "Revisar cotações e a margem da saída."
+        },
+        {
+          "routeId": "portugues",
+          "departureId": "DEP-048",
+          "date": "2026-11-10",
+          "id": "unconfirmed-ALC-0553",
+          "type": "Hospedagem sem confirmação",
+          "severity": "attention",
+          "cause": "Tui · Premium: 3 vagas comprometidas sem confirmação.",
+          "action": "Confirmar a contratação com a hospedagem demonstrativa."
+        },
+        {
+          "routeId": "portugues-bike",
+          "departureId": "DEP-051",
+          "date": "2026-12-08",
+          "id": "unconfirmed-ALC-0589",
+          "type": "Hospedagem sem confirmação",
+          "severity": "attention",
+          "cause": "Porto · Premium: 3 vagas comprometidas sem confirmação.",
+          "action": "Confirmar a contratação com a hospedagem demonstrativa."
+        }
+      ],
+      "anomalies": []
+    }
+  ]
+}

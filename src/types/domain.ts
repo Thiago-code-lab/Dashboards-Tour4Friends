@@ -109,6 +109,7 @@ export type Booking = z.infer<typeof bookingSchema>;
 export type Route = Dataset['routes'][number];
 export type Category = z.infer<typeof categorySchema>;
 export type Filters = {
+  way?: 'all' | 'Francês' | 'Português';
   start: string;
   end: string;
   route: string;

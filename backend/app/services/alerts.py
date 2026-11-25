@@ -14,11 +14,18 @@ def derive_alerts(
     category: str | None = None,
     attention: float = 75,
     critical: float = 85,
+    way: str | None = None,
 ) -> list[dict[str, Any]]:
-    view = analyze_dataset(data, start, end, route_id, modality, category)
+    view = analyze_dataset(data, start, end, route_id, modality, category, way)
     reference = data.metadata.reference_date
     start, end = start or data.metadata.history_start, end or date(reference.year, 12, 31)
     routes = {r.id: r for r in data.routes}
+    historical_ways = {
+        "santiago": "Francês",
+        "frances-bike": "Francês",
+        "portugues": "Português",
+        "portugues-bike": "Português",
+    }
     deps = [
         d
         for d in data.departures
@@ -26,6 +33,7 @@ def derive_alerts(
         and d.date >= reference
         and (not route_id or d.route_id == route_id)
         and (not modality or routes[d.route_id].modality == modality)
+        and (not way or historical_ways.get(d.route_id) == way)
     ]
     alerts: list[dict[str, Any]] = []
 

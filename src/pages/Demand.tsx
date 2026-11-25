@@ -11,6 +11,7 @@ import { ForecastValidation } from '../components/forecast-validation';
 import { AnalyticsLab } from '../components/analytics-lab';
 import { CapacitySimulator } from '../components/capacity-simulator';
 import { AnomalyPanel } from '../components/anomaly-panel';
+import { MarketScenario } from '../components/market-scenario';
 
 export default function Demand() {
   const { filters } = useAnalysis();
@@ -28,6 +29,7 @@ export default function Demand() {
         description="Validação temporal, incerteza exploratória e planejamento com dados reproduzíveis."
       />
       <GlobalFilters />
+      <MarketScenario />
       <div className="kpi-grid">
         <Kpi
           label="Viajantes no histórico"
