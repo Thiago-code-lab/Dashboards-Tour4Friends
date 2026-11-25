@@ -4,9 +4,46 @@ import { validateDataset } from '../src/lib/validation/dataset';
 import { analyze, DEFAULT_FILTERS } from '../src/lib/analytics/metrics';
 import { dependentScope } from '../src/lib/analytics/route-scope';
 import { historicalSeries } from '../src/lib/forecasting/dataset';
+import {
+  cancellationAnalysis,
+  historicalBookings,
+  satisfactionAnalysis,
+} from '../src/lib/analytics/statistics';
 
 const data = validateDataset(JSON.parse(readFileSync('public/data/demo.json', 'utf8')));
 describe('Caminho e modalidade do histórico', () => {
+  it.each(['Francês', 'Português'] as const)(
+    'aplica %s ao laboratório estatístico sem incluir outros caminhos',
+    (way) => {
+      const routeIds = new Set(
+        way === 'Francês' ? ['santiago', 'frances-bike'] : ['portugues', 'portugues-bike'],
+      );
+      const scopedData = {
+        ...data,
+        bookings: data.bookings.filter((booking) =>
+          data.departures.some(
+            (departure) => departure.id === booking.departureId && routeIds.has(departure.routeId),
+          ),
+        ),
+      };
+      const filters = { ...DEFAULT_FILTERS, way };
+      expect(historicalBookings(data, filters)).toEqual(
+        historicalBookings(scopedData, DEFAULT_FILTERS),
+      );
+      expect(cancellationAnalysis(data, filters)).toEqual(
+        cancellationAnalysis(scopedData, DEFAULT_FILTERS),
+      );
+      expect(satisfactionAnalysis(data, filters)).toEqual(
+        satisfactionAnalysis(scopedData, DEFAULT_FILTERS),
+      );
+      expect(
+        historicalBookings(data, {
+          ...filters,
+          route: way === 'Francês' ? 'portugues' : 'santiago',
+        }),
+      ).toEqual([]);
+    },
+  );
   it.each(['Francês', 'Português'] as const)(
     'reconcilia %s com seus roteiros e previsão',
     (way) => {

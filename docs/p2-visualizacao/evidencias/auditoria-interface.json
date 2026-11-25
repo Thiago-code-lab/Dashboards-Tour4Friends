@@ -1,0 +1,621 @@
+{
+  "phase": "p2",
+  "results": [
+    {
+      "route": "overview",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "demanda",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "reservas",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "roteiros",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "hospedagens",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "operacoes",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "experiencia",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "financeiro",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "relatorios",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "metodologia",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "overview",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "demanda",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "reservas",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "roteiros",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "hospedagens",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "operacoes",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "experiencia",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "financeiro",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "relatorios",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "metodologia",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "overview",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "demanda",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "reservas",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "roteiros",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "hospedagens",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "operacoes",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "experiencia",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "financeiro",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "relatorios",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "metodologia",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "overview",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "demanda",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "reservas",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "roteiros",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "hospedagens",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "operacoes",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "experiencia",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "financeiro",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "relatorios",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "metodologia",
+      "width": 834,
+      "height": 1112,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "overview",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "demanda",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "reservas",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "roteiros",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "hospedagens",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "operacoes",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "experiencia",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "financeiro",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "relatorios",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "metodologia",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "overview",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "demanda",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "reservas",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "roteiros",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "hospedagens",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "operacoes",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "experiencia",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "financeiro",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "relatorios",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "metodologia",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "errors": [],
+      "violations": []
+    }
+  ],
+  "performance": [
+    {
+      "run": 1,
+      "readyMs": 1076,
+      "applyMs": 206,
+      "resourceBytes": 324437,
+      "heapBytes": 19833693
+    },
+    {
+      "run": 2,
+      "readyMs": 1105,
+      "applyMs": 183,
+      "resourceBytes": 324437,
+      "heapBytes": 20043674
+    },
+    {
+      "run": 3,
+      "readyMs": 1126,
+      "applyMs": 223,
+      "resourceBytes": 324437,
+      "heapBytes": 20045582
+    },
+    {
+      "run": 4,
+      "readyMs": 1115,
+      "applyMs": 191,
+      "resourceBytes": 324437,
+      "heapBytes": 20003642
+    },
+    {
+      "run": 5,
+      "readyMs": 1140,
+      "applyMs": 229,
+      "resourceBytes": 324437,
+      "heapBytes": 20078771
+    }
+  ],
+  "assets": [
+    {
+      "name": "Accommodations-CodadZaZ.js",
+      "bytes": 6902,
+      "gzip": 2756
+    },
+    {
+      "name": "anomaly-panel-KipYOTRR.js",
+      "bytes": 2283,
+      "gzip": 1079
+    },
+    {
+      "name": "capacity-ahcyDJyK.js",
+      "bytes": 2573,
+      "gzip": 997
+    },
+    {
+      "name": "charts-lK4i0ZWD.js",
+      "bytes": 443069,
+      "gzip": 125386
+    },
+    {
+      "name": "Commercial-CE_rdlMl.js",
+      "bytes": 32354,
+      "gzip": 11604
+    },
+    {
+      "name": "csv-CuigYPLo.js",
+      "bytes": 20676,
+      "gzip": 7773
+    },
+    {
+      "name": "Demand-CYQL8Rne.js",
+      "bytes": 22090,
+      "gzip": 7898
+    },
+    {
+      "name": "Finance-DcisHwBH.js",
+      "bytes": 6372,
+      "gzip": 2529
+    },
+    {
+      "name": "index-DX-1OS4L.js",
+      "bytes": 400404,
+      "gzip": 125846
+    },
+    {
+      "name": "layers-b_8kOBuW.js",
+      "bytes": 418,
+      "gzip": 239
+    },
+    {
+      "name": "management-CVR7XBgU.js",
+      "bytes": 8521,
+      "gzip": 3246
+    },
+    {
+      "name": "Methodology-Dmq6lbCc.js",
+      "bytes": 10926,
+      "gzip": 4298
+    },
+    {
+      "name": "Operations-ga6P6a90.js",
+      "bytes": 6981,
+      "gzip": 2688
+    },
+    {
+      "name": "project-Cy_vKRAD.js",
+      "bytes": 240,
+      "gzip": 206
+    },
+    {
+      "name": "react-DccWUXqq.js",
+      "bytes": 50962,
+      "gzip": 18116
+    },
+    {
+      "name": "Reports-B_2rsBfO.js",
+      "bytes": 14414,
+      "gzip": 5448
+    },
+    {
+      "name": "Reservations-B4RozqDI.js",
+      "bytes": 9419,
+      "gzip": 3777
+    },
+    {
+      "name": "Routes-CkXZ4dKA.js",
+      "bytes": 6686,
+      "gzip": 2785
+    },
+    {
+      "name": "Satisfaction-7IslnKuj.js",
+      "bytes": 5687,
+      "gzip": 2440
+    }
+  ],
+  "checkedAt": "2026-11-25T14:04:16.164577-03:00",
+  "sourceSha": "21011839892c6c294065a407c5fa186cdee9c7d6"
+}

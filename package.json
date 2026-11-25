@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "p2:data": "tsx scripts/p2-evidence.ts",
+    "p2:captures": "node scripts/capture-p2.mjs",
+    "p2:report": "python scripts/build-p2-report.py",
     "presentation:executive": "node scripts/build-executive-slides.mjs",
     "build:demo": "tsx scripts/build-demo.ts",
     "qa:audit": "tsx scripts/qa-audit.ts",
