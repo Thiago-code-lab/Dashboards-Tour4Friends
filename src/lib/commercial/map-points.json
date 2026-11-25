@@ -1,0 +1,85 @@
+{
+  "attribution": "© OpenStreetMap contributors; ODbL",
+  "points": [
+    {
+      "id": "sjpp",
+      "query": "Saint-Jean-Pied-de-Port, France",
+      "latitude": 43.1629528,
+      "longitude": -1.2380528,
+      "source": "https://nominatim.openstreetmap.org/search?q=Saint-Jean-Pied-de-Port%2C+France&format=jsonv2&limit=1",
+      "osmType": "relation",
+      "osmId": 168589,
+      "retrievedOn": "2026-11-16"
+    },
+    {
+      "id": "astorga",
+      "query": "Astorga, Spain",
+      "latitude": 42.455401,
+      "longitude": -6.052924,
+      "source": "https://nominatim.openstreetmap.org/search?q=Astorga%2C+Spain&format=jsonv2&limit=1",
+      "osmType": "relation",
+      "osmId": 347413,
+      "retrievedOn": "2026-11-16"
+    },
+    {
+      "id": "sarria",
+      "query": "Sarria, Lugo, Spain",
+      "latitude": 42.7709847,
+      "longitude": -7.4334912,
+      "source": "https://nominatim.openstreetmap.org/search?q=Sarria%2C+Lugo%2C+Spain&format=jsonv2&limit=1",
+      "osmType": "relation",
+      "osmId": 345118,
+      "retrievedOn": "2026-11-16"
+    },
+    {
+      "id": "lisboa",
+      "query": "Lisboa, Portugal",
+      "latitude": 38.7077507,
+      "longitude": -9.1365919,
+      "source": "https://nominatim.openstreetmap.org/search?q=Lisboa%2C+Portugal&format=jsonv2&limit=1",
+      "osmType": "relation",
+      "osmId": 5400890,
+      "retrievedOn": "2026-11-16"
+    },
+    {
+      "id": "porto",
+      "query": "Porto, Portugal",
+      "latitude": 41.1502195,
+      "longitude": -8.6103497,
+      "source": "https://nominatim.openstreetmap.org/search?q=Porto%2C+Portugal&format=jsonv2&limit=1",
+      "osmType": "relation",
+      "osmId": 3372453,
+      "retrievedOn": "2026-11-16"
+    },
+    {
+      "id": "tui",
+      "query": "Tui, Pontevedra, Spain",
+      "latitude": 42.0669432,
+      "longitude": -8.6637585,
+      "source": "https://nominatim.openstreetmap.org/search?q=Tui%2C+Pontevedra%2C+Spain&format=jsonv2&limit=1",
+      "osmType": "relation",
+      "osmId": 341383,
+      "retrievedOn": "2026-11-16"
+    },
+    {
+      "id": "valenca",
+      "query": "Valença, Viana do Castelo, Portugal",
+      "latitude": 41.9916991,
+      "longitude": -8.6063721,
+      "source": "https://nominatim.openstreetmap.org/search?q=Valen%C3%A7a%2C+Viana+do+Castelo%2C+Portugal&format=jsonv2&limit=1",
+      "osmType": "relation",
+      "osmId": 4640264,
+      "retrievedOn": "2026-11-16"
+    },
+    {
+      "id": "santiago",
+      "query": "Santiago de Compostela, Spain",
+      "latitude": 42.9064576,
+      "longitude": -8.5192983,
+      "source": "https://nominatim.openstreetmap.org/search?q=Santiago+de+Compostela%2C+Spain&format=jsonv2&limit=1",
+      "osmType": "relation",
+      "osmId": 346204,
+      "retrievedOn": "2026-11-16"
+    }
+  ]
+}

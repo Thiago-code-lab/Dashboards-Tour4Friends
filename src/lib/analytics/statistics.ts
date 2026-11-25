@@ -2,6 +2,7 @@ import type { Dataset, Filters } from '../../types/domain';
 import type { Observation } from '../forecasting/models';
 import { describe, quantile, wilson, fingerprint } from './numerical';
 import { nps } from './metrics';
+import { matchesRoute } from './route-scope';
 import { number, percent } from '../format';
 
 export function seasonalAnalysis(history: Observation[]) {
@@ -46,8 +47,7 @@ export function historicalBookings(data: Dataset, filters: Filters) {
     return (
       departure.date >= filters.start &&
       departure.date <= cutoff &&
-      (filters.route === 'all' || route.id === filters.route) &&
-      (filters.modality === 'all' || route.modality === filters.modality) &&
+      matchesRoute(route, filters) &&
       (filters.category === 'all' || booking.category === filters.category)
     );
   });

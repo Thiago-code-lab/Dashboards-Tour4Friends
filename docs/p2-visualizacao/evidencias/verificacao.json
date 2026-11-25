@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-25",
+  "timezone": "America/Sao_Paulo",
+  "sourceSha": "21011839892c6c294065a407c5fa186cdee9c7d6",
+  "checks": {
+    "Build demo e TypeScript": "Aprovados (npm run build:demo)",
+    "Integridade dos dados": "Aprovada; dataset de referência inalterado",
+    "Testes unitários Vitest": "184 aprovados",
+    "PostgreSQL / Pytest": "27 aprovados em cluster novo isolado",
+    "Navegador conectado": "8 aprovados; persistência em nova sessão",
+    "Playwright desktop/celular": "39 aprovados; 1 dispensa móvel preexistente",
+    "Auditoria de interface": "60 telas / 6 resoluções; sem overflow ou erro de console",
+    "Acessibilidade automatizada": "Sem violações nos recortes axe-core executados",
+    "Ruff backend": "Aprovado",
+    "Runner do laboratório": "5 regressões aprovadas; falhas não preservam sucesso antigo",
+    "Dependências e pacote estático": "npm audit: 0 vulnerabilidades; release:check aprovado"
+  },
+  "commands": [
+    "npm test",
+    "npm run data:validate",
+    "npm run build:demo",
+    "python scripts/verify-p2-lab.py --pg-bin <postgres-bin>",
+    "npm run test:e2e",
+    "QA_BASE_URL=http://127.0.0.1:4177 QA_PHASE=p2 npm run qa:audit",
+    "python -m unittest discover -s scripts/tests -p \"test_*.py\""
+  ],
+  "limits": [
+    "Auditoria automatizada não comprova conformidade WCAG completa",
+    "Dispensa móvel é duplicação da captura/PDF analítico desktop, não falha de navegação",
+    "Sem teste de carga de produção ou aprovação da empresa",
+    "Capturas ilustrativas locais de 23/11/2026; interface revalidada em 25/11/2026 sem alteração visual"
+  ]
+}

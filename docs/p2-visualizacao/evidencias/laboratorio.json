@@ -1,0 +1,15 @@
+{
+  "startedAt": "2026-11-25T14:00:12.294467-03:00",
+  "status": "passed",
+  "database": "t4f_p2_test",
+  "port": 55439,
+  "existingEnvironmentModified": false,
+  "stopped": true,
+  "checks": {
+    "ruff": "passed",
+    "pytest": "passed",
+    "connected": "passed"
+  },
+  "checkedAt": "2026-11-25T14:02:53.116663-03:00",
+  "clusterIsolation": "new exclusive temporary directory"
+}
