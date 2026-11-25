@@ -1,6 +1,7 @@
 {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "timezone": "America/Sao_Paulo",
+  "sourceSha": "21011839892c6c294065a407c5fa186cdee9c7d6",
   "checks": {
     "Build demo e TypeScript": "Aprovados (npm run build:demo)",
     "Integridade dos dados": "Aprovada; dataset de referência inalterado",
@@ -11,7 +12,8 @@
     "Auditoria de interface": "60 telas / 6 resoluções; sem overflow ou erro de console",
     "Acessibilidade automatizada": "Sem violações nos recortes axe-core executados",
     "Ruff backend": "Aprovado",
-    "Runner do laboratório": "5 regressões aprovadas; falhas não preservam sucesso antigo"
+    "Runner do laboratório": "5 regressões aprovadas; falhas não preservam sucesso antigo",
+    "Dependências e pacote estático": "npm audit: 0 vulnerabilidades; release:check aprovado"
   },
   "commands": [
     "npm test",
@@ -26,6 +28,6 @@
     "Auditoria automatizada não comprova conformidade WCAG completa",
     "Dispensa móvel é duplicação da captura/PDF analítico desktop, não falha de navegação",
     "Sem teste de carga de produção ou aprovação da empresa",
-    "Capturas ilustrativas locais de 23/11/2026; interface revalidada em 24/11/2026 sem alteração visual"
+    "Capturas ilustrativas locais de 23/11/2026; interface revalidada em 25/11/2026 sem alteração visual"
   ]
 }

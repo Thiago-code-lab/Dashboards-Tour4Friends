@@ -20,7 +20,7 @@ O resultado atual fica em `artifacts/p2-lab/results.json`. Exija `status: passed
 
 O runner cria diretório temporário novo com senha aleatória, autenticação SCRAM, banco `t4f_p2_test` e escuta em 127.0.0.1. Não altera `.env`, usuários ou banco existentes. Cluster é encerrado no `finally`; dados do cluster ficam na pasta temporária para inspeção local, sem credenciais no repositório. Tokens e usuários E2E são descartáveis. Não há serviços pagos ou API pública.
 
-Resultado repetido em 24/11/2026: **27 Pytest**, **8 testes conectados Playwright**, Ruff aprovado. Os testes aplicaram migrações e seed reais. Cluster encerrado. Resumos e logs sanitizados em [evidências](evidencias/laboratorio.json), [Pytest](evidencias/laboratorio-pytest.txt) e [navegador](evidencias/laboratorio-conectado.txt). A [revalidação](revalidacao.md) registra a falha inicial de dependência e sua resolução.
+Resultado repetido em 24 e 25/11/2026: **27 Pytest**, **8 testes conectados Playwright**, Ruff aprovado. Os testes aplicaram migrações e seed reais. Cluster encerrado. Resumos e logs sanitizados da execução de 25/11 em [evidências](evidencias/laboratorio.json), [Pytest](evidencias/laboratorio-pytest.txt) e [navegador](evidencias/laboratorio-conectado.txt). A [revalidação](revalidacao.md) registra a falha inicial de dependência e sua resolução.
 
 ## O que foi comprovado
 

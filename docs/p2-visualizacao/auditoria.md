@@ -64,3 +64,9 @@ A entrega desta auditoria já estava nos commits `75c35ff` e `e3c9ea6`, com PR #
 ## Recebimento do documento oficial
 
 Posteriormente, em 24/11/2026, o solicitante indicou `D:/Downloads/P2_VD2026.docx`. O arquivo foi lido sem alteração e registrado por SHA-256. Seus seis entregáveis e vinte critérios foram [mapeados às evidências](aderencia-requisitos-oficiais.md). A pendência de acesso ao DOCX e de conferência literal foi encerrada. O entregável 6 continua pendente por exigir feedback real e ajustes decorrentes. As referências à ausência do arquivo nas seções anteriores descrevem o estado da auditoria inicial.
+
+## Reauditoria de 25/11/2026
+
+A nova solicitação encontrou o pacote P2 já implementado, commitado e enviado no PR #9 em rascunho, HEAD `2101183`. O checkout da P2 estava limpo. A [consulta atual dos PRs #4–#9](evidencias/revisao-prs-2026-11-25.json) confirma as mesmas dependências, todos abertos e sem merge. `main` permanece em `0216dce`; o checkout original permanece em `feature/hospedagens-comparacao-03`, com o WIP de hospedagens preservado.
+
+Antes de qualquer alteração desta rodada, foram relidos os dez capítulos, carregamento/atualização, filtros, análises, integração relacional, manual e matriz de requisitos. O DOCX foi localizado em `D:/Downloads/P2_VD2026.docx`, lido integralmente e conferido contra os vinte critérios; seu SHA-256 continua `ad8e431187b2b4eaec64d2b3dc41352a4cdf81a4d180d710de0abce17801f1da`. Não há necessidade de reconstruir ou duplicar funcionalidades. Esta rodada atualiza as evidências após repetição das verificações e mantém o feedback empresarial como pendência externa. Não houve alteração de código, dataset, merge ou publicação nesta auditoria.

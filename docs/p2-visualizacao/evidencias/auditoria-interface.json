@@ -1,5 +1,5 @@
 {
-  "phase": "p2-revalidacao",
+  "phase": "p2",
   "results": [
     {
       "route": "overview",
@@ -485,38 +485,38 @@
   "performance": [
     {
       "run": 1,
-      "readyMs": 1179,
-      "applyMs": 387,
+      "readyMs": 1076,
+      "applyMs": 206,
       "resourceBytes": 324437,
-      "heapBytes": 18522126
+      "heapBytes": 19833693
     },
     {
       "run": 2,
-      "readyMs": 1207,
-      "applyMs": 310,
+      "readyMs": 1105,
+      "applyMs": 183,
       "resourceBytes": 324437,
-      "heapBytes": 22935026
+      "heapBytes": 20043674
     },
     {
       "run": 3,
-      "readyMs": 1188,
-      "applyMs": 306,
+      "readyMs": 1126,
+      "applyMs": 223,
       "resourceBytes": 324437,
-      "heapBytes": 22942114
+      "heapBytes": 20045582
     },
     {
       "run": 4,
-      "readyMs": 1280,
-      "applyMs": 275,
+      "readyMs": 1115,
+      "applyMs": 191,
       "resourceBytes": 324437,
-      "heapBytes": 22941046
+      "heapBytes": 20003642
     },
     {
       "run": 5,
-      "readyMs": 1223,
-      "applyMs": 259,
+      "readyMs": 1140,
+      "applyMs": 229,
       "resourceBytes": 324437,
-      "heapBytes": 22940782
+      "heapBytes": 20078771
     }
   ],
   "assets": [
@@ -615,5 +615,7 @@
       "bytes": 5687,
       "gzip": 2440
     }
-  ]
+  ],
+  "checkedAt": "2026-11-25T14:04:16.164577-03:00",
+  "sourceSha": "21011839892c6c294065a407c5fa186cdee9c7d6"
 }
