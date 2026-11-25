@@ -30,6 +30,7 @@ def analyze_dataset(
     route_id: str | None = None,
     modality: str | None = None,
     category: str | None = None,
+    way: str | None = None,
 ) -> dict[str, Any]:
     start = start or data.metadata.history_start
     end = end or date(data.metadata.reference_date.year, 12, 31)
@@ -38,9 +39,20 @@ def analyze_dataset(
     routes = {r.id: r for r in data.routes}
     deps = {d.id: d for d in data.departures}
 
+    historical_ways = {
+        "santiago": "Francês",
+        "frances-bike": "Francês",
+        "portugues": "Português",
+        "portugues-bike": "Português",
+    }
+    if way not in (None, "Francês", "Português"):
+        raise HTTPException(422, "Caminho inválido.")
+
     def matches(identifier: str) -> bool:
-        return (not route_id or identifier == route_id) and (
-            not modality or routes[identifier].modality == modality
+        return (
+            (not route_id or identifier == route_id)
+            and (not modality or routes[identifier].modality == modality)
+            and (not way or historical_ways.get(identifier) == way)
         )
 
     departures = {d.id for d in data.departures if matches(d.route_id) and start <= d.date <= end}

@@ -1,5 +1,6 @@
 import type { Booking, Dataset, Filters, Thresholds } from '../../types/domain';
 import { divide, mean, monthRange, sum } from '../format';
+import { matchesRoute } from './route-scope';
 
 export function nps(scores: number[]): number | null {
   if (!scores.length) return null;
@@ -51,9 +52,7 @@ export function analyze(data: Dataset, filters: Filters) {
   const customerMap = new Map(data.customers.map((c) => [c.id, c]));
   const partnerMap = new Map(data.partners.map((p) => [p.id, p]));
   const allByDeparture = Map.groupBy(data.bookings, (b) => b.departureId);
-  const routeMatches = (id: string) =>
-    (filters.route === 'all' || id === filters.route) &&
-    (filters.modality === 'all' || routeMap.get(id)?.modality === filters.modality);
+  const routeMatches = (id: string) => matchesRoute(routeMap.get(id)!, filters);
   const routes = data.routes.filter((r) => routeMatches(r.id));
   const bookings = data.bookings.filter(
     (b) =>

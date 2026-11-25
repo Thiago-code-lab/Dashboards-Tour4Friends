@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-11-25T17:02:37.829Z",
+  "prs": [
+    {
+      "number": 4,
+      "url": "https://github.com/Thiago-code-lab/Dashboards-Tour4Friends/pull/4",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "base": "main",
+      "baseSha": "0216dce5f67b83fbb0ba84346a7742dcb4f5ce23",
+      "head": "feature/catalogo-orcamento-2027",
+      "headSha": "3af88df33114320abb6a4a97509f845e13283079"
+    },
+    {
+      "number": 5,
+      "url": "https://github.com/Thiago-code-lab/Dashboards-Tour4Friends/pull/5",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "base": "feature/catalogo-orcamento-2027",
+      "baseSha": "3af88df33114320abb6a4a97509f845e13283079",
+      "head": "feature/roteiros-documentais-02",
+      "headSha": "58b05df2540128dced93077a6ec3f9252be87e44"
+    },
+    {
+      "number": 6,
+      "url": "https://github.com/Thiago-code-lab/Dashboards-Tour4Friends/pull/6",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "base": "main",
+      "baseSha": "0216dce5f67b83fbb0ba84346a7742dcb4f5ce23",
+      "head": "feat/feedback-professor-kpis-finance-v1",
+      "headSha": "e8db19f2f89ff9f3c762e81b22bed4c76f417cc5"
+    },
+    {
+      "number": 7,
+      "url": "https://github.com/Thiago-code-lab/Dashboards-Tour4Friends/pull/7",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "base": "feature/roteiros-documentais-02",
+      "baseSha": "58b05df2540128dced93077a6ec3f9252be87e44",
+      "head": "feature/evolucao-professor-2026",
+      "headSha": "370a3e77071fa1a04afb9264e016dfd37d0f5eb0"
+    },
+    {
+      "number": 8,
+      "url": "https://github.com/Thiago-code-lab/Dashboards-Tour4Friends/pull/8",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "base": "feature/evolucao-professor-2026",
+      "baseSha": "370a3e77071fa1a04afb9264e016dfd37d0f5eb0",
+      "head": "feature/mapa-demanda-apresentacao-2026",
+      "headSha": "0ec5f1a991e39ab6eb48f75d2e16709a8d67ccfe"
+    },
+    {
+      "number": 9,
+      "url": "https://github.com/Thiago-code-lab/Dashboards-Tour4Friends/pull/9",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "base": "feature/mapa-demanda-apresentacao-2026",
+      "baseSha": "0ec5f1a991e39ab6eb48f75d2e16709a8d67ccfe",
+      "head": "feature/p2-visualizacao-2026",
+      "headSha": "21011839892c6c294065a407c5fa186cdee9c7d6"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import type { Dataset, Filters } from '../../types/domain';
 import { monthRange } from '../format';
+import { matchesRoute } from '../analytics/route-scope';
 import { fingerprint } from '../analytics/numerical';
 import { forecastDemand, type ForecastResult, type Observation } from './models';
 
@@ -28,8 +29,7 @@ export function historicalSeries(data: Dataset, filters: Filters): Observation[]
       booking.status !== 'confirmed' ||
       departure.date < start ||
       departure.date > end ||
-      (filters.route !== 'all' && filters.route !== route.id) ||
-      (filters.modality !== 'all' && filters.modality !== route.modality) ||
+      !matchesRoute(route, filters) ||
       (filters.category !== 'all' && filters.category !== booking.category)
     )
       continue;

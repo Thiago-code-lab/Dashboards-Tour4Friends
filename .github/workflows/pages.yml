@@ -3,7 +3,16 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main, feature/backend-postgresql-v1, feature/advanced-analytics-v1, feature/catalogo-orcamento-2027]
+    branches:
+      [
+        main,
+        feature/backend-postgresql-v1,
+        feature/advanced-analytics-v1,
+        feature/catalogo-orcamento-2027,
+        feature/roteiros-documentais-02,
+        feature/evolucao-professor-2026,
+        feature/mapa-demanda-apresentacao-2026,
+      ]
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,6 +35,8 @@ jobs:
           cache-dependency-path: backend/requirements.txt
       - run: npm ci
       - run: pip install -r backend/requirements.txt
+      - name: Verify laboratory evidence failure handling
+        run: python -m unittest discover -s scripts/tests -p "test_*.py"
       - name: Backend lint
         run: python -m ruff check backend/app backend/tests backend/scripts
       - name: Start disposable PostgreSQL with an ephemeral password
@@ -107,8 +118,12 @@ jobs:
           npm run delivery:data
           python -m pip install -r scripts/requirements-delivery.txt
           python scripts/build-academic-report.py
+          npm run p2:data
+          P2_BASE_URL=http://127.0.0.1:4175/Dashboards-Tour4Friends/ npm run p2:captures
+          python scripts/build-p2-report.py
           if ! command -v pdftoppm >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y poppler-utils; fi
           pdftoppm -scale-to 1100 -png output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.pdf artifacts/qa-final/pdf-page
+          pdftoppm -scale-to 1100 -png output/pdf/P2_Visualizacao_de_Dados_T4F_Performance.pdf artifacts/qa-final/p2-page
         env:
           CI: true
           RELEASE_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
@@ -132,6 +147,8 @@ jobs:
             artifacts/release-05/
             output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.pdf
             output/pdf/T4F-Performance-Projeto-Integrador-V-Entrega.manifest.json
+            output/pdf/P2_Visualizacao_de_Dados_T4F_Performance.pdf
+            docs/p2-visualizacao/
       - name: Upload static candidate for review without deployment
         uses: actions/upload-artifact@v4
         if: success()
